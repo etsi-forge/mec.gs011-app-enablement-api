@@ -1,0 +1,16 @@
+description: This type represents the category reference
+type: object
+required:
+- href
+- id
+- name
+- version
+properties:
+  href:
+    $ref: '#/definitions/CategoryRef.Href'
+  id:
+    $ref: '#/definitions/CategoryRef.Id'
+  name:
+    $ref: '#/definitions/CategoryRef.Name'
+  version:
+    $ref: '#/definitions/CategoryRef.Version'

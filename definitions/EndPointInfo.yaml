@@ -1,0 +1,9 @@
+description: This type represents information about a transport endpoint
+type: object
+properties:
+  uris:
+    $ref: '#/definitions/EndPointInfo.Uris'
+  addresses:
+    $ref: '#/definitions/EndPointInfo.Addresses'
+  alternative:
+    $ref: '#/definitions/EndPointInfo.Alternative'

@@ -1,0 +1,20 @@
+description: This method updates the information about a meService resource
+operationId: ServicesServiceId.PUT
+produces:
+- application/json
+parameters:
+- $ref: '#/parameters/Path.ServiceId'
+- $ref: '#/parameters/Body.ServiceInfo'
+
+responses:
+  200:
+    description: Upon success, a response body containing data type describing the updated ServiceInfo is returned
+    schema:
+      type: object
+      properties:
+        ServiceInfo:
+          $ref: '#/definitions/ServiceInfo'
+     
+    examples:
+      application/json:
+        $ref: '../examples/ServiceInfo.json' 

@@ -1,0 +1,24 @@
+description: This type represents the general information of a mobile edge service.
+type: object
+required:
+- serName
+- version
+- state
+- serializer
+properties:
+  serInstanceId:
+    $ref: '#/definitions/ServiceInfo.SerInstanceId'
+  serName:
+    $ref: '#/definitions/ServiceInfo.SerName'
+  serCategory:
+    $ref: '#/definitions/CategoryRef'
+  version:
+    $ref: '#/definitions/ServiceInfo.Version'
+  state:
+    $ref: '#/definitions/ServiceInfo.State'
+  transportId:
+    $ref: '#/definitions/ServiceInfo.TransportId'
+  transportInfo:
+    $ref: '#/definitions/TransportInfo'
+  serializer:
+    $ref: '#/definitions/SerializerTypes'
