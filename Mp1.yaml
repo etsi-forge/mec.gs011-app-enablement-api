@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: Mp1 API
   version: 1.1.1
-  description: The ETSI MEC ISG MEC016 UE Application Interface API described using OpenAPI
+  description: The ETSI MEC ISG MEC011 Application Enablement API described using OpenAPI
   license:
     name: ETSI Forge copyright notice
     url: 'https://forge.etsi.org/etsi-forge-copyright-notice.txt'
@@ -28,7 +28,7 @@ parameters:
       $ref: '#/definitions/AppTerminationNotificationSubscription.Request'
   Body.DnsRule:
     name: DnsRule
-    description: The updated ÔÇ£stateÔÇØ is included in the entity body of the request.
+    description: The updated state is included in the entity body of the request.
     in: body
     required: true
     schema:
