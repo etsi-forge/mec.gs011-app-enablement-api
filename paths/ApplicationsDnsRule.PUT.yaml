@@ -4,8 +4,6 @@ produces:
 - application/json
 parameters:
 - $ref: '#/parameters/Body.DnsRule'
-- $ref: '#/parameters/Path.AppInstanceId'
-- $ref: '#/parameters/Path.DnsRuleId'
 
 responses:
   200:

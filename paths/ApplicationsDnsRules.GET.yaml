@@ -2,8 +2,6 @@ description: This method retrieves information about all the DNS rules associate
 operationId: ApplicationsDnsRules.GET
 produces:
 - application/json
-parameters:
-- $ref: '#/parameters/Path.AppInstanceId'
 
 responses:
   200:

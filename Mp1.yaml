@@ -7,7 +7,7 @@ info:
     name: ETSI Forge copyright notice
     url: 'https://forge.etsi.org/etsi-forge-copyright-notice.txt'
 externalDocs:
-  description: ETSI GS MEC011 Application Enablement API, V1.1.1
+  description: 'ETSI GS MEC011 Application Enablement API, V1.1.1'
   url: 'http://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/01.01.01_60/gs_mec011v010101p.pdf'
 host: '127.0.0.1:8081'
 basePath: /exampleAPI/mp1/v1/
@@ -120,13 +120,13 @@ parameters:
       type: string
 paths:
   '/applications/{appInstanceId}/dns_rules':
+    parameters:
+      - $ref: '#/parameters/Path.AppInstanceId'
     get:
       description: This method retrieves information about all the DNS rules associated with a mobile edge application instance.
       operationId: ApplicationsDnsRules.GET
       produces:
         - application/json
-      parameters:
-        - $ref: '#/parameters/Path.AppInstanceId'
       responses:
         '200':
           description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
@@ -138,14 +138,14 @@ paths:
                 DnsRule:
                   $ref: '#/definitions/DnsRule'
   '/applications/{appInstanceId}/dns_rules/{dnsRuleId}':
+    parameters:
+      - $ref: '#/parameters/Path.AppInstanceId'
+      - $ref: '#/parameters/Path.DnsRuleId'
     get:
       description: This method retrieves information about a DNS rule associated with a mobile edge application instance.
       operationId: ApplicationsDnsRule.GET
       produces:
         - application/json
-      parameters:
-        - $ref: '#/parameters/Path.AppInstanceId'
-        - $ref: '#/parameters/Path.DnsRuleId'
       responses:
         '200':
           description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
@@ -161,8 +161,6 @@ paths:
         - application/json
       parameters:
         - $ref: '#/parameters/Body.DnsRule'
-        - $ref: '#/parameters/Path.AppInstanceId'
-        - $ref: '#/parameters/Path.DnsRuleId'
       responses:
         '200':
           description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
@@ -172,13 +170,13 @@ paths:
               DnsRule:
                 $ref: '#/definitions/DnsRule'
   '/applications/{appInstanceId}/subscriptions':
+    parameters:
+      - $ref: '#/parameters/Path.AppInstanceId'
     get:
       description: 'The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.'
       operationId: ApplicationsSubscriptions.GET
       produces:
         - application/json
-      parameters:
-        - $ref: '#/parameters/Path.AppInstanceId'
       responses:
         '200':
           description: 'Upon success, a response body containing the list of links to the requested subscriptions is returned.'
@@ -193,7 +191,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - $ref: '#/parameters/Path.AppInstanceId'
         - $ref: '#/parameters/Body.AppTerminationNotificationSubscription'
       responses:
         '200':
@@ -204,15 +201,15 @@ paths:
               AppTerminationNotificationSubscription:
                 $ref: '#/definitions/AppTerminationNotificationSubscription.Response'
   '/applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}':
+    parameters:
+      - $ref: '#/parameters/Path.AppInstanceId'
+      - $ref: '#/parameters/Path.SubscriptionType'
+      - $ref: '#/parameters/Path.SubscriptionId'
     get:
       description: 'The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.'
       operationId: ApplicationsSubscription.GET
       produces:
         - application/json
-      parameters:
-        - $ref: '#/parameters/Path.AppInstanceId'
-        - $ref: '#/parameters/Path.SubscriptionType'
-        - $ref: '#/parameters/Path.SubscriptionId'
       responses:
         '200':
           description: 'Upon success, a response body containing the requested subscription is returned.'
@@ -230,13 +227,13 @@ paths:
         '204':
           description: No Content
   '/applications/{appInstanceId}/traffic_rules':
+    parameters:
+      - $ref: '#/parameters/Path.AppInstanceId'
     get:
       description: This method retrieves information about all the traffic rules associated with a mobile edge application instance.
       operationId: ApplicationsTrafficRules.GET
       produces:
         - application/json
-      parameters:
-        - $ref: '#/parameters/Path.AppInstanceId'
       responses:
         '200':
           description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
@@ -248,14 +245,14 @@ paths:
                 TrafficRule:
                   $ref: '#/definitions/TrafficRule'
   '/applications/{appInstanceId}/traffic_rules/{trafficRuleId}':
+    parameters:
+      - $ref: '#/parameters/Path.AppInstanceId'
+      - $ref: '#/parameters/Path.TrafficRuleId'
     get:
       description: This method retrieves information about all the traffic rules associated with a mobile edge application instance.
       operationId: ApplicationsTrafficRule.GET
       produces:
         - application/json
-      parameters:
-        - $ref: '#/parameters/Path.AppInstanceId'
-        - $ref: '#/parameters/Path.TrafficRuleId'
       responses:
         '200':
           description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
@@ -271,8 +268,6 @@ paths:
         - application/json
       parameters:
         - $ref: '#/parameters/Body.TrafficRule'
-        - $ref: '#/parameters/Path.AppInstanceId'
-        - $ref: '#/parameters/Path.TrafficRuleId'
       responses:
         '200':
           description: 'Upon success, a response body containing data type describing the updated TrafficRule is returned.'
@@ -317,13 +312,13 @@ paths:
               ServiceInfo:
                 $ref: '#/definitions/ServiceInfo'
   '/services/{serviceId}':
+    parameters:
+      - $ref: '#/parameters/Path.ServiceId'
     get:
       description: This method retrieves information about a meService resource. This method is typically used in "service availability query" procedure
       operationId: ServicesServiceId.GET
       produces:
         - application/json
-      parameters:
-        - $ref: '#/parameters/Path.ServiceId'
       responses:
         '200':
           description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
@@ -369,7 +364,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - $ref: '#/parameters/Path.ServiceId'
         - $ref: '#/parameters/Body.ServiceInfo'
       responses:
         '200':
@@ -739,7 +733,7 @@ definitions:
         type: string
         format: uri
       rel:
-        description: The values are as defined in the ÔÇ£subscriptionTypeÔÇØ attribute for each different Mp1 event subscription data type.
+        description: The values are as defined in the "subscriptionType" attribute for each different Mp1 event subscription data type.
         type: string
   Mp1SubscriptionLinkList:
     description: This type represents a list of links related to currently existing subscriptions for a mobile edge application instance. This information is returned when sending a request to receive current subscriptions.
@@ -852,7 +846,7 @@ definitions:
       - INACTIVE
     example: ACTIVE
   ServiceInfo.TransportId:
-    description: 'Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the ÔÇ£Transport information queryÔÇØ procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.'
+    description: 'Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the "Transport information query" procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.'
     type: string
     example: Rest1
   ServiceInfo.Version:

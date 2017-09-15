@@ -2,8 +2,6 @@ description: The GET method may be used to request information about all subscri
 operationId: ApplicationsSubscriptions.GET
 produces:
 - application/json
-parameters:
-- $ref: '#/parameters/Path.AppInstanceId'
 
 responses:
   200:

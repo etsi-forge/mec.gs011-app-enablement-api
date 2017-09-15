@@ -1,3 +1,6 @@
+parameters:
+- $ref: '#/parameters/Path.AppInstanceId'
+
 get:
   $ref: ./ApplicationsSubscriptions.GET.yaml
 
