@@ -3,7 +3,6 @@ operationId: ApplicationsSubscriptions.POST
 produces:
 - application/json
 parameters:
-- $ref: '#/parameters/Path.AppInstanceId'
 - $ref: '#/parameters/Body.AppTerminationNotificationSubscription'
 # The alternative request
 #- $ref: '#/parameters/Body.SerAvailabilityNotificationSubscription'

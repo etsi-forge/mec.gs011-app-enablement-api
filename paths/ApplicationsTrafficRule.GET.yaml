@@ -2,9 +2,6 @@ description: This method retrieves information about all the traffic rules assoc
 operationId: ApplicationsTrafficRule.GET
 produces:
 - application/json
-parameters:
-- $ref: '#/parameters/Path.AppInstanceId'
-- $ref: '#/parameters/Path.TrafficRuleId'
 
 responses:
   200:

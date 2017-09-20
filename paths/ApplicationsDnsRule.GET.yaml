@@ -2,9 +2,6 @@ description: This method retrieves information about a DNS rule associated with 
 operationId: ApplicationsDnsRule.GET
 produces:
 - application/json
-parameters:
-- $ref: '#/parameters/Path.AppInstanceId'
-- $ref: '#/parameters/Path.DnsRuleId'
 
 responses:
   200:

@@ -2,10 +2,6 @@ description: The GET method requests information about a subscription for this r
 operationId: ApplicationsSubscription.GET
 produces:
 - application/json
-parameters:
-- $ref: '#/parameters/Path.AppInstanceId'
-- $ref: '#/parameters/Path.SubscriptionType'
-- $ref: '#/parameters/Path.SubscriptionId'
 
 responses:
   200:

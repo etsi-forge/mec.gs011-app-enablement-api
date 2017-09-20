@@ -4,8 +4,6 @@ produces:
 - application/json
 parameters:
 - $ref: '#/parameters/Body.TrafficRule'
-- $ref: '#/parameters/Path.AppInstanceId'
-- $ref: '#/parameters/Path.TrafficRuleId'
 
 responses:
   200:

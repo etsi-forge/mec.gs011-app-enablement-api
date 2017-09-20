@@ -1,3 +1,6 @@
+parameters:
+- $ref: '#/parameters/Path.ServiceId'
+
 get:
   $ref: ./ServicesServiceId.GET.yaml
 
