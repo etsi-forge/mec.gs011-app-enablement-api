@@ -2,7 +2,7 @@
 
 This repository contains OpenAPIs descriptions for the interfaces specified in ETSI GS MEC 011.
 
-## ETSI Copyright statement
+## ETSI Forge Copyright statement
 
 Copyright (c) ETSI 2017.
 
