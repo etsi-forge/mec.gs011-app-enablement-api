@@ -1,6 +1,13 @@
-# MEC 11
+# Mobile Edge Platform Application Enablement API 
 
 This repository contains OpenAPIs descriptions for the interfaces specified in ETSI GS MEC 011.
+
+## Online resources
+
+* [Navigate the API in the browser](https://forge.etsi.org/rep/gitweb.cgi/MEC.GS_011.git/blob/HEAD:/Mp1.yaml#swagger).
+* [Edit the API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/rep/gitweb.cgi/MEC.GS_011.git/blob_plain/HEAD:/Mp1.yaml).
+
+
 
 ## ETSI Forge Copyright statement
 
@@ -15,4 +22,4 @@ ETSI shall never be liable for any claim, damages, or other liability arising
 from its use or inability of use.This permission does not apply to any documentation 
 associated with this file for which ETSI keeps all rights reserved. The present 
 copyright notice shall be included in all copies of whole or part of this 
-file and shall not imply any sub-license right.
+software and shall not imply any sub-license right.
