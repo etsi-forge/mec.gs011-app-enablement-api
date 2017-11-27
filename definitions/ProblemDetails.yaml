@@ -1,0 +1,12 @@
+type: object
+properties:
+  type:
+    $ref: '#/definitions/Problem.type'
+  title:
+    $ref: '#/definitions/Problem.title'
+  status:
+    $ref: '#/definitions/Problem.status'
+  detail:
+    $ref: '#/definitions/Problem.detail'
+  instance:
+    $ref: '#/definitions/Problem.instance'
