@@ -1,0 +1,7 @@
+DnsRule:
+  dnsRuleId: DnsRule1
+  domainName: www.example.com
+  ipAddressType: IP_V4
+  ipAddress: 146.241.7.3
+  ttl: 300
+  state: ACTIVE
