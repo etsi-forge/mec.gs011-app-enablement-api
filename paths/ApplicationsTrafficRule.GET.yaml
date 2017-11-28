@@ -11,3 +11,6 @@ responses:
       properties:
         TrafficRule:
           $ref: '#/definitions/TrafficRule'
+    examples:
+      application/json:
+        $ref: '../examples/TrafficRule.json' 
