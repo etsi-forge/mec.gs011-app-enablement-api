@@ -353,7 +353,7 @@ paths:
                     addresses:
                       - host: 192.0.2.0
                         port: '8080'
-                  mp1.security:
+                  security:
                     oAuth2Info:
                       grantTypes: OAUTH2_CLIENT_CREDENTIALS
                       tokenEndpoint: /meMp1/mp1.security/TokenEndPoint
@@ -399,7 +399,7 @@ paths:
                     addresses:
                       - host: 192.0.2.0
                         port: '8080'
-                  mp1.security:
+                  security:
                     oAuth2Info:
                       grantTypes: OAUTH2_CLIENT_CREDENTIALS
                       tokenEndpoint: /meMp1/mp1.security/TokenEndPoint
@@ -1203,7 +1203,7 @@ definitions:
       - protocol
       - version
       - endpoint
-      - mp1.security
+      - security
     properties:
       id:
         $ref: '#/definitions/TransportInfo.Id'
@@ -1219,7 +1219,7 @@ definitions:
         $ref: '#/definitions/TransportInfo.Version'
       endpoint:
         $ref: '#/definitions/EndPointInfo'
-      mp1.security:
+      security:
         $ref: '#/definitions/SecurityInfo'
       implSpecificInfo:
         $ref: '#/definitions/TransportInfo.ImplSpecificInfo'
