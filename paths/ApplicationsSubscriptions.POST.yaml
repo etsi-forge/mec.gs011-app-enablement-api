@@ -8,7 +8,7 @@ parameters:
 #- $ref: '#/parameters/Body.SerAvailabilityNotificationSubscription'
 
 responses:
-  200:
+  201:
     description: Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created. 
     schema:
       type: object
@@ -18,3 +18,26 @@ responses:
 # The alternative response
 #        SerAvailabilityNotificationSubscription:
 #          $ref: '#/definitions/SerAvailabilityNotificationSubscription'
+  400:
+    description: Bad Request
+    schema:
+      type: object
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'
+  403:
+    description: Forbidden
+    schema:
+      type: object
+      required:
+      - ProblemDetails
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'
+  404:
+    description: Not Found
+    schema:
+      type: object
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'

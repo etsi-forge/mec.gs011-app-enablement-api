@@ -13,3 +13,42 @@ responses:
         properties:
           TrafficRule:
             $ref: '#/definitions/TrafficRule'
+    examples:
+      application/json:
+        TrafficRule:
+          trafficRuleId: TrafficRule123
+          serName: ExampleService
+          filterType: FLOW
+          priority: 1
+          trafficFilter:    
+            srcAddress: [192.168.2.0/24, 192.168.3.0/24]
+            dstAddress: [192.127.4.100/32]    
+            dstPort: [80] 
+          action: FORWARD_DECAPSULATED
+          dstInterface: 
+            interfaceType: IP
+            dstIpAddress: 20.1.1.1
+          state: ACTIVE
+  400:
+    description: Bad Request
+    schema:
+      type: object
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'
+  403:
+    description: Forbidden
+    schema:
+      type: object
+      required:
+      - ProblemDetails
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'
+  404:
+    description: Not Found
+    schema:
+      type: object
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'

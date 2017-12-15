@@ -1,0 +1,4 @@
+type: string
+format: uri
+description: >-
+  A URI reference according to IETF RFC 3986 that identifies the problem type

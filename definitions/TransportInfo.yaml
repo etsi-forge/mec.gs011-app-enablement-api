@@ -7,7 +7,7 @@ required:
 - protocol
 - version
 - endpoint
-- security
+- security.mp1
 properties:
   id:
     $ref: '#/definitions/TransportInfo.Id'
@@ -23,7 +23,7 @@ properties:
     $ref: '#/definitions/TransportInfo.Version'
   endpoint:
     $ref: '#/definitions/EndPointInfo'
-  security:
+  security.mp1:
     $ref: '#/definitions/SecurityInfo'
   implSpecificInfo:
     $ref: '#/definitions/TransportInfo.ImplSpecificInfo'

@@ -6,3 +6,19 @@ produces:
 responses:
   204:
     description: No Content
+  403:
+    description: Forbidden
+    schema:
+      type: object
+      required:
+      - ProblemDetails
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'
+  404:
+    description: Not Found
+    schema:
+      type: object
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'

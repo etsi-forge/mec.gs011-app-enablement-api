@@ -13,4 +13,33 @@ responses:
           $ref: '#/definitions/DnsRule'
     examples:
       application/json:
-        $ref: '../examples/DnsRule.json' 
+        DnsRule:
+          dnsRuleId: DnsRule1
+          domainName: www.example.com
+          ipAddressType: IP_V4
+          ipAddress: 146.241.7.3
+          ttl: 300
+          state: ACTIVE
+  400:
+    description: Bad Request
+    schema:
+      type: object
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'
+  403:
+    description: Forbidden
+    schema:
+      type: object
+      required:
+      - ProblemDetails
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'
+  404:
+    description: Not Found
+    schema:
+      type: object
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'

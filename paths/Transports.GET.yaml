@@ -13,3 +13,26 @@ responses:
         properties:
           TransportInfo:
             $ref: '#/definitions/TransportInfo'
+  400:
+    description: Bad Request
+    schema:
+      type: object
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'
+  403:
+    description: Forbidden
+    schema:
+      type: object
+      required:
+      - ProblemDetails
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'
+  404:
+    description: Not Found
+    schema:
+      type: object
+      properties:
+        ProblemDetails:
+          $ref: '#/definitions/ProblemDetails'

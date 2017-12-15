@@ -137,6 +137,38 @@ paths:
               properties:
                 DnsRule:
                   $ref: '#/definitions/DnsRule'
+          examples:
+            application/json:
+              DnsRule:
+                dnsRuleId: DnsRule1
+                domainName: www.example.com
+                ipAddressType: IP_V4
+                ipAddress: 146.241.7.3
+                ttl: 300
+                state: ACTIVE
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   '/applications/{appInstanceId}/dns_rules/{dnsRuleId}':
     parameters:
       - $ref: '#/parameters/Path.AppInstanceId'
@@ -154,6 +186,38 @@ paths:
             properties:
               DnsRule:
                 $ref: '#/definitions/DnsRule'
+          examples:
+            application/json:
+              DnsRule:
+                dnsRuleId: DnsRule1
+                domainName: www.example.com
+                ipAddressType: IP_V4
+                ipAddress: 146.241.7.3
+                ttl: 300
+                state: ACTIVE
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: 'This method activates, de-activates or updates a traffic rule.'
       operationId: ApplicationsDnsRule.PUT
@@ -169,6 +233,45 @@ paths:
             properties:
               DnsRule:
                 $ref: '#/definitions/DnsRule'
+          examples:
+            application/json:
+              DnsRule:
+                dnsRuleId: DnsRule1
+                domainName: www.example.com
+                ipAddressType: IP_V4
+                ipAddress: 146.241.7.3
+                ttl: 300
+                state: ACTIVE
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '412':
+          description: Precondition Failed
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   '/applications/{appInstanceId}/subscriptions':
     parameters:
       - $ref: '#/parameters/Path.AppInstanceId'
@@ -185,6 +288,29 @@ paths:
             properties:
               Mp1SubscriptionLinkList:
                 $ref: '#/definitions/Mp1SubscriptionLinkList'
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     post:
       description: 'The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription.'
       operationId: ApplicationsSubscriptions.POST
@@ -193,13 +319,36 @@ paths:
       parameters:
         - $ref: '#/parameters/Body.AppTerminationNotificationSubscription'
       responses:
-        '200':
+        '201':
           description: Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created.
           schema:
             type: object
             properties:
               AppTerminationNotificationSubscription:
                 $ref: '#/definitions/AppTerminationNotificationSubscription.Response'
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   '/applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}':
     parameters:
       - $ref: '#/parameters/Path.AppInstanceId'
@@ -218,6 +367,29 @@ paths:
             properties:
               SerAvailabilityNotificationSubscription:
                 $ref: '#/definitions/SerAvailabilityNotificationSubscription.Response'
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     delete:
       description: This method deletes a meMp1Subscription. This method is typically used in "Unsubscribing from service availability event notifications" procedure.
       operationId: ApplicationsSubscription.DELETE
@@ -226,6 +398,22 @@ paths:
       responses:
         '204':
           description: No Content
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   '/applications/{appInstanceId}/traffic_rules':
     parameters:
       - $ref: '#/parameters/Path.AppInstanceId'
@@ -244,6 +432,49 @@ paths:
               properties:
                 TrafficRule:
                   $ref: '#/definitions/TrafficRule'
+          examples:
+            application/json:
+              TrafficRule:
+                trafficRuleId: TrafficRule123
+                serName: ExampleService
+                filterType: FLOW
+                priority: 1
+                trafficFilter:
+                  srcAddress:
+                    - 192.168.2.0/24
+                    - 192.168.3.0/24
+                  dstAddress:
+                    - 192.127.4.100/32
+                  dstPort:
+                    - 80
+                action: FORWARD_DECAPSULATED
+                dstInterface:
+                  interfaceType: IP
+                  dstIpAddress: 20.1.1.1
+                state: ACTIVE
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   '/applications/{appInstanceId}/traffic_rules/{trafficRuleId}':
     parameters:
       - $ref: '#/parameters/Path.AppInstanceId'
@@ -261,6 +492,49 @@ paths:
             properties:
               TrafficRule:
                 $ref: '#/definitions/TrafficRule'
+          examples:
+            application/json:
+              TrafficRule:
+                trafficRuleId: TrafficRule123
+                serName: ExampleService
+                filterType: FLOW
+                priority: 1
+                trafficFilter:
+                  srcAddress:
+                    - 192.168.2.0/24
+                    - 192.168.3.0/24
+                  dstAddress:
+                    - 192.127.4.100/32
+                  dstPort:
+                    - 80
+                action: FORWARD_DECAPSULATED
+                dstInterface:
+                  interfaceType: IP
+                  dstIpAddress: 20.1.1.1
+                state: ACTIVE
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: This method retrieves information about all the traffic rules associated with a mobile edge application instance.
       operationId: ApplicationsTrafficRules.PUT
@@ -276,6 +550,56 @@ paths:
             properties:
               TrafficRule:
                 $ref: '#/definitions/TrafficRule'
+          examples:
+            application/json:
+              TrafficRule:
+                trafficRuleId: TrafficRule123
+                serName: ExampleService
+                filterType: FLOW
+                priority: 1
+                trafficFilter:
+                  srcAddress:
+                    - 192.168.2.0/24
+                    - 192.168.3.0/24
+                  dstAddress:
+                    - 192.127.4.100/32
+                  dstPort:
+                    - 80
+                action: FORWARD_DECAPSULATED
+                dstInterface:
+                  interfaceType: IP
+                  dstIpAddress: 20.1.1.1
+                state: ACTIVE
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '412':
+          description: Precondition Failed
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   /services:
     get:
       description: This method retrieves information about a list of meService resources. This method is typically used in "service availability query" procedure
@@ -296,6 +620,60 @@ paths:
               properties:
                 ServiceInfo:
                   $ref: '#/definitions/ServiceInfo'
+          examples:
+            application/json:
+              ServiceInfo:
+                serInstanceId: ServiceInstance123
+                serName: ExampleService
+                serCategory:
+                  href: catItem1
+                  id: id12345
+                  name: RNI
+                  version: version1
+                version: ServiceVersion1
+                state: ACTIVE
+                transportId: Rest1
+                transportInfo:
+                  id: TransId12345
+                  name: REST
+                  description: REST API
+                  type: JSON
+                  protocol: HTTP
+                  version: '2.0'
+                  endpoint:
+                    uris:
+                      - /meMp1/service/EntryPoint
+                    addresses:
+                      - host: 192.0.2.0
+                        port: '8080'
+                  security.mp1:
+                    oAuth2Info:
+                      grantTypes: OAUTH2_CLIENT_CREDENTIALS
+                      tokenEndpoint: /meMp1/security.mp1/TokenEndPoint
+                serializer: JSON
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: This method is used to create a meService resource. This method is typically used in "service availability update and new service registration" procedure
       operationId: Services.POST
@@ -311,6 +689,60 @@ paths:
             properties:
               ServiceInfo:
                 $ref: '#/definitions/ServiceInfo'
+          examples:
+            application/json:
+              ServiceInfo:
+                serInstanceId: ServiceInstance123
+                serName: ExampleService
+                serCategory:
+                  href: catItem1
+                  id: id12345
+                  name: RNI
+                  version: version1
+                version: ServiceVersion1
+                state: ACTIVE
+                transportId: Rest1
+                transportInfo:
+                  id: TransId12345
+                  name: REST
+                  description: REST API
+                  type: JSON
+                  protocol: HTTP
+                  version: '2.0'
+                  endpoint:
+                    uris:
+                      - /meMp1/service/EntryPoint
+                    addresses:
+                      - host: 192.0.2.0
+                        port: '8080'
+                  security.mp1:
+                    oAuth2Info:
+                      grantTypes: OAUTH2_CLIENT_CREDENTIALS
+                      tokenEndpoint: /meMp1/security.mp1/TokenEndPoint
+                serializer: JSON
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   '/services/{serviceId}':
     parameters:
       - $ref: '#/parameters/Path.ServiceId'
@@ -353,11 +785,34 @@ paths:
                     addresses:
                       - host: 192.0.2.0
                         port: '8080'
-                  security:
+                  security.mp1:
                     oAuth2Info:
                       grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/mp1.security/TokenEndPoint
+                      tokenEndpoint: /meMp1/security.mp1/TokenEndPoint
                 serializer: JSON
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
     put:
       description: This method updates the information about a meService resource
       operationId: ServicesServiceId.PUT
@@ -399,11 +854,41 @@ paths:
                     addresses:
                       - host: 192.0.2.0
                         port: '8080'
-                  security:
+                  security.mp1:
                     oAuth2Info:
                       grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/mp1.security/TokenEndPoint
+                      tokenEndpoint: /meMp1/security.mp1/TokenEndPoint
                 serializer: JSON
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '412':
+          description: Precondition Failed
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   /timing/current_time:
     get:
       description: This method retrieves the information of the platform's current time which corresponds to the get platform time procedure
@@ -418,6 +903,29 @@ paths:
             properties:
               CurrentTime:
                 $ref: '#/definitions/CurrentTime'
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   /timing/timing_caps:
     get:
       description: This method retrieves the information of the platform's timing capabilities which corresponds to the timing capabilities query
@@ -432,6 +940,29 @@ paths:
             properties:
               TimingCaps:
                 $ref: '#/definitions/TimingCaps'
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
   /transports:
     get:
       description: This method retrieves information about a list of available transports. This method is typically used by a service-producing application to discover transports provided by the mobile edge platform in the "transport information query" procedure
@@ -448,6 +979,29 @@ paths:
               properties:
                 TransportInfo:
                   $ref: '#/definitions/TransportInfo'
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            required:
+              - ProblemDetails
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              ProblemDetails:
+                $ref: '#/definitions/ProblemDetails'
 definitions:
   AppTerminationNotification.MaxGracefulTimeout:
     description: Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.
@@ -743,6 +1297,37 @@ definitions:
     properties:
       _links:
         $ref: '#/definitions/Mp1SubscriptionLinkList.Links'
+  ProblemDetails:
+    type: object
+    properties:
+      type:
+        $ref: '#/definitions/Problem.type'
+      title:
+        $ref: '#/definitions/Problem.title'
+      status:
+        $ref: '#/definitions/Problem.status'
+      detail:
+        $ref: '#/definitions/Problem.detail'
+      instance:
+        $ref: '#/definitions/Problem.instance'
+  Problem.detail:
+    type: string
+    description: A human-readable explanation specific to this occurrence of the problem
+  Problem.instance:
+    type: string
+    format: uri
+    description: A URI reference that identifies the specific occurrence of the problem
+  Problem.status:
+    type: integer
+    format: uint32
+    description: The HTTP status code for this occurrence of the problem
+  Problem.title:
+    type: string
+    description: 'A short, human-readable summary of the problem type'
+  Problem.type:
+    type: string
+    format: uri
+    description: A URI reference according to IETF RFC 3986 that identifies the problem type
   SecurityInfo.OAuth2Info.GrantTypes:
     description: List of supported OAuth 2.0 grant types
     type: string
@@ -1013,9 +1598,9 @@ definitions:
         items:
           $ref: '#/definitions/TimingCaps.PtpMasters'
   TrafficFilter.Address:
-    description: Identify the traffic rule.
+    description: Identify the traffic ip address.
     type: string
-    example: TrafficRule1
+    example: 192.168.1.1
   TrafficFilter.DSCP:
     description: Used to match all IPv4 packets that have the same Differentiated Services Code Point (DSCP)
     type: integer
@@ -1203,7 +1788,7 @@ definitions:
       - protocol
       - version
       - endpoint
-      - security
+      - security.mp1
     properties:
       id:
         $ref: '#/definitions/TransportInfo.Id'
@@ -1219,7 +1804,7 @@ definitions:
         $ref: '#/definitions/TransportInfo.Version'
       endpoint:
         $ref: '#/definitions/EndPointInfo'
-      security:
+      security.mp1:
         $ref: '#/definitions/SecurityInfo'
       implSpecificInfo:
         $ref: '#/definitions/TransportInfo.ImplSpecificInfo'

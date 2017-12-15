@@ -72,6 +72,18 @@ Mp1SubscriptionLinkList.Subscription:
   $ref: ./Mp1SubscriptionLinkList.Subscription.yaml
 Mp1SubscriptionLinkList:
   $ref: ./Mp1SubscriptionLinkList.yaml
+ProblemDetails:
+  $ref: ./ProblemDetails.yaml
+Problem.detail:
+  $ref: ./Problem.detail.yaml
+Problem.instance:
+  $ref: ./Problem.instance.yaml
+Problem.status:
+  $ref: ./Problem.status.yaml
+Problem.title:
+  $ref: ./Problem.title.yaml
+Problem.type:
+  $ref: ./Problem.type.yaml
 SecurityInfo.OAuth2Info.GrantTypes:
   $ref: ./SecurityInfo.OAuth2Info.GrantTypes.yaml
 SecurityInfo.OAuth2Info.TokenEndpoint:

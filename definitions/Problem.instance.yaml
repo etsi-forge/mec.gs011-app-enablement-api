@@ -1,0 +1,4 @@
+type: string
+format: uri
+description: >-
+  A URI reference that identifies the specific occurrence of the problem
