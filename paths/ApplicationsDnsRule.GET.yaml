@@ -11,3 +11,6 @@ responses:
       properties:
         DnsRule:
           $ref: '#/definitions/DnsRule'
+    examples:
+      application/json:
+        $ref: '../examples/DnsRule.json' 
