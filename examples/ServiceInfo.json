@@ -29,10 +29,10 @@
           }
         ]
       },
-      "security.mp1": {
+      "security": {
         "oAuth2Info": {
           "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
-          "tokenEndpoint": "/meMp1/security.mp1/TokenEndPoint"
+          "tokenEndpoint": "/meMp1/security/TokenEndPoint"
         }
       }
     },

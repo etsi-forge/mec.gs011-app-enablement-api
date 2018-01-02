@@ -646,10 +646,10 @@ paths:
                     addresses:
                       - host: 192.0.2.0
                         port: '8080'
-                  security.mp1:
+                  security:
                     oAuth2Info:
                       grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/security.mp1/TokenEndPoint
+                      tokenEndpoint: /meMp1/security/TokenEndPoint
                 serializer: JSON
         '400':
           description: Bad Request
@@ -715,10 +715,10 @@ paths:
                     addresses:
                       - host: 192.0.2.0
                         port: '8080'
-                  security.mp1:
+                  security:
                     oAuth2Info:
                       grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/security.mp1/TokenEndPoint
+                      tokenEndpoint: /meMp1/security/TokenEndPoint
                 serializer: JSON
         '400':
           description: Bad Request
@@ -785,10 +785,10 @@ paths:
                     addresses:
                       - host: 192.0.2.0
                         port: '8080'
-                  security.mp1:
+                  security:
                     oAuth2Info:
                       grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/security.mp1/TokenEndPoint
+                      tokenEndpoint: /meMp1/security/TokenEndPoint
                 serializer: JSON
         '400':
           description: Bad Request
@@ -854,10 +854,10 @@ paths:
                     addresses:
                       - host: 192.0.2.0
                         port: '8080'
-                  security.mp1:
+                  security:
                     oAuth2Info:
                       grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/security.mp1/TokenEndPoint
+                      tokenEndpoint: /meMp1/security/TokenEndPoint
                 serializer: JSON
         '400':
           description: Bad Request
@@ -1341,7 +1341,7 @@ definitions:
     description: The token endpoint
     type: string
     format: uri
-    example: /meMp1/mp1.security/TokenEndPoint
+    example: /meMp1/security/TokenEndPoint
   SecurityInfo.OAuth2Info:
     description: Parameters related to use of OAuth 2.0
     required:
@@ -1788,7 +1788,7 @@ definitions:
       - protocol
       - version
       - endpoint
-      - security.mp1
+      - security
     properties:
       id:
         $ref: '#/definitions/TransportInfo.Id'
@@ -1804,7 +1804,7 @@ definitions:
         $ref: '#/definitions/TransportInfo.Version'
       endpoint:
         $ref: '#/definitions/EndPointInfo'
-      security.mp1:
+      security:
         $ref: '#/definitions/SecurityInfo'
       implSpecificInfo:
         $ref: '#/definitions/TransportInfo.ImplSpecificInfo'

@@ -22,8 +22,8 @@ ServiceInfo:
       addresses:
        - host: '192.0.2.0'
          port: '8080'
-    security.mp1:
+    security:
       oAuth2Info:
         grantTypes: OAUTH2_CLIENT_CREDENTIALS
-        tokenEndpoint: /meMp1/security.mp1/TokenEndPoint
+        tokenEndpoint: /meMp1/security/TokenEndPoint
   serializer: JSON
