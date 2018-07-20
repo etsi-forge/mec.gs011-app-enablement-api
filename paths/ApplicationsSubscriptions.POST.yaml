@@ -10,6 +10,11 @@ parameters:
 responses:
   201:
     description: Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created. 
+    headers:
+      location: 
+        description: The resource URI of the created resource
+        type: string
+        format: uri
     schema:
       type: object
       properties:

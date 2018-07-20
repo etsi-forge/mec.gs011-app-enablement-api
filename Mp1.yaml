@@ -321,6 +321,11 @@ paths:
       responses:
         '201':
           description: Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created.
+          headers:
+            location: 
+              description: The resource URI of the created resource
+              type: string
+              format: uri
           schema:
             type: object
             properties:
@@ -684,6 +689,11 @@ paths:
       responses:
         '201':
           description: 'Upon success, the HTTP response shall include a Location HTTP header that contains the resource URI of the created resource.'
+          headers:
+            location: 
+              description: The resource URI of the created resource
+              type: string
+              format: uri
           schema:
             type: object
             properties:

@@ -8,6 +8,11 @@ parameters:
 responses:
   201:
     description: Upon success, the HTTP response shall include a Location HTTP header that contains the resource URI of the created resource.
+    headers:
+      location: 
+        description: The resource URI of the created resource
+        type: string
+        format: uri
     schema:
       type: object
       properties:
