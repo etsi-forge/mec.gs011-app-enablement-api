@@ -25,7 +25,7 @@ parameters:
     in: body
     required: true
     schema:
-      $ref: '#/definitions/AppTerminationNotificationSubscription.Request'
+      $ref: '#/definitions/AppTerminationNotificationSubscription'
   Body.DnsRule:
     name: DnsRule
     description: The updated state is included in the entity body of the request.
@@ -39,7 +39,7 @@ parameters:
     in: body
     required: true
     schema:
-      $ref: '#/definitions/SerAvailabilityNotificationSubscription.Request'
+      $ref: '#/definitions/SerAvailabilityNotificationSubscription'
   Body.ServiceInfo:
     name: ServiceInfo
     description: New ServiceInfo with updated "state" is included as entity body of the request
@@ -325,7 +325,7 @@ paths:
             type: object
             properties:
               AppTerminationNotificationSubscription:
-                $ref: '#/definitions/AppTerminationNotificationSubscription.Response'
+                $ref: '#/definitions/AppTerminationNotificationSubscription'
         '400':
           description: Bad Request
           schema:
@@ -366,7 +366,7 @@ paths:
             type: object
             properties:
               SerAvailabilityNotificationSubscription:
-                $ref: '#/definitions/SerAvailabilityNotificationSubscription.Response'
+                $ref: '#/definitions/SerAvailabilityNotificationSubscription'
         '400':
           description: Bad Request
           schema:
@@ -1034,21 +1034,7 @@ definitions:
     description: URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge application instance management information. This shall be included in both the request and the response.
     type: string
     format: uri
-  AppTerminationNotificationSubscription.Request:
-    description: This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.
-    type: object
-    required:
-      - subscriptionType
-      - callbackReference
-      - appInstanceId
-    properties:
-      subscriptionType:
-        $ref: '#/definitions/AppTerminationNotificationSubscription.SubscriptionType'
-      callbackReference:
-        $ref: '#/definitions/AppTerminationNotificationSubscription.CallbackReference'
-      appInstanceId:
-        $ref: '#/definitions/AppTerminationNotificationSubscription.AppInstanceId'
-  AppTerminationNotificationSubscription.Response:
+  AppTerminationNotificationSubscription:
     description: This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.
     type: object
     required:
@@ -1261,6 +1247,7 @@ definitions:
     description: URI referring to a resource
     type: string
     format: uri
+    readOnly: true
     example: /meMp1/example
   Mp1SubscriptionLinkList.Links:
     description: Self-referring URI.
@@ -1368,25 +1355,12 @@ definitions:
     properties:
       self:
         $ref: '#/definitions/LinkType'
+    readOnly: true
   SerAvailabilityNotificationSubscription.CallbackReference:
     description: URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge service availability information. This shall be included in both the request and the response.
     type: string
     format: uri
-  SerAvailabilityNotificationSubscription.Request:
-    description: This type represents a subscription to the notifications from the mobile edge platform regarding the availability of a mobile edge service or a list of mobile edge services.
-    type: object
-    required:
-      - subscriptionType
-      - callbackReference
-      - filteringCriteria
-    properties:
-      subscriptionType:
-        $ref: '#/definitions/SerAvailabilityNotificationSubscription.SubscriptionType'
-      callbackReference:
-        $ref: '#/definitions/SerAvailabilityNotificationSubscription.CallbackReference'
-      filteringCriteria:
-        $ref: '#/definitions/ServiceInfo'
-  SerAvailabilityNotificationSubscription.Response:
+  SerAvailabilityNotificationSubscription:
     description: This type represents a subscription to the notifications from the mobile edge platform regarding the availability of a mobile edge service or a list of mobile edge services.
     type: object
     required:

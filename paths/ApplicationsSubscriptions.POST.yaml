@@ -14,7 +14,7 @@ responses:
       type: object
       properties:
         AppTerminationNotificationSubscription:
-          $ref: '#/definitions/AppTerminationNotificationSubscription.Response'
+          $ref: '#/definitions/AppTerminationNotificationSubscription'
 # The alternative response
 #        SerAvailabilityNotificationSubscription:
 #          $ref: '#/definitions/SerAvailabilityNotificationSubscription'

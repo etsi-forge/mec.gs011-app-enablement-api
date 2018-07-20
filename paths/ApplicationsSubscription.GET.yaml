@@ -10,10 +10,10 @@ responses:
       type: object
       properties:
         SerAvailabilityNotificationSubscription:
-          $ref: '#/definitions/SerAvailabilityNotificationSubscription.Response'
+          $ref: '#/definitions/SerAvailabilityNotificationSubscription'
 # The alternative response
 #        AppTerminationNotificationSubscription:
-#          $ref: '#/definitions/AppTerminationNotificationSubscription.Response'
+#          $ref: '#/definitions/AppTerminationNotificationSubscription'
   400:
     description: Bad Request
     schema:

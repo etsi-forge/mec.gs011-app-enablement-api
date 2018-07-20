@@ -8,10 +8,8 @@ AppTerminationNotificationSubscription.AppInstanceId:
   $ref: ./AppTerminationNotificationSubscription.AppInstanceId.yaml
 AppTerminationNotificationSubscription.CallbackReference:
   $ref: ./AppTerminationNotificationSubscription.CallbackReference.yaml
-AppTerminationNotificationSubscription.Request:
-  $ref: ./AppTerminationNotificationSubscription.Request.yaml
-AppTerminationNotificationSubscription.Response:
-  $ref: ./AppTerminationNotificationSubscription.Response.yaml
+AppTerminationNotificationSubscription:
+  $ref: ./AppTerminationNotificationSubscription.yaml
 AppTerminationNotificationSubscription.SubscriptionType:
   $ref: ./AppTerminationNotificationSubscription.SubscriptionType.yaml
 CategoryRef.Href:
@@ -96,10 +94,8 @@ Self:
   $ref: ./Self.yaml
 SerAvailabilityNotificationSubscription.CallbackReference:
   $ref: ./SerAvailabilityNotificationSubscription.CallbackReference.yaml
-SerAvailabilityNotificationSubscription.Request:
-  $ref: ./SerAvailabilityNotificationSubscription.Request.yaml
-SerAvailabilityNotificationSubscription.Response:
-  $ref: ./SerAvailabilityNotificationSubscription.Response.yaml
+SerAvailabilityNotificationSubscription:
+  $ref: ./SerAvailabilityNotificationSubscription.yaml
 SerAvailabilityNotificationSubscription.SubscriptionType:
   $ref: ./SerAvailabilityNotificationSubscription.SubscriptionType.yaml
 SerializerTypes:

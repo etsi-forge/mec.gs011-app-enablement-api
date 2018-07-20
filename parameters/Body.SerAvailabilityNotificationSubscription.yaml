@@ -3,4 +3,4 @@ description: Entity body in the request contains a subscription to the mobile ed
 in: body
 required: true
 schema:
-  $ref: '#/definitions/SerAvailabilityNotificationSubscription.Request'
+  $ref: '#/definitions/SerAvailabilityNotificationSubscription'

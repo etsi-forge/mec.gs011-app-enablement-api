@@ -5,3 +5,4 @@ required:
 properties:
   self:
     $ref: '#/definitions/LinkType'
+readOnly: true
