@@ -1,5 +1,5 @@
 get:
   $ref: ./Services.GET.yaml
 
-put:
+post:
   $ref: ./Services.POST.yaml
