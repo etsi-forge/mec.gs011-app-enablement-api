@@ -11,7 +11,7 @@ This repository contains OpenAPIs descriptions for the interfaces specified in E
 
 ## ETSI Forge Copyright statement
 
-Copyright (c) ETSI 2017.
+Copyright (c) ETSI 2018.
 
 This software is subject to copyrights owned by ETSI. Non-exclusive permission 
 is hereby granted, free of charge, to copy, reproduce and amend this file 
