@@ -1,5 +1,5 @@
 description: This method activates, de-activates or updates a traffic rule. 
-operationId: ApplicationsDnsRule.PUT
+operationId: ApplicationsDnsRule_PUT
 produces:
 - application/json
 parameters:

@@ -1,5 +1,5 @@
 description: This method retrieves information about a list of available transports. This method is typically used by a service-producing application to discover transports provided by the mobile edge platform in the "transport information query" procedure
-operationId: Transports.GET
+operationId: Transports_GET
 produces:
 - application/json
 

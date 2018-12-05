@@ -1,5 +1,5 @@
 description: The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription. 
-operationId: ApplicationsSubscriptions.POST
+operationId: ApplicationsSubscriptions_POST
 produces:
 - application/json
 parameters:
