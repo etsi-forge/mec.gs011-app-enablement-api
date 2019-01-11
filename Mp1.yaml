@@ -139,13 +139,13 @@ paths:
                   $ref: '#/definitions/DnsRule'
           examples:
             application/json:
-              DnsRule:
-                dnsRuleId: DnsRule1
-                domainName: www.example.com
-                ipAddressType: IP_V4
-                ipAddress: 146.241.7.3
-                ttl: 300
-                state: ACTIVE
+              - DnsRule:
+                  dnsRuleId: DnsRule1
+                  domainName: www.example.com
+                  ipAddressType: IP_V4
+                  ipAddress: 146.241.7.3
+                  ttl: 300
+                  state: ACTIVE
         '400':
           description: Bad Request
           schema:
@@ -439,24 +439,24 @@ paths:
                   $ref: '#/definitions/TrafficRule'
           examples:
             application/json:
-              TrafficRule:
-                trafficRuleId: TrafficRule123
-                serName: ExampleService
-                filterType: FLOW
-                priority: 1
-                trafficFilter:
-                  srcAddress:
-                    - 192.168.2.0/24
-                    - 192.168.3.0/24
-                  dstAddress:
-                    - 192.127.4.100/32
-                  dstPort:
-                    - 80
-                action: FORWARD_DECAPSULATED
-                dstInterface:
-                  interfaceType: IP
-                  dstIpAddress: 20.1.1.1
-                state: ACTIVE
+              - TrafficRule:
+                  trafficRuleId: TrafficRule123
+                  serName: ExampleService
+                  filterType: FLOW
+                  priority: 1
+                  trafficFilter:
+                    srcAddress:
+                      - 192.168.2.0/24
+                      - 192.168.3.0/24
+                    dstAddress:
+                      - 192.127.4.100/32
+                    dstPort:
+                      - 80
+                  action: FORWARD_DECAPSULATED
+                  dstInterface:
+                    interfaceType: IP
+                    dstIpAddress: 20.1.1.1
+                  state: ACTIVE
         '400':
           description: Bad Request
           schema:
@@ -627,35 +627,35 @@ paths:
                   $ref: '#/definitions/ServiceInfo'
           examples:
             application/json:
-              ServiceInfo:
-                serInstanceId: ServiceInstance123
-                serName: ExampleService
-                serCategory:
-                  href: catItem1
-                  id: id12345
-                  name: RNI
-                  version: version1
-                version: ServiceVersion1
-                state: ACTIVE
-                transportId: Rest1
-                transportInfo:
-                  id: TransId12345
-                  name: REST
-                  description: REST API
-                  type: JSON
-                  protocol: HTTP
-                  version: '2.0'
-                  endpoint:
-                    uris:
-                      - /meMp1/service/EntryPoint
-                    addresses:
-                      - host: 192.0.2.0
-                        port: '8080'
-                  security:
-                    oAuth2Info:
-                      grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/security/TokenEndPoint
-                serializer: JSON
+              - ServiceInfo:
+                  serInstanceId: ServiceInstance123
+                  serName: ExampleService
+                  serCategory:
+                    href: catItem1
+                    id: id12345
+                    name: RNI
+                    version: version1
+                  version: ServiceVersion1
+                  state: ACTIVE
+                  transportId: Rest1
+                  transportInfo:
+                    id: TransId12345
+                    name: REST
+                    description: REST API
+                    type: JSON
+                    protocol: HTTP
+                    version: '2.0'
+                    endpoint:
+                      uris:
+                        - /meMp1/service/EntryPoint
+                      addresses:
+                        - host: 192.0.2.0
+                          port: '8080'
+                    security:
+                      oAuth2Info:
+                        grantTypes: OAUTH2_CLIENT_CREDENTIALS
+                        tokenEndpoint: /meMp1/security/TokenEndPoint
+                  serializer: JSON
         '400':
           description: Bad Request
           schema:

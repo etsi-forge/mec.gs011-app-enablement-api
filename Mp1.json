@@ -175,7 +175,7 @@
               }
             },
             "examples": {
-              "application/json": {
+              "application/json": [{
                 "DnsRule": {
                   "dnsRuleId": "DnsRule1",
                   "domainName": "www.example.com",
@@ -184,7 +184,7 @@
                   "ttl": 300,
                   "state": "ACTIVE"
                 }
-              }
+              }]
             }
           },
           "400": {
@@ -652,7 +652,7 @@
               }
             },
             "examples": {
-              "application/json": {
+              "application/json": [{
                 "TrafficRule": {
                   "trafficRuleId": "TrafficRule123",
                   "serName": "ExampleService",
@@ -677,7 +677,7 @@
                   },
                   "state": "ACTIVE"
                 }
-              }
+              }]
             }
           },
           "400": {
@@ -946,7 +946,7 @@
               }
             },
             "examples": {
-              "application/json": {
+              "application/json": [{
                 "ServiceInfo": {
                   "serInstanceId": "ServiceInstance123",
                   "serName": "ExampleService",
@@ -986,7 +986,7 @@
                   },
                   "serializer": "JSON"
                 }
-              }
+              }]
             }
           },
           "400": {
