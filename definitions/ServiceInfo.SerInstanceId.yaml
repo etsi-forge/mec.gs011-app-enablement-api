@@ -1,3 +1,0 @@
-description: Identifier of the service instance assigned by the MEPM / mobile edge platform.
-type: string
-example: ServiceInstance123

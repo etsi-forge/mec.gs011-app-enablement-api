@@ -1,7 +1,0 @@
-description: NTP authentication option
-type: string
-enum:
-  - NONE
-  - SYMMETRIC_KEY
-  - AUTO_KEY
-example: NONE

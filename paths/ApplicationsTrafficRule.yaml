@@ -1,9 +1,0 @@
-parameters:
-- $ref: '#/parameters/Path.AppInstanceId'
-- $ref: '#/parameters/Path.TrafficRuleId'
-
-get:
-  $ref: ./ApplicationsTrafficRule.GET.yaml
-
-put:
-  $ref: ./ApplicationsTrafficRule.PUT.yaml

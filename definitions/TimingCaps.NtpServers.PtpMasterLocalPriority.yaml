@@ -1,4 +1,0 @@
-description: PTP Master local priority
-type: integer
-format: uint32
-example: 1

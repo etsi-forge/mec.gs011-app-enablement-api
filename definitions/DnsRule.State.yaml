@@ -1,6 +1,0 @@
-description: DNS rule state
-type: string
-enum:
-  - ACTIVE
-  - INACTIVE
-example: "ACTIVE"

@@ -1,3 +1,0 @@
-description: The name of the service. This is how the service producing mobile edge application identifies the service instance it produces.
-type: string
-example: ExampleService

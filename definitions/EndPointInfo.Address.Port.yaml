@@ -1,4 +1,0 @@
-description: Port portion of the address
-type: integer
-format: uint32
-example: '8080'

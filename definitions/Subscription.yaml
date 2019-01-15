@@ -1,7 +1,0 @@
-description: A link to the related subscription
-type: object
-required:
-- subscription
-properties:
-  subscription:
-    $ref: '#/definitions/LinkType'

@@ -1,6 +1,0 @@
-description: Contains the state
-type: string
-enum:
-  - ACTIVE
-  - INACTIVE
-example: ACTIVE

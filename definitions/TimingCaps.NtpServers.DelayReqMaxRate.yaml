@@ -1,4 +1,0 @@
-description: Acceptable maximum rate of the Delay_Req messages in packets per second
-type: integer
-format: uint32
-example: 10

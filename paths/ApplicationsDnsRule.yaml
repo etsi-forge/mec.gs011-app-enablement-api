@@ -1,9 +1,0 @@
-parameters:
-- $ref: '#/parameters/Path.AppInstanceId'
-- $ref: '#/parameters/Path.DnsRuleId'
-
-get:
-  $ref: ./ApplicationsDnsRule.GET.yaml
-
-put:
-  $ref: ./ApplicationsDnsRule.PUT.yaml
