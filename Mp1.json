@@ -778,7 +778,6 @@
         "description": "URI referring to a resource",
         "type": "string",
         "format": "uri",
-        "readOnly": true,
         "example": "/meMp1/example"
       },
       "Mp1SubscriptionLinkList.Links": {
