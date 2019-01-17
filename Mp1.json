@@ -1585,8 +1585,7 @@
         "in": "path",
         "required": true,
         "schema": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         }
       },
       "Path.DnsRuleId": {
@@ -1595,8 +1594,7 @@
         "in": "path",
         "required": true,
         "schema": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         }
       },
       "Path.SubscriptionId": {
@@ -1605,8 +1603,7 @@
         "in": "path",
         "required": true,
         "schema": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         }
       },
       "Path.SubscriptionType": {
@@ -1615,8 +1612,7 @@
         "in": "path",
         "required": true,
         "schema": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         }
       },
       "Path.ServiceId": {
@@ -1625,8 +1621,7 @@
         "in": "path",
         "required": true,
         "schema": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         }
       },
       "Path.TrafficRuleId": {
@@ -1635,8 +1630,7 @@
         "in": "path",
         "required": true,
         "schema": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         }
       },
       "Query.Ser_category_id": {

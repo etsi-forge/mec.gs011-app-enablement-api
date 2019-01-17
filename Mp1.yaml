@@ -192,7 +192,7 @@ paths:
           $ref: '#/components/responses/Error.412'
       requestBody:
         $ref: '#/components/requestBodies/ApplicationsTrafficRule'
-  /services:
+  '/services':
     get:
       description: >-
         This method retrieves information about a list of meService resources.
@@ -261,7 +261,7 @@ paths:
           $ref: '#/components/responses/Error.412'
       requestBody:
         $ref: '#/components/requestBodies/ServicesServiceId'
-  /timing/current_time:
+  '/timing/current_time':
     get:
       description: >-
         This method retrieves the information of the platform's current time
@@ -276,7 +276,7 @@ paths:
           $ref: '#/components/responses/Error.403'
         '404':
           $ref: '#/components/responses/Error.404'
-  /timing/timing_caps:
+  '/timing/timing_caps':
     get:
       description: >-
         This method retrieves the information of the platform's timing
@@ -291,7 +291,7 @@ paths:
           $ref: '#/components/responses/Error.403'
         '404':
           $ref: '#/components/responses/Error.404'
-  /transports:
+  '/transports':
     get:
       description: >-
         This method retrieves information about a list of available transports.
@@ -1250,7 +1250,6 @@ components:
       required: true
       schema:
         type: string
-        format: uri
     Path.DnsRuleId:
       name: dnsRuleId
       description: Represents a DNS rule.
@@ -1258,7 +1257,6 @@ components:
       required: true
       schema:
         type: string
-        format: uri
     Path.SubscriptionId:
       name: subscriptionId
       description: >-
@@ -1268,7 +1266,6 @@ components:
       required: true
       schema:
         type: string
-        format: uri
     Path.SubscriptionType:
       name: subscriptionType
       description: >-
@@ -1278,7 +1275,6 @@ components:
       required: true
       schema:
         type: string
-        format: uri
     Path.ServiceId:
       name: serviceId
       description: Represents a mobile edge service instance.
@@ -1286,7 +1282,6 @@ components:
       required: true
       schema:
         type: string
-        format: uri
     Path.TrafficRuleId:
       name: trafficRuleId
       description: Represents a traffic rule.
@@ -1294,7 +1289,6 @@ components:
       required: true
       schema:
         type: string
-        format: uri
     Query.Ser_category_id:
       name: ser_category_id
       description: >-
