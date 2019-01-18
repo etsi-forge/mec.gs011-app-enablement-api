@@ -1,4 +1,4 @@
-# Multi-access Edge Computing Platform Application Enablement API 
+# Multi-access Edge Computing (MEC); MEC Platform Application Enablement API 
 
 This repository contains OpenAPIs descriptions for the interfaces specified in ETSI GS MEC 011.
 
