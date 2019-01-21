@@ -156,7 +156,7 @@
       ],
       "get": {
         "description": "This method retrieves information about all the DNS rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsDnsRules.GET",
+        "operationId": "ApplicationsDnsRules_GET",
         "produces": [
           "application/json"
         ],
@@ -237,7 +237,7 @@
       ],
       "get": {
         "description": "This method retrieves information about a DNS rule associated with a mobile edge application instance.",
-        "operationId": "ApplicationsDnsRule.GET",
+        "operationId": "ApplicationsDnsRule_GET",
         "produces": [
           "application/json"
         ],
@@ -305,7 +305,7 @@
       },
       "put": {
         "description": "This method activates, de-activates or updates a traffic rule.",
-        "operationId": "ApplicationsDnsRule.PUT",
+        "operationId": "ApplicationsDnsRule_PUT",
         "produces": [
           "application/json"
         ],
@@ -396,7 +396,7 @@
       ],
       "get": {
         "description": "The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.",
-        "operationId": "ApplicationsSubscriptions.GET",
+        "operationId": "ApplicationsSubscriptions_GET",
         "produces": [
           "application/json"
         ],
@@ -452,7 +452,7 @@
       },
       "post": {
         "description": "The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription.",
-        "operationId": "ApplicationsSubscriptions.POST",
+        "operationId": "ApplicationsSubscriptions_POST",
         "produces": [
           "application/json"
         ],
@@ -533,7 +533,7 @@
       ],
       "get": {
         "description": "The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.",
-        "operationId": "ApplicationsSubscription.GET",
+        "operationId": "ApplicationsSubscription_GET",
         "produces": [
           "application/json"
         ],
@@ -589,7 +589,7 @@
       },
       "delete": {
         "description": "This method deletes a meMp1Subscription. This method is typically used in \"Unsubscribing from service availability event notifications\" procedure.",
-        "operationId": "ApplicationsSubscription.DELETE",
+        "operationId": "ApplicationsSubscription_DELETE",
         "produces": [
           "application/json"
         ],
@@ -633,7 +633,7 @@
       ],
       "get": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRules.GET",
+        "operationId": "ApplicationsTrafficRules_GET",
         "produces": [
           "application/json"
         ],
@@ -730,7 +730,7 @@
       ],
       "get": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRule.GET",
+        "operationId": "ApplicationsTrafficRule_GET",
         "produces": [
           "application/json"
         ],
@@ -814,7 +814,7 @@
       },
       "put": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRules.PUT",
+        "operationId": "ApplicationsTrafficRules_PUT",
         "produces": [
           "application/json"
         ],
@@ -916,7 +916,7 @@
     "/services": {
       "get": {
         "description": "This method retrieves information about a list of meService resources. This method is typically used in \"service availability query\" procedure",
-        "operationId": "Services.GET",
+        "operationId": "Services_GET",
         "produces": [
           "application/json"
         ],
@@ -1029,7 +1029,7 @@
       },
       "post": {
         "description": "This method is used to create a meService resource. This method is typically used in \"service availability update and new service registration\" procedure",
-        "operationId": "Services.POST",
+        "operationId": "Services_POST",
         "produces": [
           "application/json"
         ],
@@ -1147,7 +1147,7 @@
       ],
       "get": {
         "description": "This method retrieves information about a meService resource. This method is typically used in \"service availability query\" procedure",
-        "operationId": "ServicesServiceId.GET",
+        "operationId": "ServicesServiceId_GET",
         "produces": [
           "application/json"
         ],
@@ -1246,7 +1246,7 @@
       },
       "put": {
         "description": "This method updates the information about a meService resource",
-        "operationId": "ServicesServiceId.PUT",
+        "operationId": "ServicesServiceId_PUT",
         "produces": [
           "application/json"
         ],
@@ -1363,7 +1363,7 @@
     "/timing/current_time": {
       "get": {
         "description": "This method retrieves the information of the platform's current time which corresponds to the get platform time procedure",
-        "operationId": "TimingCurrentTime.GET",
+        "operationId": "TimingCurrentTime_GET",
         "produces": [
           "application/json"
         ],
@@ -1421,7 +1421,7 @@
     "/timing/timing_caps": {
       "get": {
         "description": "This method retrieves the information of the platform's timing capabilities which corresponds to the timing capabilities query",
-        "operationId": "TimingCaps.GET",
+        "operationId": "TimingCaps_GET",
         "produces": [
           "application/json"
         ],
@@ -1479,7 +1479,7 @@
     "/transports": {
       "get": {
         "description": "This method retrieves information about a list of available transports. This method is typically used by a service-producing application to discover transports provided by the mobile edge platform in the \"transport information query\" procedure",
-        "operationId": "Transports.GET",
+        "operationId": "Transports_GET",
         "produces": [
           "application/json"
         ],

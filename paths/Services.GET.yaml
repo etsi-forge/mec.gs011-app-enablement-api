@@ -1,5 +1,5 @@
 description: This method retrieves information about a list of meService resources. This method is typically used in "service availability query" procedure 
-operationId: Services.GET
+operationId: Services_GET
 produces:
 - application/json
 parameters:

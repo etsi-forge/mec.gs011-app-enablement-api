@@ -1,5 +1,5 @@
 description: The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.
-operationId: ApplicationsSubscription.GET
+operationId: ApplicationsSubscription_GET
 produces:
 - application/json
 

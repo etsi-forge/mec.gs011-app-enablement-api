@@ -8,7 +8,8 @@ info:
     url: 'https://forge.etsi.org/etsi-forge-copyright-notice.txt'
 externalDocs:
   description: 'ETSI GS MEC011 Application Enablement API, V1.1.1'
-  url: 'http://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/01.01.01_60/gs_mec011v010101p.pdf'
+  url: >-
+    http://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/01.01.01_60/gs_mec011v010101p.pdf
 host: '127.0.0.1:8081'
 basePath: /exampleAPI/mp1/v1/
 schemes:
@@ -21,7 +22,9 @@ produces:
 parameters:
   Body.AppTerminationNotificationSubscription:
     name: AppTerminationNotificationSubscription
-    description: Entity body in the request contains a subscription to the mobile edge application termination notifications that is to be created.
+    description: >-
+      Entity body in the request contains a subscription to the mobile edge
+      application termination notifications that is to be created.
     in: body
     required: true
     schema:
@@ -35,14 +38,18 @@ parameters:
       $ref: '#/definitions/DnsRule'
   Body.SerAvailabilityNotificationSubscription:
     name: SerAvailabilityNotificationSubscription
-    description: Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created.
+    description: >-
+      Entity body in the request contains a subscription to the mobile edge
+      service availability notifications that is to be created.
     in: body
     required: true
     schema:
       $ref: '#/definitions/SerAvailabilityNotificationSubscription'
   Body.ServiceInfo:
     name: ServiceInfo
-    description: New ServiceInfo with updated "state" is included as entity body of the request
+    description: >-
+      New ServiceInfo with updated "state" is included as entity body of the
+      request
     in: body
     required: true
     schema:
@@ -56,7 +63,9 @@ parameters:
       $ref: '#/definitions/TrafficRule'
   Path.AppInstanceId:
     name: appInstanceId
-    description: Represents a mobile edge application instance. Note that the appInstanceId is allocated by the mobile edge platform manager.
+    description: >-
+      Represents a mobile edge application instance. Note that the appInstanceId
+      is allocated by the mobile edge platform manager.
     in: path
     required: true
     type: string
@@ -70,14 +79,18 @@ parameters:
     format: uri
   Path.SubscriptionId:
     name: subscriptionId
-    description: Represents a subscription to the notifications from the mobile edge platform.
+    description: >-
+      Represents a subscription to the notifications from the mobile edge
+      platform.
     in: path
     required: true
     type: string
     format: uri
   Path.SubscriptionType:
     name: subscriptionType
-    description: Represents a subscription type to the notifications from the mobile edge platform.
+    description: >-
+      Represents a subscription type to the notifications from the mobile edge
+      platform.
     in: path
     required: true
     type: string
@@ -98,13 +111,21 @@ parameters:
     format: uri
   Query.Ser_category_id:
     name: ser_category_id
-    description: A mobile edge application instance may use ser_category_id as an input parameter to query the availability of a list of mobile edge service instances in a serCategory. Either "ser_instance_id" or "ser_name" or "ser_category_id" or none of them shall be present.
+    description: >-
+      A mobile edge application instance may use ser_category_id as an input
+      parameter to query the availability of a list of mobile edge service
+      instances in a serCategory. Either "ser_instance_id" or "ser_name" or
+      "ser_category_id" or none of them shall be present.
     in: query
     required: false
     type: string
   Query.Ser_instance_id:
     name: ser_instance_id
-    description: A mobile edge application instance may use multiple ser_instance_ids as an input parameter to query the availability of a list of mobile edge service instances. Either "ser_instance_id" or "ser_name" or "ser_category_id" or none of them shall be present.
+    description: >-
+      A mobile edge application instance may use multiple ser_instance_ids as an
+      input parameter to query the availability of a list of mobile edge service
+      instances. Either "ser_instance_id" or "ser_name" or "ser_category_id" or
+      none of them shall be present.
     in: query
     required: false
     type: array
@@ -112,7 +133,11 @@ parameters:
       type: string
   Query.Ser_name:
     name: ser_name
-    description: A mobile edge application instance may use multiple ser_names as an input parameter to query the availability of a list of mobile edge service instances. Either "ser_instance_id" or "ser_name" or "ser_category_id" or none of them shall be present.
+    description: >-
+      A mobile edge application instance may use multiple ser_names as an input
+      parameter to query the availability of a list of mobile edge service
+      instances. Either "ser_instance_id" or "ser_name" or "ser_category_id" or
+      none of them shall be present.
     in: query
     required: false
     type: array
@@ -123,13 +148,17 @@ paths:
     parameters:
       - $ref: '#/parameters/Path.AppInstanceId'
     get:
-      description: This method retrieves information about all the DNS rules associated with a mobile edge application instance.
-      operationId: ApplicationsDnsRules.GET
+      description: >-
+        This method retrieves information about all the DNS rules associated
+        with a mobile edge application instance.
+      operationId: ApplicationsDnsRules_GET
       produces:
         - application/json
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: array
             items:
@@ -174,13 +203,17 @@ paths:
       - $ref: '#/parameters/Path.AppInstanceId'
       - $ref: '#/parameters/Path.DnsRuleId'
     get:
-      description: This method retrieves information about a DNS rule associated with a mobile edge application instance.
-      operationId: ApplicationsDnsRule.GET
+      description: >-
+        This method retrieves information about a DNS rule associated with a
+        mobile edge application instance.
+      operationId: ApplicationsDnsRule_GET
       produces:
         - application/json
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: object
             properties:
@@ -220,14 +253,16 @@ paths:
                 $ref: '#/definitions/ProblemDetails'
     put:
       description: 'This method activates, de-activates or updates a traffic rule.'
-      operationId: ApplicationsDnsRule.PUT
+      operationId: ApplicationsDnsRule_PUT
       produces:
         - application/json
       parameters:
         - $ref: '#/parameters/Body.DnsRule'
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: object
             properties:
@@ -276,13 +311,18 @@ paths:
     parameters:
       - $ref: '#/parameters/Path.AppInstanceId'
     get:
-      description: 'The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.'
-      operationId: ApplicationsSubscriptions.GET
+      description: >-
+        The GET method may be used to request information about all
+        subscriptions for this requestor. Upon success, the response contains
+        entity body with all the subscriptions for the requestor.
+      operationId: ApplicationsSubscriptions_GET
       produces:
         - application/json
       responses:
         '200':
-          description: 'Upon success, a response body containing the list of links to the requested subscriptions is returned.'
+          description: >-
+            Upon success, a response body containing the list of links to the
+            requested subscriptions is returned.
           schema:
             type: object
             properties:
@@ -312,17 +352,23 @@ paths:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
     post:
-      description: 'The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription.'
-      operationId: ApplicationsSubscriptions.POST
+      description: >-
+        The POST method may be used to create a new subscription. One example
+        use case is to create a new subscription to the mobile edge service
+        availability notifications. Upon success, the response contains entity
+        body describing the created subscription.
+      operationId: ApplicationsSubscriptions_POST
       produces:
         - application/json
       parameters:
         - $ref: '#/parameters/Body.AppTerminationNotificationSubscription'
       responses:
         '201':
-          description: Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created.
+          description: >-
+            Entity body in the request contains a subscription to the mobile
+            edge service availability notifications that is to be created.
           headers:
-            location: 
+            location:
               description: The resource URI of the created resource
               type: string
               format: uri
@@ -360,13 +406,18 @@ paths:
       - $ref: '#/parameters/Path.SubscriptionType'
       - $ref: '#/parameters/Path.SubscriptionId'
     get:
-      description: 'The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.'
-      operationId: ApplicationsSubscription.GET
+      description: >-
+        The GET method requests information about a subscription for this
+        requestor. Upon success, the response contains entity body with the
+        subscription for the requestor.
+      operationId: ApplicationsSubscription_GET
       produces:
         - application/json
       responses:
         '200':
-          description: 'Upon success, a response body containing the requested subscription is returned.'
+          description: >-
+            Upon success, a response body containing the requested subscription
+            is returned.
           schema:
             type: object
             properties:
@@ -396,8 +447,11 @@ paths:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
     delete:
-      description: This method deletes a meMp1Subscription. This method is typically used in "Unsubscribing from service availability event notifications" procedure.
-      operationId: ApplicationsSubscription.DELETE
+      description: >-
+        This method deletes a meMp1Subscription. This method is typically used
+        in "Unsubscribing from service availability event notifications"
+        procedure.
+      operationId: ApplicationsSubscription_DELETE
       produces:
         - application/json
       responses:
@@ -423,13 +477,17 @@ paths:
     parameters:
       - $ref: '#/parameters/Path.AppInstanceId'
     get:
-      description: This method retrieves information about all the traffic rules associated with a mobile edge application instance.
-      operationId: ApplicationsTrafficRules.GET
+      description: >-
+        This method retrieves information about all the traffic rules associated
+        with a mobile edge application instance.
+      operationId: ApplicationsTrafficRules_GET
       produces:
         - application/json
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: array
             items:
@@ -485,13 +543,17 @@ paths:
       - $ref: '#/parameters/Path.AppInstanceId'
       - $ref: '#/parameters/Path.TrafficRuleId'
     get:
-      description: This method retrieves information about all the traffic rules associated with a mobile edge application instance.
-      operationId: ApplicationsTrafficRule.GET
+      description: >-
+        This method retrieves information about all the traffic rules associated
+        with a mobile edge application instance.
+      operationId: ApplicationsTrafficRule_GET
       produces:
         - application/json
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: object
             properties:
@@ -541,15 +603,19 @@ paths:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
     put:
-      description: This method retrieves information about all the traffic rules associated with a mobile edge application instance.
-      operationId: ApplicationsTrafficRules.PUT
+      description: >-
+        This method retrieves information about all the traffic rules associated
+        with a mobile edge application instance.
+      operationId: ApplicationsTrafficRules_PUT
       produces:
         - application/json
       parameters:
         - $ref: '#/parameters/Body.TrafficRule'
       responses:
         '200':
-          description: 'Upon success, a response body containing data type describing the updated TrafficRule is returned.'
+          description: >-
+            Upon success, a response body containing data type describing the
+            updated TrafficRule is returned.
           schema:
             type: object
             properties:
@@ -607,8 +673,10 @@ paths:
                 $ref: '#/definitions/ProblemDetails'
   /services:
     get:
-      description: This method retrieves information about a list of meService resources. This method is typically used in "service availability query" procedure
-      operationId: Services.GET
+      description: >-
+        This method retrieves information about a list of meService resources.
+        This method is typically used in "service availability query" procedure
+      operationId: Services_GET
       produces:
         - application/json
       parameters:
@@ -617,7 +685,9 @@ paths:
         - $ref: '#/parameters/Query.Ser_category_id'
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: array
             items:
@@ -680,17 +750,22 @@ paths:
               ProblemDetails:
                 $ref: '#/definitions/ProblemDetails'
     post:
-      description: This method is used to create a meService resource. This method is typically used in "service availability update and new service registration" procedure
-      operationId: Services.POST
+      description: >-
+        This method is used to create a meService resource. This method is
+        typically used in "service availability update and new service
+        registration" procedure
+      operationId: Services_POST
       produces:
         - application/json
       parameters:
         - $ref: '#/parameters/Body.ServiceInfo'
       responses:
         '201':
-          description: 'Upon success, the HTTP response shall include a Location HTTP header that contains the resource URI of the created resource.'
+          description: >-
+            Upon success, the HTTP response shall include a Location HTTP header
+            that contains the resource URI of the created resource.
           headers:
-            location: 
+            location:
               description: The resource URI of the created resource
               type: string
               format: uri
@@ -757,13 +832,17 @@ paths:
     parameters:
       - $ref: '#/parameters/Path.ServiceId'
     get:
-      description: This method retrieves information about a meService resource. This method is typically used in "service availability query" procedure
-      operationId: ServicesServiceId.GET
+      description: >-
+        This method retrieves information about a meService resource. This
+        method is typically used in "service availability query" procedure
+      operationId: ServicesServiceId_GET
       produces:
         - application/json
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: object
             properties:
@@ -825,14 +904,16 @@ paths:
                 $ref: '#/definitions/ProblemDetails'
     put:
       description: This method updates the information about a meService resource
-      operationId: ServicesServiceId.PUT
+      operationId: ServicesServiceId_PUT
       produces:
         - application/json
       parameters:
         - $ref: '#/parameters/Body.ServiceInfo'
       responses:
         '200':
-          description: 'Upon success, a response body containing data type describing the updated ServiceInfo is returned'
+          description: >-
+            Upon success, a response body containing data type describing the
+            updated ServiceInfo is returned
           schema:
             type: object
             properties:
@@ -901,13 +982,17 @@ paths:
                 $ref: '#/definitions/ProblemDetails'
   /timing/current_time:
     get:
-      description: This method retrieves the information of the platform's current time which corresponds to the get platform time procedure
-      operationId: TimingCurrentTime.GET
+      description: >-
+        This method retrieves the information of the platform's current time
+        which corresponds to the get platform time procedure
+      operationId: TimingCurrentTime_GET
       produces:
         - application/json
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: object
             properties:
@@ -938,13 +1023,17 @@ paths:
                 $ref: '#/definitions/ProblemDetails'
   /timing/timing_caps:
     get:
-      description: This method retrieves the information of the platform's timing capabilities which corresponds to the timing capabilities query
-      operationId: TimingCaps.GET
+      description: >-
+        This method retrieves the information of the platform's timing
+        capabilities which corresponds to the timing capabilities query
+      operationId: TimingCaps_GET
       produces:
         - application/json
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: object
             properties:
@@ -975,13 +1064,19 @@ paths:
                 $ref: '#/definitions/ProblemDetails'
   /transports:
     get:
-      description: This method retrieves information about a list of available transports. This method is typically used by a service-producing application to discover transports provided by the mobile edge platform in the "transport information query" procedure
-      operationId: Transports.GET
+      description: >-
+        This method retrieves information about a list of available transports.
+        This method is typically used by a service-producing application to
+        discover transports provided by the mobile edge platform in the
+        "transport information query" procedure
+      operationId: Transports_GET
       produces:
         - application/json
       responses:
         '200':
-          description: It is used to indicate nonspecific success. The response body contains a representation of the resource.
+          description: >-
+            It is used to indicate nonspecific success. The response body
+            contains a representation of the resource.
           schema:
             type: array
             items:
@@ -1014,7 +1109,9 @@ paths:
                 $ref: '#/definitions/ProblemDetails'
 definitions:
   AppTerminationNotification.MaxGracefulTimeout:
-    description: Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.
+    description: >-
+      Maximum timeout value in seconds for graceful termination or graceful stop
+      of an application instance.
     type: string
     format: uint32
     example: 10
@@ -1023,7 +1120,10 @@ definitions:
     type: string
     example: AppTerminationNotification
   AppTerminationNotification:
-    description: This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.
+    description: >-
+      This type represents the information that the mobile edge platform
+      notifies the subscribed application instance about  the corresponding
+      application instance termination/stop.
     type: object
     required:
       - notificationType
@@ -1041,11 +1141,18 @@ definitions:
     type: string
     example: ID1
   AppTerminationNotificationSubscription.CallbackReference:
-    description: URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge application instance management information. This shall be included in both the request and the response.
+    description: >-
+      URI selected by the mobile edge application instance to receive
+      notifications on the subscribed mobile edge application instance
+      management information. This shall be included in both the request and the
+      response.
     type: string
     format: uri
   AppTerminationNotificationSubscription:
-    description: This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.
+    description: >-
+      This type represents the information that the mobile edge platform
+      notifies the subscribed application instance about  the corresponding
+      application instance termination/stop.
     type: object
     required:
       - subscriptionType
@@ -1099,7 +1206,9 @@ definitions:
       version:
         $ref: '#/definitions/CategoryRef.Version'
   CurrentTime:
-    description: This type represents the information provided by the mobile edge platform in response to the Get Platform Time Request message.
+    description: >-
+      This type represents the information provided by the mobile edge platform
+      in response to the Get Platform Time Request message.
     type: object
     required:
       - nanoSeconds
@@ -1109,19 +1218,26 @@ definitions:
       seconds:
         type: integer
         format: uint32
-        description: 'The seconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC'
+        description: >-
+          The seconds part of the time. Time is defined as Unix-time since
+          January 1, 1970, 00:00:00 UTC
         example: 1577836800
       nanoSeconds:
         type: integer
         format: uint32
-        description: 'The nanoseconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC'
+        description: >-
+          The nanoseconds part of the time. Time is defined as Unix-time since
+          January 1, 1970, 00:00:00 UTC
         example: 0
       timeSourceStatus:
         type: string
         enum:
           - TRACEABLE
           - NONTRACEABLE
-        description: Platform Time Source status. 1 = TRACEABLE - time source is locked to the UTC time source. 2 = NONTRACEABLE - time source is not locked to the UTC time source
+        description: >-
+          Platform Time Source status. 1 = TRACEABLE - time source is locked to
+          the UTC time source. 2 = NONTRACEABLE - time source is not locked to
+          the UTC time source
         example: TRACEABLE
   DestinationInterface.InterfaceType:
     description: Type of the interface
@@ -1226,12 +1342,16 @@ definitions:
       port:
         $ref: '#/definitions/EndPointInfo.Address.Port'
   EndPointInfo.Addresses:
-    description: Entry point information of the service as one or more pairs of IP address and port
+    description: >-
+      Entry point information of the service as one or more pairs of IP address
+      and port
     type: array
     items:
       $ref: '#/definitions/EndPointInfo.Address'
   EndPointInfo.Alternative:
-    description: 'Entry point information of the service in a format defined by an implementation, or in an external specification.'
+    description: >-
+      Entry point information of the service in a format defined by an
+      implementation, or in an external specification.
     type: object
   EndPointInfo.Uri:
     description: Entry point information of the service
@@ -1239,7 +1359,9 @@ definitions:
     format: uri
     example: /meMp1/service/EntryPoint
   EndPointInfo.Uris:
-    description: 'Entry point information of the service as string, formatted according to URI syntax'
+    description: >-
+      Entry point information of the service as string, formatted according to
+      URI syntax
     type: array
     items:
       $ref: '#/definitions/EndPointInfo.Uri'
@@ -1284,10 +1406,15 @@ definitions:
         type: string
         format: uri
       rel:
-        description: The values are as defined in the "subscriptionType" attribute for each different Mp1 event subscription data type.
+        description: >-
+          The values are as defined in the "subscriptionType" attribute for each
+          different Mp1 event subscription data type.
         type: string
   Mp1SubscriptionLinkList:
-    description: This type represents a list of links related to currently existing subscriptions for a mobile edge application instance. This information is returned when sending a request to receive current subscriptions.
+    description: >-
+      This type represents a list of links related to currently existing
+      subscriptions for a mobile edge application instance. This information is
+      returned when sending a request to receive current subscriptions.
     type: object
     required:
       - _links
@@ -1324,7 +1451,9 @@ definitions:
   Problem.type:
     type: string
     format: uri
-    description: A URI reference according to IETF RFC 3986 that identifies the problem type
+    description: >-
+      A URI reference according to IETF RFC 3986 that identifies the problem
+      type
   SecurityInfo.OAuth2Info.GrantTypes:
     description: List of supported OAuth 2.0 grant types
     type: string
@@ -1367,11 +1496,17 @@ definitions:
         $ref: '#/definitions/LinkType'
     readOnly: true
   SerAvailabilityNotificationSubscription.CallbackReference:
-    description: URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge service availability information. This shall be included in both the request and the response.
+    description: >-
+      URI selected by the mobile edge application instance to receive
+      notifications on the subscribed mobile edge service availability
+      information. This shall be included in both the request and the response.
     type: string
     format: uri
   SerAvailabilityNotificationSubscription:
-    description: This type represents a subscription to the notifications from the mobile edge platform regarding the availability of a mobile edge service or a list of mobile edge services.
+    description: >-
+      This type represents a subscription to the notifications from the mobile
+      edge platform regarding the availability of a mobile edge service or a
+      list of mobile edge services.
     type: object
     required:
       - subscriptionType
@@ -1382,7 +1517,8 @@ definitions:
       subscriptionType:
         $ref: '#/definitions/SerAvailabilityNotificationSubscription.SubscriptionType'
       callbackReference:
-        $ref: '#/definitions/SerAvailabilityNotificationSubscription.CallbackReference'
+        $ref: >-
+          #/definitions/SerAvailabilityNotificationSubscription.CallbackReference
       _links:
         $ref: '#/definitions/Self'
       filteringCriteria:
@@ -1400,11 +1536,15 @@ definitions:
       - PROTOBUF3
     example: JSON
   ServiceInfo.SerInstanceId:
-    description: Identifier of the service instance assigned by the MEPM / mobile edge platform.
+    description: >-
+      Identifier of the service instance assigned by the MEPM / mobile edge
+      platform.
     type: string
     example: ServiceInstance123
   ServiceInfo.SerName:
-    description: The name of the service. This is how the service producing mobile edge application identifies the service instance it produces.
+    description: >-
+      The name of the service. This is how the service producing mobile edge
+      application identifies the service instance it produces.
     type: string
     example: ExampleService
   ServiceInfo.State:
@@ -1415,7 +1555,12 @@ definitions:
       - INACTIVE
     example: ACTIVE
   ServiceInfo.TransportId:
-    description: 'Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the "Transport information query" procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.'
+    description: >-
+      Identifier of the platform-provided transport to be used by the service.
+      Valid identifiers may be obtained using the "Transport information query"
+      procedure. May be present in POST requests to signal the use of a
+      platform-provided transport for the service, and shall be absent
+      otherwise.
     type: string
     example: Rest1
   ServiceInfo.Version:
@@ -1479,12 +1624,16 @@ definitions:
     format: uint32
     example: 1
   TimingCaps.NtpServers.MaxPollingInterval:
-    description: 'Maximum poll interval for NTP messages, in seconds as a power of two. Range 3...17'
+    description: >-
+      Maximum poll interval for NTP messages, in seconds as a power of two.
+      Range 3...17
     type: integer
     format: uint32
     example: 17
   TimingCaps.NtpServers.MinPollingInterval:
-    description: 'Minimum poll interval for NTP messages, in seconds as a power of two. Range 3...17'
+    description: >-
+      Minimum poll interval for NTP messages, in seconds as a power of two.
+      Range 3...17
     type: integer
     format: uint32
     example: 3
@@ -1558,15 +1707,21 @@ definitions:
       seconds:
         type: integer
         format: uint32
-        description: 'The seconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC'
+        description: >-
+          The seconds part of the time. Time is defined as Unix-time since
+          January 1, 1970, 00:00:00 UTC
         example: 1577836800
       nanoSeconds:
         type: integer
         format: uint32
-        description: 'The nanoseconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC'
+        description: >-
+          The nanoseconds part of the time. Time is defined as Unix-time since
+          January 1, 1970, 00:00:00 UTC
         example: 0
   TimingCaps:
-    description: This type represents the information provided by the mobile edge platform in response to the Timing capabilities Query message.
+    description: >-
+      This type represents the information provided by the mobile edge platform
+      in response to the Timing capabilities Query message.
     type: object
     properties:
       timeStamp:
@@ -1586,7 +1741,9 @@ definitions:
     type: string
     example: 192.168.1.1
   TrafficFilter.DSCP:
-    description: Used to match all IPv4 packets that have the same Differentiated Services Code Point (DSCP)
+    description: >-
+      Used to match all IPv4 packets that have the same Differentiated Services
+      Code Point (DSCP)
     type: integer
     format: uint32
     example: 0
@@ -1599,7 +1756,9 @@ definitions:
     type: string
     example: '?'
   TrafficFilter.QCI:
-    description: Used to match all packets that have the same Quality Class Indicator (QCI).
+    description: >-
+      Used to match all packets that have the same Quality Class Indicator
+      (QCI).
     type: integer
     format: uint32
     example: 1
@@ -1625,12 +1784,20 @@ definitions:
     type: object
     properties:
       srcAddress:
-        description: 'An IP address or a range of IP address. For IPv4, the IP address could be an IP address plus mask, or an individual IP address, or a range of IP addresses. For IPv6, the IP address could be an IP prefix, or a range of IP prefixes.'
+        description: >-
+          An IP address or a range of IP address. For IPv4, the IP address could
+          be an IP address plus mask, or an individual IP address, or a range of
+          IP addresses. For IPv6, the IP address could be an IP prefix, or a
+          range of IP prefixes.
         type: array
         items:
           $ref: '#/definitions/TrafficFilter.Address'
       dstAddress:
-        description: 'An IP address or a range of IP address. For IPv4, the IP address could be an IP address plus mask, or an individual IP address, or a range of IP addresses. For IPv6, the IP address could be an IP prefix, or a range of IP prefixes.'
+        description: >-
+          An IP address or a range of IP address. For IPv4, the IP address could
+          be an IP address plus mask, or an individual IP address, or a range of
+          IP addresses. For IPv6, the IP address could be an IP prefix, or a
+          range of IP prefixes.
         type: array
         items:
           $ref: '#/definitions/TrafficFilter.Address'
@@ -1681,7 +1848,9 @@ definitions:
       tC:
         $ref: '#/definitions/TrafficFilter.TC'
   TrafficRule.Action:
-    description: The action of the ME host data plane when a packet matches the trafficFilter
+    description: >-
+      The action of the ME host data plane when a packet matches the
+      trafficFilter
     type: string
     enum:
       - DROP
@@ -1692,7 +1861,9 @@ definitions:
       - DUPLICATE_AS_IS
     example: DROP
   TrafficRule.FilterType:
-    description: Definition of filter per FLOW or PACKET. If flow the filter match UE->EPC packet and the reverse packet is handled in the same context
+    description: >-
+      Definition of filter per FLOW or PACKET. If flow the filter match UE->EPC
+      packet and the reverse packet is handled in the same context
     type: string
     enum:
       - FLOW
@@ -1703,7 +1874,9 @@ definitions:
     type: string
     example: TrafficRule1
   TrafficRule.Priority:
-    description: 'Priority of this traffic rule. If traffic rule conflicts, the one with higher priority take precedence'
+    description: >-
+      Priority of this traffic rule. If traffic rule conflicts, the one with
+      higher priority take precedence
     type: integer
     format: uint32
     example: 1
@@ -1831,3 +2004,4 @@ definitions:
         $ref: '#/definitions/TunnelInfo.TunnelDstAddress'
       tunnelSrcAddress:
         $ref: '#/definitions/TunnelInfo.TunnelSrcAddress'
+
