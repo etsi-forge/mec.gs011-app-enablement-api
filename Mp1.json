@@ -30,7 +30,7 @@
       ],
       "get": {
         "description": "This method retrieves information about all the DNS rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsDnsRules.GET",
+        "operationId": "ApplicationsDnsRules_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsDnsRules.200"
@@ -58,7 +58,7 @@
       ],
       "get": {
         "description": "This method retrieves information about a DNS rule associated with a mobile edge application instance.",
-        "operationId": "ApplicationsDnsRule.GET",
+        "operationId": "ApplicationsDnsRule_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsDnsRule.200"
@@ -76,7 +76,7 @@
       },
       "put": {
         "description": "This method activates, de-activates or updates a traffic rule.",
-        "operationId": "ApplicationsDnsRule.PUT",
+        "operationId": "ApplicationsDnsRule_PUT",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsDnsRule.200"
@@ -107,7 +107,7 @@
       ],
       "get": {
         "description": "The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.",
-        "operationId": "ApplicationsSubscriptions.GET",
+        "operationId": "ApplicationsSubscriptions_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsSubscriptions.200"
@@ -125,7 +125,7 @@
       },
       "post": {
         "description": "The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription.",
-        "operationId": "ApplicationsSubscriptions.POST",
+        "operationId": "ApplicationsSubscriptions_POST",
         "responses": {
           "201": {
             "$ref": "#/components/responses/ApplicationsSubscriptions.201"
@@ -167,7 +167,7 @@
       ],
       "get": {
         "description": "The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.",
-        "operationId": "ApplicationsSubscription.GET",
+        "operationId": "ApplicationsSubscription_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsSubscription.200"
@@ -185,7 +185,7 @@
       },
       "delete": {
         "description": "This method deletes a meMp1Subscription. This method is typically used in \"Unsubscribing from service availability event notifications\" procedure.",
-        "operationId": "ApplicationsSubscription.DELETE",
+        "operationId": "ApplicationsSubscription_DELETE",
         "responses": {
           "204": {
             "description": "No Content"
@@ -207,7 +207,7 @@
       ],
       "get": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRules.GET",
+        "operationId": "ApplicationsTrafficRules_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsTrafficRules.200"
@@ -235,7 +235,7 @@
       ],
       "get": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRule.GET",
+        "operationId": "ApplicationsTrafficRule_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsTrafficRule.200"
@@ -253,7 +253,7 @@
       },
       "put": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRule.PUT",
+        "operationId": "ApplicationsTrafficRule_PUT",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsTrafficRule.200"
@@ -279,7 +279,7 @@
     "/services": {
       "get": {
         "description": "This method retrieves information about a list of meService resources. This method is typically used in \"service availability query\" procedure",
-        "operationId": "Services.GET",
+        "operationId": "Services_GET",
         "parameters": [
           {
             "$ref": "#/components/parameters/Query.Ser_instance_id"
@@ -308,7 +308,7 @@
       },
       "post": {
         "description": "This method is used to create a meService resource. This method is typically used in \"service availability update and new service registration\" procedure",
-        "operationId": "Services.POST",
+        "operationId": "Services_POST",
         "responses": {
           "201": {
             "$ref": "#/components/responses/Services.201"
@@ -336,7 +336,7 @@
       ],
       "get": {
         "description": "This method retrieves information about a meService resource. This method is typically used in \"service availability query\" procedure",
-        "operationId": "ServicesServiceId.GET",
+        "operationId": "ServicesServiceId_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ServicesServiceId.200"
@@ -354,7 +354,7 @@
       },
       "put": {
         "description": "This method updates the information about a meService resource",
-        "operationId": "ServicesServiceId.PUT",
+        "operationId": "ServicesServiceId_PUT",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ServicesServiceId.200"
@@ -380,7 +380,7 @@
     "/timing/current_time": {
       "get": {
         "description": "This method retrieves the information of the platform's current time which corresponds to the get platform time procedure",
-        "operationId": "TimingCurrentTime.GET",
+        "operationId": "TimingCurrentTime_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/TimingCurrentTime.200"
@@ -400,7 +400,7 @@
     "/timing/timing_caps": {
       "get": {
         "description": "This method retrieves the information of the platform's timing capabilities which corresponds to the timing capabilities query",
-        "operationId": "TimingCaps.GET",
+        "operationId": "TimingCaps_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/TimingCaps.200"
@@ -420,7 +420,7 @@
     "/transports": {
       "get": {
         "description": "This method retrieves information about a list of available transports. This method is typically used by a service-producing application to discover transports provided by the mobile edge platform in the \"transport information query\" procedure",
-        "operationId": "Transports.GET",
+        "operationId": "Transports_GET",
         "responses": {
           "200": {
             "$ref": "#/components/responses/Transports.200"
@@ -708,7 +708,7 @@
         "type": "string",
         "example": "192.0.2.0"
       },
-      "EndPointInfo.Address.Port": {
+      "EndPointInfo.Address_Port": {
         "description": "Port portion of the address",
         "type": "integer",
         "format": "uint32",
@@ -722,7 +722,7 @@
             "$ref": "#/components/schemas/EndPointInfo.Address.Host"
           },
           "port": {
-            "$ref": "#/components/schemas/EndPointInfo.Address.Port"
+            "$ref": "#/components/schemas/EndPointInfo.Address_Port"
           }
         }
       },
@@ -1132,12 +1132,12 @@
         ],
         "example": "IP_ADDRESS"
       },
-      "TimingCaps.NtpServers.PtpMasterIpAddress": {
+      "TimingCaps.NtpServers_PtpMasterIpAddress": {
         "description": "PTP Master IP Address",
         "type": "string",
         "example": "192.0.2.0"
       },
-      "TimingCaps.NtpServers.PtpMasterLocalPriority": {
+      "TimingCaps.NtpServers_PtpMasterLocalPriority": {
         "description": "PTP Master local priority",
         "type": "integer",
         "format": "uint32",
@@ -1179,7 +1179,7 @@
           }
         }
       },
-      "TimingCaps.PtpMasters": {
+      "TimingCaps_PtpMasters": {
         "description": "NTP server detail.",
         "type": "object",
         "required": [
@@ -1189,10 +1189,10 @@
         ],
         "properties": {
           "ptpMasterIpAddress": {
-            "$ref": "#/components/schemas/TimingCaps.NtpServers.PtpMasterIpAddress"
+            "$ref": "#/components/schemas/TimingCaps.NtpServers_PtpMasterIpAddress"
           },
           "ptpMasterLocalPriority": {
-            "$ref": "#/components/schemas/TimingCaps.NtpServers.PtpMasterLocalPriority"
+            "$ref": "#/components/schemas/TimingCaps.NtpServers_PtpMasterLocalPriority"
           },
           "delayReqMaxRate": {
             "$ref": "#/components/schemas/TimingCaps.NtpServers.DelayReqMaxRate"
@@ -1239,7 +1239,7 @@
             "description": "Available PTP Masters",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TimingCaps.PtpMasters"
+              "$ref": "#/components/schemas/TimingCaps_PtpMasters"
             }
           }
         }
@@ -1404,7 +1404,7 @@
         "type": "string",
         "example": "TrafficRule1"
       },
-      "TrafficRule.Priority": {
+      "TrafficRule_Priority": {
         "description": "Priority of this traffic rule. If traffic rule conflicts, the one with higher priority take precedence",
         "type": "integer",
         "format": "uint32",
@@ -1438,7 +1438,7 @@
             "$ref": "#/components/schemas/TrafficRule.FilterType"
           },
           "priority": {
-            "$ref": "#/components/schemas/TrafficRule.Priority"
+            "$ref": "#/components/schemas/TrafficRule_Priority"
           },
           "trafficFilter": {
             "$ref": "#/components/schemas/TrafficFilter"
@@ -2100,49 +2100,49 @@
     },
     "links": {
       "GetIndividualMeService": {
-        "operationId": "ServicesServiceId.GET",
+        "operationId": "ServicesServiceId_GET",
         "description": "The `serviceId` value returned in the response can be used as the `serviceId` parameter in `GET /services/{serviceId}`",
         "parameters": {
           "serviceId": "$response.body#/serviceId"
         }
       },
       "PutIndividualMeService": {
-        "operationId": "ServicesServiceId.PUT",
+        "operationId": "ServicesServiceId_PUT",
         "description": "The `serviceId` value returned in the response can be used as the `serviceId` parameter in `PUT /services/{serviceId}`",
         "parameters": {
           "serviceId": "$response.body#/serviceId"
         }
       },
       "GetIndividualMeDNSRule": {
-        "operationId": "ApplicationsDnsRule.GET",
+        "operationId": "ApplicationsDnsRule_GET",
         "description": "The `dnsRuleId` value returned in the response can be used as the `dnsRuleId` parameter in `GET /applications/{appInstanceId}/dns_rules/{dnsRuleId}`",
         "parameters": {
           "dnsRuleId": "$response.body#/dnsRuleId"
         }
       },
       "PutIndividualMeDNSRule": {
-        "operationId": "ApplicationsDnsRule.PUT",
+        "operationId": "ApplicationsDnsRule_PUT",
         "description": "The `dnsRuleId` value returned in the response can be used as the `dnsRuleId` parameter in `PUT /applications/{appInstanceId}/dns_rules/{dnsRuleId}`",
         "parameters": {
           "dnsRuleId": "$response.body#/dnsRuleId"
         }
       },
       "GetIndividualMeTrafficRule": {
-        "operationId": "ApplicationsTrafficRule.GET",
+        "operationId": "ApplicationsTrafficRule_GET",
         "description": "The `trafficRuleId` value returned in the response can be used as the `trafficRuleId` parameter in `GET /applications/{appInstanceId}/traffic_rules/{trafficRuleId}`",
         "parameters": {
           "trafficRuleId": "$response.body#/trafficRuleId"
         }
       },
       "PutIndividualMeTrafficRule": {
-        "operationId": "ApplicationsTrafficRule.PUT",
+        "operationId": "ApplicationsTrafficRule_PUT",
         "description": "The `trafficRuleId` value returned in the response can be used as the `trafficRuleId` parameter in `PUT /applications/{appInstanceId}/traffic_rules/{trafficRuleId}`",
         "parameters": {
           "trafficRuleId": "$response.body#/trafficRuleId"
         }
       },
       "GetIndividualMeMp1Subscription": {
-        "operationId": "ApplicationsSubscription.GET",
+        "operationId": "ApplicationsSubscription_GET",
         "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
         "parameters": {
           "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
@@ -2150,7 +2150,7 @@
         }
       },
       "DelIndividualMeMp1Subscription": {
-        "operationId": "ApplicationsSubscription.DELETE",
+        "operationId": "ApplicationsSubscription_DELETE",
         "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
         "parameters": {
           "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
@@ -2158,7 +2158,7 @@
         }
       },
       "GetIndividualMeMp1SubscriptionLinkList": {
-        "operationId": "ApplicationsSubscription.GET",
+        "operationId": "ApplicationsSubscription_GET",
         "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
         "parameters": {
           "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
@@ -2166,7 +2166,7 @@
         }
       },
       "DelIndividualMeMp1SubscriptionLinkList": {
-        "operationId": "ApplicationsSubscription.DELETE",
+        "operationId": "ApplicationsSubscription_DELETE",
         "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
         "parameters": {
           "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
