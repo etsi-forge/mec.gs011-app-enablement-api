@@ -1936,7 +1936,7 @@
               "$ref": "#/components/schemas/ProblemDetails"
             }
           },
-          "application/json": {
+          "text/plain": {
             "schema": {
               "$ref": "#/components/schemas/Empty"
             }
@@ -1961,7 +1961,7 @@
               "$ref": "#/components/schemas/ProblemDetails"
             }
           },
-          "application/json": {
+          "text/plain": {
             "schema": {
               "$ref": "#/components/schemas/Empty"
             }
@@ -1976,7 +1976,7 @@
               "$ref": "#/components/schemas/ProblemDetails"
             }
           },
-          "application/json": {
+          "text/plain": {
             "schema": {
               "$ref": "#/components/schemas/Empty"
             }

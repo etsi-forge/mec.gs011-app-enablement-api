@@ -1515,7 +1515,7 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
-        application/json:
+        text/plain:
           schema:
             $ref: '#/components/schemas/Empty'
     Error.403:
@@ -1530,7 +1530,7 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
-        application/json:
+        text/plain:
           schema:
             $ref: '#/components/schemas/Empty'
     Error.412:
@@ -1539,7 +1539,7 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
-        application/json:
+        text/plain:
           schema:
             $ref: '#/components/schemas/Empty'
   requestBodies:
