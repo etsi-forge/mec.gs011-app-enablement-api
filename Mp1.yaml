@@ -1276,6 +1276,9 @@ components:
       required: true
       schema:
         type: string
+        enum:
+          - AppTerminationNotificationSubscription        
+          - SerAvailabilityNotificationSubscription
     Path.ServiceId:
       name: serviceId
       description: Represents a mobile edge service instance.

@@ -1614,7 +1614,11 @@
         "in": "path",
         "required": true,
         "schema": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "AppTerminationNotificationSubscription",
+            "SerAvailabilityNotificationSubscription"
+          ]
         }
       },
       "Path.ServiceId": {
