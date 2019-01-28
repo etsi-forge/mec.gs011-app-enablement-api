@@ -3,4 +3,4 @@ type: string
 enum:
   - IP_V6
   - IP_V4
-example: "IP_V6"
+example: 'IP_V6'

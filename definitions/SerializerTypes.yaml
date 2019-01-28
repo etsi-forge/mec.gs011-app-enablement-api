@@ -4,4 +4,4 @@ enum:
   - JSON
   - XML
   - PROTOBUF3
-example: JSON
+example: 'JSON'

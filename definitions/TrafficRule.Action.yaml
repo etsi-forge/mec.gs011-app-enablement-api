@@ -7,4 +7,4 @@ enum:
   - PASSTHROUGH
   - DUPLICATE_DECAPSULATED
   - DUPLICATE_AS_IS
-example: DROP
+example: 'DROP'

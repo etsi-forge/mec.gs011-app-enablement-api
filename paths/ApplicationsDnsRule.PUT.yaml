@@ -16,12 +16,12 @@ responses:
     examples:
       application/json:
         DnsRule:
-          dnsRuleId: DnsRule1
-          domainName: www.example.com
-          ipAddressType: IP_V4
-          ipAddress: 146.241.7.3
+          dnsRuleId: 'DnsRule1'
+          domainName: 'www.example.com'
+          ipAddressType: 'IP_V4'
+          ipAddress: '146.241.7.3'
           ttl: 300
-          state: ACTIVE
+          state: 'ACTIVE'
   400:
     description: Bad Request
     schema:

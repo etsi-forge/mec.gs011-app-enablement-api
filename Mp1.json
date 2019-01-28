@@ -175,16 +175,18 @@
               }
             },
             "examples": {
-              "application/json": [{
-                "DnsRule": {
-                  "dnsRuleId": "DnsRule1",
-                  "domainName": "www.example.com",
-                  "ipAddressType": "IP_V4",
-                  "ipAddress": "146.241.7.3",
-                  "ttl": 300,
-                  "state": "ACTIVE"
+              "application/json": [
+                {
+                  "DnsRule": {
+                    "dnsRuleId": "DnsRule1",
+                    "domainName": "www.example.com",
+                    "ipAddressType": "IP_V4",
+                    "ipAddress": "146.241.7.3",
+                    "ttl": 300,
+                    "state": "ACTIVE"
+                  }
                 }
-              }]
+              ]
             }
           },
           "400": {
@@ -652,32 +654,36 @@
               }
             },
             "examples": {
-              "application/json": [{
-                "TrafficRule": {
-                  "trafficRuleId": "TrafficRule123",
-                  "serName": "ExampleService",
-                  "filterType": "FLOW",
-                  "priority": 1,
-                  "trafficFilter": {
-                    "srcAddress": [
-                      "192.168.2.0/24",
-                      "192.168.3.0/24"
+              "application/json": [
+                {
+                  "TrafficRule": {
+                    "trafficRuleId": "TrafficRule123",
+                    "serName": "ExampleService",
+                    "filterType": "FLOW",
+                    "priority": 1,
+                    "trafficFilter": [
+                      {
+                        "srcAddress": [
+                          "192.168.2.0/24",
+                          "192.168.3.0/24"
+                        ],
+                        "dstAddress": [
+                          "192.127.4.100/32"
+                        ],
+                        "dstPort": [
+                          "80"
+                        ]
+                      }
                     ],
-                    "dstAddress": [
-                      "192.127.4.100/32"
-                    ],
-                    "dstPort": [
-                      80
-                    ]
-                  },
-                  "action": "FORWARD_DECAPSULATED",
-                  "dstInterface": {
-                    "interfaceType": "IP",
-                    "dstIpAddress": "20.1.1.1"
-                  },
-                  "state": "ACTIVE"
+                    "action": "FORWARD_DECAPSULATED",
+                    "dstInterface": {
+                      "interfaceType": "IP",
+                      "dstIpAddress": "20.1.1.1"
+                    },
+                    "state": "ACTIVE"
+                  }
                 }
-              }]
+              ]
             }
           },
           "400": {
@@ -752,18 +758,20 @@
                   "serName": "ExampleService",
                   "filterType": "FLOW",
                   "priority": 1,
-                  "trafficFilter": {
-                    "srcAddress": [
-                      "192.168.2.0/24",
-                      "192.168.3.0/24"
-                    ],
-                    "dstAddress": [
-                      "192.127.4.100/32"
-                    ],
-                    "dstPort": [
-                      80
-                    ]
-                  },
+                  "trafficFilter": [
+                    {
+                      "srcAddress": [
+                        "192.168.2.0/24",
+                        "192.168.3.0/24"
+                      ],
+                      "dstAddress": [
+                        "192.127.4.100/32"
+                      ],
+                      "dstPort": [
+                        "80"
+                      ]
+                    }
+                  ],
                   "action": "FORWARD_DECAPSULATED",
                   "dstInterface": {
                     "interfaceType": "IP",
@@ -841,18 +849,20 @@
                   "serName": "ExampleService",
                   "filterType": "FLOW",
                   "priority": 1,
-                  "trafficFilter": {
-                    "srcAddress": [
-                      "192.168.2.0/24",
-                      "192.168.3.0/24"
-                    ],
-                    "dstAddress": [
-                      "192.127.4.100/32"
-                    ],
-                    "dstPort": [
-                      80
-                    ]
-                  },
+                  "trafficFilter": [
+                    {
+                      "srcAddress": [
+                        "192.168.2.0/24",
+                        "192.168.3.0/24"
+                      ],
+                      "dstAddress": [
+                        "192.127.4.100/32"
+                      ],
+                      "dstPort": [
+                        "80"
+                      ]
+                    }
+                  ],
                   "action": "FORWARD_DECAPSULATED",
                   "dstInterface": {
                     "interfaceType": "IP",
@@ -946,47 +956,49 @@
               }
             },
             "examples": {
-              "application/json": [{
-                "ServiceInfo": {
-                  "serInstanceId": "ServiceInstance123",
-                  "serName": "ExampleService",
-                  "serCategory": {
-                    "href": "catItem1",
-                    "id": "id12345",
-                    "name": "RNI",
-                    "version": "version1"
-                  },
-                  "version": "ServiceVersion1",
-                  "state": "ACTIVE",
-                  "transportId": "Rest1",
-                  "transportInfo": {
-                    "id": "TransId12345",
-                    "name": "REST",
-                    "description": "REST API",
-                    "type": "JSON",
-                    "protocol": "HTTP",
-                    "version": "2.0",
-                    "endpoint": {
-                      "uris": [
-                        "/meMp1/service/EntryPoint"
-                      ],
-                      "addresses": [
-                        {
-                          "host": "192.0.2.0",
-                          "port": "8080"
-                        }
-                      ]
+              "application/json": [
+                {
+                  "ServiceInfo": {
+                    "serInstanceId": "ServiceInstance123",
+                    "serName": "ExampleService",
+                    "serCategory": {
+                      "href": "catItem1",
+                      "id": "id12345",
+                      "name": "RNI",
+                      "version": "version1"
                     },
-                    "security": {
-                      "oAuth2Info": {
-                        "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
-                        "tokenEndpoint": "/meMp1/security/TokenEndPoint"
+                    "version": "ServiceVersion1",
+                    "state": "ACTIVE",
+                    "transportId": "Rest1",
+                    "transportInfo": {
+                      "id": "TransId12345",
+                      "name": "REST",
+                      "description": "REST API",
+                      "type": "JSON",
+                      "protocol": "HTTP",
+                      "version": "2.0",
+                      "endpoint": {
+                        "uris": [
+                          "/meMp1/service/EntryPoint"
+                        ],
+                        "addresses": [
+                          {
+                            "host": "192.0.2.0",
+                            "port": 8080
+                          }
+                        ]
+                      },
+                      "security": {
+                        "oAuth2Info": {
+                          "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
+                          "tokenEndpoint": "/meMp1/security/TokenEndPoint"
+                        }
                       }
-                    }
-                  },
-                  "serializer": "JSON"
+                    },
+                    "serializer": "JSON"
+                  }
                 }
-              }]
+              ]
             }
           },
           "400": {
@@ -1074,7 +1086,7 @@
                     "id": "TransId12345",
                     "name": "REST",
                     "description": "REST API",
-                    "type": "JSON",
+                    "type": "REST_HTTP",
                     "protocol": "HTTP",
                     "version": "2.0",
                     "endpoint": {
@@ -1084,7 +1096,7 @@
                       "addresses": [
                         {
                           "host": "192.0.2.0",
-                          "port": "8080"
+                          "port": 8080
                         }
                       ]
                     },
@@ -1180,7 +1192,7 @@
                     "id": "TransId12345",
                     "name": "REST",
                     "description": "REST API",
-                    "type": "JSON",
+                    "type": "REST_HTTP",
                     "protocol": "HTTP",
                     "version": "2.0",
                     "endpoint": {
@@ -1190,7 +1202,7 @@
                       "addresses": [
                         {
                           "host": "192.0.2.0",
-                          "port": "8080"
+                          "port": 8080
                         }
                       ]
                     },
@@ -1284,7 +1296,7 @@
                     "id": "TransId12345",
                     "name": "REST",
                     "description": "REST API",
-                    "type": "JSON",
+                    "type": "REST_HTTP",
                     "protocol": "HTTP",
                     "version": "2.0",
                     "endpoint": {
@@ -1294,7 +1306,7 @@
                       "addresses": [
                         {
                           "host": "192.0.2.0",
-                          "port": "8080"
+                          "port": 8080
                         }
                       ]
                     },
@@ -1541,7 +1553,7 @@
   "definitions": {
     "AppTerminationNotification.MaxGracefulTimeout": {
       "description": "Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.",
-      "type": "string",
+      "type": "integer",
       "format": "uint32",
       "example": 10
     },
@@ -1808,7 +1820,7 @@
       "description": "Port portion of the address",
       "type": "integer",
       "format": "uint32",
-      "example": "8080"
+      "example": 8080
     },
     "EndPointInfo.Address": {
       "description": "A IP address and port pair",
@@ -2502,7 +2514,10 @@
           "$ref": "#/definitions/TrafficRule.Priority"
         },
         "trafficFilter": {
-          "$ref": "#/definitions/TrafficFilter"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TrafficFilter"
+          }
         },
         "action": {
           "$ref": "#/definitions/TrafficRule.Action"
@@ -2598,7 +2613,7 @@
         "RPC_STREAMING",
         "WEBSOCKET"
       ],
-      "example": "JSON"
+      "example": "REST_HTTP"
     },
     "TunnelInfo.TunnelDstAddress": {
       "description": "Destination address of the tunnel",

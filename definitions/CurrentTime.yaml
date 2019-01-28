@@ -25,4 +25,4 @@ properties:
       - TRACEABLE
       - NONTRACEABLE
     description: Platform Time Source status. 1 = TRACEABLE - time source is locked to the UTC time source. 2 = NONTRACEABLE - time source is not locked to the UTC time source
-    example: TRACEABLE
+    example: 'TRACEABLE'

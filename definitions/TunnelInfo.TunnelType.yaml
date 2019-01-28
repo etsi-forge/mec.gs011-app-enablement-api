@@ -3,4 +3,4 @@ type: string
 enum:
   - GTP_U
   - GRE
-example: GTP_U
+example: 'GTP_U'

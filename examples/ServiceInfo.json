@@ -15,7 +15,7 @@
       "id": "TransId12345",
       "name": "REST",
       "description": "REST API",
-      "type": "JSON",
+      "type": "REST_HTTP",
       "protocol": "HTTP",
       "version": "2.0",
       "endpoint": {
@@ -25,7 +25,7 @@
         "addresses": [
           {
             "host": "192.0.2.0",
-            "port": "8080"
+            "port": 8080
           }
         ]
       },

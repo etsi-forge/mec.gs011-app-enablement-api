@@ -3,4 +3,4 @@ type: string
 enum:
   - ACTIVE
   - INACTIVE
-example: "ACTIVE"
+example: 'ACTIVE'

@@ -15,7 +15,9 @@ properties:
   priority:
     $ref: '#/definitions/TrafficRule.Priority'
   trafficFilter:
-    $ref: '#/definitions/TrafficFilter'
+    type: array
+    items:
+      $ref: '#/definitions/TrafficFilter'
   action:
     $ref: '#/definitions/TrafficRule.Action'
   dstInterface:

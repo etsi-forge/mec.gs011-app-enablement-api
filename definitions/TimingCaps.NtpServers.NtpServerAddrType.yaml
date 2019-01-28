@@ -3,4 +3,4 @@ type: string
 enum:
   - IP_ADDRESS
   - DNS_NAME
-example: IP_ADDRESS
+example: 'IP_ADDRESS'

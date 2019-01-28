@@ -140,12 +140,12 @@ paths:
           examples:
             application/json:
               - DnsRule:
-                  dnsRuleId: DnsRule1
-                  domainName: www.example.com
-                  ipAddressType: IP_V4
-                  ipAddress: 146.241.7.3
+                  dnsRuleId: 'DnsRule1'
+                  domainName: 'www.example.com'
+                  ipAddressType: 'IP_V4'
+                  ipAddress: '146.241.7.3'
                   ttl: 300
-                  state: ACTIVE
+                  state: 'ACTIVE'
         '400':
           description: Bad Request
           schema:
@@ -189,12 +189,12 @@ paths:
           examples:
             application/json:
               DnsRule:
-                dnsRuleId: DnsRule1
-                domainName: www.example.com
-                ipAddressType: IP_V4
-                ipAddress: 146.241.7.3
+                dnsRuleId: 'DnsRule1'
+                domainName: 'www.example.com'
+                ipAddressType: 'IP_V4'
+                ipAddress: '146.241.7.3'
                 ttl: 300
-                state: ACTIVE
+                state: 'ACTIVE'
         '400':
           description: Bad Request
           schema:
@@ -236,12 +236,12 @@ paths:
           examples:
             application/json:
               DnsRule:
-                dnsRuleId: DnsRule1
-                domainName: www.example.com
-                ipAddressType: IP_V4
-                ipAddress: 146.241.7.3
+                dnsRuleId: 'DnsRule1'
+                domainName: 'www.example.com'
+                ipAddressType: 'IP_V4'
+                ipAddress: '146.241.7.3'
                 ttl: 300
-                state: ACTIVE
+                state: 'ACTIVE'
         '400':
           description: Bad Request
           schema:
@@ -440,23 +440,23 @@ paths:
           examples:
             application/json:
               - TrafficRule:
-                  trafficRuleId: TrafficRule123
-                  serName: ExampleService
-                  filterType: FLOW
+                  trafficRuleId: 'TrafficRule123'
+                  serName: 'ExampleService'
+                  filterType: 'FLOW'
                   priority: 1
                   trafficFilter:
-                    srcAddress:
-                      - 192.168.2.0/24
-                      - 192.168.3.0/24
-                    dstAddress:
-                      - 192.127.4.100/32
-                    dstPort:
-                      - 80
-                  action: FORWARD_DECAPSULATED
+                    - srcAddress:
+                        - '192.168.2.0/24'
+                        - '192.168.3.0/24'
+                      dstAddress:
+                        - '192.127.4.100/32'
+                      dstPort:
+                        - '80'
+                  action: 'FORWARD_DECAPSULATED'
                   dstInterface:
-                    interfaceType: IP
-                    dstIpAddress: 20.1.1.1
-                  state: ACTIVE
+                    interfaceType: 'IP'
+                    dstIpAddress: '20.1.1.1'
+                  state: 'ACTIVE'
         '400':
           description: Bad Request
           schema:
@@ -500,23 +500,23 @@ paths:
           examples:
             application/json:
               TrafficRule:
-                trafficRuleId: TrafficRule123
-                serName: ExampleService
-                filterType: FLOW
+                trafficRuleId: 'TrafficRule123'
+                serName: 'ExampleService'
+                filterType: 'FLOW'
                 priority: 1
                 trafficFilter:
-                  srcAddress:
-                    - 192.168.2.0/24
-                    - 192.168.3.0/24
-                  dstAddress:
-                    - 192.127.4.100/32
-                  dstPort:
-                    - 80
-                action: FORWARD_DECAPSULATED
+                  - srcAddress:
+                      - '192.168.2.0/24'
+                      - '192.168.3.0/24'
+                    dstAddress:
+                      - '192.127.4.100/32'
+                    dstPort:
+                      - '80'
+                action: 'FORWARD_DECAPSULATED'
                 dstInterface:
-                  interfaceType: IP
-                  dstIpAddress: 20.1.1.1
-                state: ACTIVE
+                  interfaceType: 'IP'
+                  dstIpAddress: '20.1.1.1'
+                state: 'ACTIVE'
         '400':
           description: Bad Request
           schema:
@@ -558,23 +558,23 @@ paths:
           examples:
             application/json:
               TrafficRule:
-                trafficRuleId: TrafficRule123
-                serName: ExampleService
-                filterType: FLOW
+                trafficRuleId: 'TrafficRule123'
+                serName: 'ExampleService'
+                filterType: 'FLOW'
                 priority: 1
                 trafficFilter:
-                  srcAddress:
-                    - 192.168.2.0/24
-                    - 192.168.3.0/24
-                  dstAddress:
-                    - 192.127.4.100/32
-                  dstPort:
-                    - 80
-                action: FORWARD_DECAPSULATED
+                  - srcAddress:
+                      - '192.168.2.0/24'
+                      - '192.168.3.0/24'
+                    dstAddress:
+                      - '192.127.4.100/32'
+                    dstPort:
+                      - '80'
+                action: 'FORWARD_DECAPSULATED'
                 dstInterface:
-                  interfaceType: IP
-                  dstIpAddress: 20.1.1.1
-                state: ACTIVE
+                  interfaceType: 'IP'
+                  dstIpAddress: '20.1.1.1'
+                state: 'ACTIVE'
         '400':
           description: Bad Request
           schema:
@@ -628,34 +628,34 @@ paths:
           examples:
             application/json:
               - ServiceInfo:
-                  serInstanceId: ServiceInstance123
-                  serName: ExampleService
+                  serInstanceId: 'ServiceInstance123'
+                  serName: 'ExampleService'
                   serCategory:
-                    href: catItem1
-                    id: id12345
-                    name: RNI
-                    version: version1
-                  version: ServiceVersion1
-                  state: ACTIVE
-                  transportId: Rest1
+                    href: 'catItem1'
+                    id: 'id12345'
+                    name: 'RNI'
+                    version: 'version1'
+                  version: 'ServiceVersion1'
+                  state: 'ACTIVE'
+                  transportId: 'Rest1'
                   transportInfo:
-                    id: TransId12345
-                    name: REST
-                    description: REST API
-                    type: JSON
-                    protocol: HTTP
+                    id: 'TransId12345'
+                    name: 'REST'
+                    description: 'REST API'
+                    type: 'JSON'
+                    protocol: 'HTTP'
                     version: '2.0'
                     endpoint:
                       uris:
-                        - /meMp1/service/EntryPoint
+                        - '/meMp1/service/EntryPoint'
                       addresses:
-                        - host: 192.0.2.0
-                          port: '8080'
+                        - host: '192.0.2.0'
+                          port: 8080
                     security:
                       oAuth2Info:
-                        grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                        tokenEndpoint: /meMp1/security/TokenEndPoint
-                  serializer: JSON
+                        grantTypes: 'OAUTH2_CLIENT_CREDENTIALS'
+                        tokenEndpoint: '/meMp1/security/TokenEndPoint'
+                  serializer: 'JSON'
         '400':
           description: Bad Request
           schema:
@@ -702,34 +702,34 @@ paths:
           examples:
             application/json:
               ServiceInfo:
-                serInstanceId: ServiceInstance123
-                serName: ExampleService
+                serInstanceId: 'ServiceInstance123'
+                serName: 'ExampleService'
                 serCategory:
-                  href: catItem1
-                  id: id12345
-                  name: RNI
-                  version: version1
-                version: ServiceVersion1
-                state: ACTIVE
-                transportId: Rest1
+                  href: 'catItem1'
+                  id: 'id12345'
+                  name: 'RNI'
+                  version: 'version1'
+                version: 'ServiceVersion1'
+                state: 'ACTIVE'
+                transportId: 'Rest1'
                 transportInfo:
-                  id: TransId12345
-                  name: REST
-                  description: REST API
-                  type: JSON
-                  protocol: HTTP
+                  id: 'TransId12345'
+                  name: 'REST'
+                  description: 'REST API'
+                  type: 'REST_HTTP'
+                  protocol: 'HTTP'
                   version: '2.0'
                   endpoint:
                     uris:
-                      - /meMp1/service/EntryPoint
+                      - '/meMp1/service/EntryPoint'
                     addresses:
-                      - host: 192.0.2.0
-                        port: '8080'
+                      - host: '192.0.2.0'
+                        port: 8080
                   security:
                     oAuth2Info:
-                      grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/security/TokenEndPoint
-                serializer: JSON
+                      grantTypes: 'OAUTH2_CLIENT_CREDENTIALS'
+                      tokenEndpoint: '/meMp1/security/TokenEndPoint'
+                serializer: 'JSON'
         '400':
           description: Bad Request
           schema:
@@ -772,34 +772,34 @@ paths:
           examples:
             application/json:
               ServiceInfo:
-                serInstanceId: ServiceInstance123
-                serName: ExampleService
+                serInstanceId: 'ServiceInstance123'
+                serName: 'ExampleService'
                 serCategory:
-                  href: catItem1
-                  id: id12345
-                  name: RNI
-                  version: version1
-                version: ServiceVersion1
-                state: ACTIVE
-                transportId: Rest1
+                  href: 'catItem1'
+                  id: 'id12345'
+                  name: 'RNI'
+                  version: 'version1'
+                version: 'ServiceVersion1'
+                state: 'ACTIVE'
+                transportId: 'Rest1'
                 transportInfo:
-                  id: TransId12345
-                  name: REST
-                  description: REST API
-                  type: JSON
-                  protocol: HTTP
+                  id: 'TransId12345'
+                  name: 'REST'
+                  description: 'REST API'
+                  type: 'REST_HTTP'
+                  protocol: 'HTTP'
                   version: '2.0'
                   endpoint:
                     uris:
-                      - /meMp1/service/EntryPoint
+                      - '/meMp1/service/EntryPoint'
                     addresses:
-                      - host: 192.0.2.0
-                        port: '8080'
+                      - host: '192.0.2.0'
+                        port: 8080
                   security:
                     oAuth2Info:
-                      grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/security/TokenEndPoint
-                serializer: JSON
+                      grantTypes: 'OAUTH2_CLIENT_CREDENTIALS'
+                      tokenEndpoint: '/meMp1/security/TokenEndPoint'
+                serializer: 'JSON'
         '400':
           description: Bad Request
           schema:
@@ -841,34 +841,34 @@ paths:
           examples:
             application/json:
               ServiceInfo:
-                serInstanceId: ServiceInstance123
-                serName: ExampleService
+                serInstanceId: 'ServiceInstance123'
+                serName: 'ExampleService'
                 serCategory:
-                  href: catItem1
-                  id: id12345
-                  name: RNI
-                  version: version1
-                version: ServiceVersion1
-                state: ACTIVE
-                transportId: Rest1
+                  href: 'catItem1'
+                  id: 'id12345'
+                  name: 'RNI'
+                  version: 'version1'
+                version: 'ServiceVersion1'
+                state: 'ACTIVE'
+                transportId: 'Rest1'
                 transportInfo:
-                  id: TransId12345
-                  name: REST
-                  description: REST API
-                  type: JSON
-                  protocol: HTTP
+                  id: 'TransId12345'
+                  name: 'REST'
+                  description: 'REST API'
+                  type: 'REST_HTTP'
+                  protocol: 'HTTP'
                   version: '2.0'
                   endpoint:
                     uris:
-                      - /meMp1/service/EntryPoint
+                      - '/meMp1/service/EntryPoint'
                     addresses:
-                      - host: 192.0.2.0
-                        port: '8080'
+                      - host: '192.0.2.0'
+                        port: 8080
                   security:
                     oAuth2Info:
-                      grantTypes: OAUTH2_CLIENT_CREDENTIALS
-                      tokenEndpoint: /meMp1/security/TokenEndPoint
-                serializer: JSON
+                      grantTypes: 'OAUTH2_CLIENT_CREDENTIALS'
+                      tokenEndpoint: '/meMp1/security/TokenEndPoint'
+                serializer: 'JSON'
         '400':
           description: Bad Request
           schema:
@@ -1015,13 +1015,13 @@ paths:
 definitions:
   AppTerminationNotification.MaxGracefulTimeout:
     description: Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.
-    type: string
+    type: integer
     format: uint32
     example: 10
   AppTerminationNotification.NotificationType:
     description: Shall be set to AppTerminationNotification.
     type: string
-    example: AppTerminationNotification
+    example: 'AppTerminationNotification'
   AppTerminationNotification:
     description: This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.
     type: object
@@ -1039,7 +1039,7 @@ definitions:
   AppTerminationNotificationSubscription.AppInstanceId:
     description: It is used as the filtering criterion for the subscribed events.
     type: string
-    example: ID1
+    example: 'ID1'
   AppTerminationNotificationSubscription.CallbackReference:
     description: URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge application instance management information. This shall be included in both the request and the response.
     type: string
@@ -1064,23 +1064,23 @@ definitions:
   AppTerminationNotificationSubscription.SubscriptionType:
     description: Shall be set to AppTerminationNotificationSubscription.
     type: string
-    example: AppTerminationNotificationSubscription
+    example: 'AppTerminationNotificationSubscription'
   CategoryRef.Href:
     description: Reference of the catalogue
     type: string
-    example: catItem1
+    example: 'catItem1'
   CategoryRef.Id:
     description: Unique identifier of the category
     type: string
-    example: id12345
+    example: 'id12345'
   CategoryRef.Name:
     description: Name of the category
     type: string
-    example: RNI
+    example: 'RNI'
   CategoryRef.Version:
     description: Category version
     type: string
-    example: version1
+    example: 'version1'
   CategoryRef:
     description: This type represents the category reference
     type: object
@@ -1122,7 +1122,7 @@ definitions:
           - TRACEABLE
           - NONTRACEABLE
         description: Platform Time Source status. 1 = TRACEABLE - time source is locked to the UTC time source. 2 = NONTRACEABLE - time source is not locked to the UTC time source
-        example: TRACEABLE
+        example: 'TRACEABLE'
   DestinationInterface.InterfaceType:
     description: Type of the interface
     type: string
@@ -1130,15 +1130,15 @@ definitions:
       - TUNNEL
       - MAC
       - IP
-    example: TUNNEL
+    example: 'TUNNEL'
   DestinationInterface.IpAddress:
     description: IP address of the remote destination
     type: string
-    example: 192.0.2.0
+    example: '192.0.2.0'
   DestinationInterface.MacAddress:
     description: Source address identifies the MAC address of the interface
     type: string
-    example: 02-00-00-00-00-00
+    example: '02-00-00-00-00-00'
   DestinationInterface:
     description: This type represents the destination interface.
     type: object
@@ -1158,29 +1158,29 @@ definitions:
   DnsRule.DomainName:
     description: FQDN resolved by the DNS rule
     type: string
-    example: www.example.com
+    example: 'www.example.com'
   DnsRule.Id:
     description: Identifies the DNS Rule
     type: string
-    example: dnsRule1
+    example: 'dnsRule1'
   DnsRule.IpAddress:
     description: IP address associated with the FQDN resolved by the DNS rule
     type: string
-    example: 192.0.2.0
+    example: '192.0.2.0'
   DnsRule.IpAddressType:
     description: IP address type
     type: string
     enum:
       - IP_V6
       - IP_V4
-    example: IP_V6
+    example: 'IP_V6'
   DnsRule.State:
     description: DNS rule state
     type: string
     enum:
       - ACTIVE
       - INACTIVE
-    example: ACTIVE
+    example: 'ACTIVE'
   DnsRule.Ttl:
     description: Time to live value
     type: integer
@@ -1211,12 +1211,12 @@ definitions:
   EndPointInfo.Address.Host:
     description: Host portion of the address
     type: string
-    example: 192.0.2.0
+    example: '192.0.2.0'
   EndPointInfo.Address.Port:
     description: Port portion of the address
     type: integer
     format: uint32
-    example: '8080'
+    example: 8080
   EndPointInfo.Address:
     description: A IP address and port pair
     type: object
@@ -1237,7 +1237,7 @@ definitions:
     description: Entry point information of the service
     type: string
     format: uri
-    example: /meMp1/service/EntryPoint
+    example: '/meMp1/service/EntryPoint'
   EndPointInfo.Uris:
     description: 'Entry point information of the service as string, formatted according to URI syntax'
     type: array
@@ -1258,7 +1258,7 @@ definitions:
     type: string
     format: uri
     readOnly: true
-    example: /meMp1/example
+    example: '/meMp1/example'
   Mp1SubscriptionLinkList.Links:
     description: Self-referring URI.
     type: object
@@ -1333,12 +1333,12 @@ definitions:
       - OAUTH2_IMPLICIT_GRANT
       - OAUTH2_RESOURCE_OWNER
       - OAUTH2_CLIENT_CREDENTIALS
-    example: OAUTH2_CLIENT_CREDENTIALS
+    example: 'OAUTH2_CLIENT_CREDENTIALS'
   SecurityInfo.OAuth2Info.TokenEndpoint:
     description: The token endpoint
     type: string
     format: uri
-    example: /meMp1/security/TokenEndPoint
+    example: '/meMp1/security/TokenEndPoint'
   SecurityInfo.OAuth2Info:
     description: Parameters related to use of OAuth 2.0
     required:
@@ -1390,7 +1390,7 @@ definitions:
   SerAvailabilityNotificationSubscription.SubscriptionType:
     description: Shall be set to SerAvailabilityNotificationSubscription.
     type: string
-    example: SerAvailabilityNotificationSubscription
+    example: 'SerAvailabilityNotificationSubscription'
   SerializerTypes:
     description: The enumeration SerializerTypes represents types of serializers
     type: string
@@ -1398,30 +1398,30 @@ definitions:
       - JSON
       - XML
       - PROTOBUF3
-    example: JSON
+    example: 'JSON'
   ServiceInfo.SerInstanceId:
     description: Identifier of the service instance assigned by the MEPM / mobile edge platform.
     type: string
-    example: ServiceInstance123
+    example: 'ServiceInstance123'
   ServiceInfo.SerName:
     description: The name of the service. This is how the service producing mobile edge application identifies the service instance it produces.
     type: string
-    example: ExampleService
+    example: 'ExampleService'
   ServiceInfo.State:
     description: Contains the state
     type: string
     enum:
       - ACTIVE
       - INACTIVE
-    example: ACTIVE
+    example: 'ACTIVE'
   ServiceInfo.TransportId:
     description: 'Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the "Transport information query" procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.'
     type: string
-    example: Rest1
+    example: 'Rest1'
   ServiceInfo.Version:
     description: Service version
     type: string
-    example: ServiceVersion1
+    example: 'ServiceVersion1'
   ServiceInfo:
     description: This type represents the general information of a mobile edge service.
     type: object
@@ -1467,7 +1467,7 @@ definitions:
       - NONE
       - SYMMETRIC_KEY
       - AUTO_KEY
-    example: NONE
+    example: 'NONE'
   TimingCaps.NtpServers.DelayReqMaxRate:
     description: Acceptable maximum rate of the Delay_Req messages in packets per second
     type: integer
@@ -1491,18 +1491,18 @@ definitions:
   TimingCaps.NtpServers.NtpServerAddr:
     description: NTP server address
     type: string
-    example: 192.0.2.0
+    example: '192.0.2.0'
   TimingCaps.NtpServers.NtpServerAddrType:
     description: Address type of NTP server
     type: string
     enum:
       - IP_ADDRESS
       - DNS_NAME
-    example: IP_ADDRESS
+    example: 'IP_ADDRESS'
   TimingCaps.NtpServers.PtpMasterIpAddress:
     description: PTP Master IP Address
     type: string
-    example: 192.0.2.0
+    example: '192.0.2.0'
   TimingCaps.NtpServers.PtpMasterLocalPriority:
     description: PTP Master local priority
     type: integer
@@ -1584,7 +1584,7 @@ definitions:
   TrafficFilter.Address:
     description: Identify the traffic ip address.
     type: string
-    example: 192.168.1.1
+    example: '192.168.1.1'
   TrafficFilter.DSCP:
     description: Used to match all IPv4 packets that have the same Differentiated Services Code Point (DSCP)
     type: integer
@@ -1690,18 +1690,18 @@ definitions:
       - PASSTHROUGH
       - DUPLICATE_DECAPSULATED
       - DUPLICATE_AS_IS
-    example: DROP
+    example: 'DROP'
   TrafficRule.FilterType:
     description: Definition of filter per FLOW or PACKET. If flow the filter match UE->EPC packet and the reverse packet is handled in the same context
     type: string
     enum:
       - FLOW
       - PACKET
-    example: FLOW
+    example: 'FLOW'
   TrafficRule.Id:
     description: Identify the traffic rule.
     type: string
-    example: TrafficRule1
+    example: 'TrafficRule1'
   TrafficRule.Priority:
     description: 'Priority of this traffic rule. If traffic rule conflicts, the one with higher priority take precedence'
     type: integer
@@ -1713,7 +1713,7 @@ definitions:
     enum:
       - ACTIVE
       - INACTIVE
-    example: ACTIVE
+    example: 'ACTIVE'
   TrafficRule:
     description: This type represents the general information of a traffic rule.
     type: object
@@ -1732,7 +1732,9 @@ definitions:
       priority:
         $ref: '#/definitions/TrafficRule.Priority'
       trafficFilter:
-        $ref: '#/definitions/TrafficFilter'
+        type: array
+        items:
+          $ref: '#/definitions/TrafficFilter'
       action:
         $ref: '#/definitions/TrafficRule.Action'
       dstInterface:
@@ -1742,22 +1744,22 @@ definitions:
   TransportInfo.Description:
     description: Human-readable description of this transport
     type: string
-    example: REST API
+    example: 'REST API'
   TransportInfo.Id:
     description: The identifier of this transport
     type: string
-    example: TransId12345
+    example: 'TransId12345'
   TransportInfo.ImplSpecificInfo:
     description: Additional implementation specific details of the transport
     type: object
   TransportInfo.Name:
     description: The name of this transport
     type: string
-    example: REST
+    example: 'REST'
   TransportInfo.Protocol:
     description: The name of the protocol used. Shall be set to HTTP for a REST API.
     type: string
-    example: HTTP
+    example: 'HTTP'
   TransportInfo.Version:
     description: The version of the protocol used
     type: string
@@ -1803,7 +1805,7 @@ definitions:
       - RPC
       - RPC_STREAMING
       - WEBSOCKET
-    example: JSON
+    example: 'REST_HTTP'
   TunnelInfo.TunnelDstAddress:
     description: Destination address of the tunnel
     type: string
@@ -1818,7 +1820,7 @@ definitions:
     enum:
       - GTP_U
       - GRE
-    example: GTP_U
+    example: 'GTP_U'
   TunnelInfo:
     description: This type represents the tunnel information.
     type: object

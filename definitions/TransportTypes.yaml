@@ -8,4 +8,4 @@ enum:
   - RPC
   - RPC_STREAMING
   - WEBSOCKET
-example: JSON
+example: 'REST_HTTP'

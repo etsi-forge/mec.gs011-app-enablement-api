@@ -3,4 +3,4 @@ type: string
 enum:
   - FLOW
   - PACKET
-example: FLOW
+example: 'FLOW'

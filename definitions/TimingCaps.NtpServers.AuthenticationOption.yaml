@@ -4,4 +4,4 @@ enum:
   - NONE
   - SYMMETRIC_KEY
   - AUTO_KEY
-example: NONE
+example: 'NONE'

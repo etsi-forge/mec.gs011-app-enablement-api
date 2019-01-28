@@ -4,4 +4,4 @@ enum:
   - TUNNEL
   - MAC
   - IP
-example: TUNNEL
+example: 'TUNNEL'
