@@ -1,5 +1,5 @@
 description: This method retrieves information about all the traffic rules associated with a mobile edge application instance.
-operationId: ApplicationsTrafficRule.GET
+operationId: ApplicationsTrafficRule_GET
 produces:
 - application/json
 

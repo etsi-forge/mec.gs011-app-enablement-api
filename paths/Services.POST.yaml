@@ -1,5 +1,5 @@
 description: This method is used to create a meService resource. This method is typically used in "service availability update and new service registration" procedure
-operationId: Services.POST
+operationId: Services_POST
 produces:
 - application/json
 parameters:

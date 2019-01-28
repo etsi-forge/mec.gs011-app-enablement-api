@@ -1,5 +1,5 @@
 description: This method retrieves information about a DNS rule associated with a mobile edge application instance. 
-operationId: ApplicationsDnsRule.GET
+operationId: ApplicationsDnsRule_GET
 produces:
 - application/json
 

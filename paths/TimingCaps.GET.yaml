@@ -1,5 +1,5 @@
 description: This method retrieves the information of the platform's timing capabilities which corresponds to the timing capabilities query
-operationId: TimingCaps.GET
+operationId: TimingCaps_GET
 produces:
 - application/json
 

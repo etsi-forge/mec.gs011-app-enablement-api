@@ -1,4 +1,4 @@
-# Mobile Edge Platform Application Enablement API 
+# Multi-access Edge Computing (MEC); MEC Platform Application Enablement API 
 
 This repository contains OpenAPIs descriptions for the interfaces specified in ETSI GS MEC 011.
 
@@ -12,7 +12,7 @@ This repository contains OpenAPIs descriptions for the interfaces specified in E
 
 ## ETSI Forge Copyright statement
 
-Copyright (c) ETSI 2018.
+Copyright (c) ETSI 2019.
 
 This software is subject to copyrights owned by ETSI. Non-exclusive permission 
 is hereby granted, free of charge, to copy, reproduce and amend this file 
