@@ -3,4 +3,3 @@ description: Represents a subscription to the notifications from the mobile edge
 in: path
 required: true
 type: string
-format: uri

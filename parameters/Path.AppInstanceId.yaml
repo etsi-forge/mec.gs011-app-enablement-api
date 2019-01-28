@@ -3,4 +3,3 @@ description: Represents a mobile edge application instance. Note that the appIns
 in: path
 required: true
 type: string
-format: uri

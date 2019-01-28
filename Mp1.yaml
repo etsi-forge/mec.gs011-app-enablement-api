@@ -69,14 +69,12 @@ parameters:
     in: path
     required: true
     type: string
-    format: uri
   Path.DnsRuleId:
     name: dnsRuleId
     description: Represents a DNS rule.
     in: path
     required: true
     type: string
-    format: uri
   Path.SubscriptionId:
     name: subscriptionId
     description: >-
@@ -85,7 +83,6 @@ parameters:
     in: path
     required: true
     type: string
-    format: uri
   Path.SubscriptionType:
     name: subscriptionType
     description: >-
@@ -94,21 +91,21 @@ parameters:
     in: path
     required: true
     type: string
-    format: uri
+    enum:
+    - AppTerminationNotificationSubscription
+    - SerAvailabilityNotificationSubscription
   Path.ServiceId:
     name: serviceId
     description: Represents a mobile edge service instance.
     in: path
     required: true
     type: string
-    format: uri
   Path.TrafficRuleId:
     name: trafficRuleId
     description: Represents a traffic rule.
     in: path
     required: true
     type: string
-    format: uri
   Query.Ser_category_id:
     name: ser_category_id
     description: >-

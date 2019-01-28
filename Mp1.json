@@ -76,24 +76,21 @@
       "description": "Represents a mobile edge application instance. Note that the appInstanceId is allocated by the mobile edge platform manager.",
       "in": "path",
       "required": true,
-      "type": "string",
-      "format": "uri"
+      "type": "string"
     },
     "Path.DnsRuleId": {
       "name": "dnsRuleId",
       "description": "Represents a DNS rule.",
       "in": "path",
       "required": true,
-      "type": "string",
-      "format": "uri"
+      "type": "string"
     },
     "Path.SubscriptionId": {
       "name": "subscriptionId",
       "description": "Represents a subscription to the notifications from the mobile edge platform.",
       "in": "path",
       "required": true,
-      "type": "string",
-      "format": "uri"
+      "type": "string"
     },
     "Path.SubscriptionType": {
       "name": "subscriptionType",
@@ -101,23 +98,24 @@
       "in": "path",
       "required": true,
       "type": "string",
-      "format": "uri"
+      "enum": [
+        "AppTerminationNotificationSubscription",
+        "SerAvailabilityNotificationSubscription"
+      ]
     },
     "Path.ServiceId": {
       "name": "serviceId",
       "description": "Represents a mobile edge service instance.",
       "in": "path",
       "required": true,
-      "type": "string",
-      "format": "uri"
+      "type": "string"
     },
     "Path.TrafficRuleId": {
       "name": "trafficRuleId",
       "description": "Represents a traffic rule.",
       "in": "path",
       "required": true,
-      "type": "string",
-      "format": "uri"
+      "type": "string"
     },
     "Query.Ser_category_id": {
       "name": "ser_category_id",

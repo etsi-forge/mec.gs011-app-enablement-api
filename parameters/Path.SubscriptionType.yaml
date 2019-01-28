@@ -3,4 +3,6 @@ description: Represents a subscription type to the notifications from the mobile
 in: path
 required: true
 type: string
-format: uri
+enum:
+- SerAvailabilityNotificationSubscription
+- AppTerminationNotificationSubscription
