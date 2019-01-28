@@ -5,8 +5,8 @@ This repository contains OpenAPIs descriptions for the interfaces specified in E
 ## Online resources
 
 * [Specification document](https://docbox.etsi.org/ISG/MEC/70-Draft/0011v211Plat.App.Enabl/MEC-0011v211Plat.App.Enablv205.zip)
-* [Navigate the API in the browser](https://forge.etsi.org/swagger/ui/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/develop/Mp1.yaml).
-* [Edit the API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/develop/Mp1.yaml).
+* [Navigate the API in the browser](https://forge.etsi.org/swagger/ui/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/mec11v205-openAPI3/Mp1.yaml).
+* [Edit the API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/mec11v205-openAPI3/Mp1.yaml).
 
 
 
