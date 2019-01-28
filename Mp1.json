@@ -2,10 +2,10 @@
   "openapi": "3.0.0",
   "servers": [
     {
-      "url": "http://127.0.0.1:8081/exampleAPI/mp1/v1/"
+      "url": "http://127.0.0.1:8081/mp1/v1/"
     },
     {
-      "url": "https://127.0.0.1:8081/exampleAPI/mp1/v1/"
+      "url": "https://127.0.0.1:8081/mp1/v1/"
     }
   ],
   "info": {
@@ -445,7 +445,7 @@
       },
       "AppTerminationNotification.MaxGracefulTimeout": {
         "description": "Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.",
-        "type": "string",
+        "type": "integer",
         "format": "uint32",
         "example": 10
       },
@@ -712,7 +712,7 @@
         "description": "Port portion of the address",
         "type": "integer",
         "format": "uint32",
-        "example": "8080"
+        "example": 8080
       },
       "EndPointInfo.Address": {
         "description": "A IP address and port pair",
@@ -1441,7 +1441,10 @@
             "$ref": "#/components/schemas/TrafficRule_Priority"
           },
           "trafficFilter": {
-            "$ref": "#/components/schemas/TrafficFilter"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter"
+            }
           },
           "action": {
             "$ref": "#/components/schemas/TrafficRule.Action"
@@ -1537,7 +1540,7 @@
           "RPC_STREAMING",
           "WEBSOCKET"
         ],
-        "example": "JSON"
+        "example": "REST_HTTP"
       },
       "TunnelInfo.TunnelDstAddress": {
         "description": "Destination address of the tunnel",
@@ -2214,7 +2217,7 @@
             "id": "TransId12345",
             "name": "REST",
             "description": "REST API",
-            "type": "JSON",
+            "type": "REST_HTTP",
             "protocol": "HTTP",
             "version": "2.0",
             "endpoint": {
@@ -2224,7 +2227,7 @@
               "addresses": [
                 {
                   "host": "192.0.2.0",
-                  "port": "8080"
+                  "port": 8080
                 }
               ]
             },
@@ -2256,7 +2259,7 @@
               "id": "TransId12345",
               "name": "REST",
               "description": "REST API",
-              "type": "JSON",
+              "type": "REST_HTTP",
               "protocol": "HTTP",
               "version": "2.0",
               "endpoint": {
@@ -2266,7 +2269,7 @@
                 "addresses": [
                   {
                     "host": "192.0.2.0",
-                    "port": "8080"
+                    "port": 8080
                   }
                 ]
               },
@@ -2287,18 +2290,20 @@
           "serName": "ExampleService",
           "filterType": "FLOW",
           "priority": 1,
-          "trafficFilter": {
-            "srcAddress": [
-              "192.168.2.0/24",
-              "192.168.3.0/24"
-            ],
-            "dstAddress": [
-              "192.127.4.100/32"
-            ],
-            "dstPort": [
-              80
-            ]
-          },
+          "trafficFilter": [
+            {
+              "srcAddress": [
+                "192.168.2.0/24",
+                "192.168.3.0/24"
+              ],
+              "dstAddress": [
+                "192.127.4.100/32"
+              ],
+              "dstPort": [
+                "80"
+              ]
+            }
+          ],
           "action": "FORWARD_DECAPSULATED",
           "dstInterface": {
             "interfaceType": "IP",
@@ -2314,18 +2319,20 @@
             "serName": "ExampleService",
             "filterType": "FLOW",
             "priority": 1,
-            "trafficFilter": {
-              "srcAddress": [
-                "192.168.2.0/24",
-                "192.168.3.0/24"
-              ],
-              "dstAddress": [
-                "192.127.4.100/32"
-              ],
-              "dstPort": [
-                80
-              ]
-            },
+            "trafficFilter": [
+              {
+                "srcAddress": [
+                  "192.168.2.0/24",
+                  "192.168.3.0/24"
+                ],
+                "dstAddress": [
+                  "192.127.4.100/32"
+                ],
+                "dstPort": [
+                  "80"
+                ]
+              }
+            ],
             "action": "FORWARD_DECAPSULATED",
             "dstInterface": {
               "interfaceType": "IP",
