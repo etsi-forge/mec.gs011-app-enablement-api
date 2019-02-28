@@ -695,8 +695,6 @@ components:
     SecurityInfo:
       description: This type represents security information related to a transport
       type: object
-      required:
-        - oAuth2Info
       properties:
         oAuth2Info:
           $ref: '#/components/schemas/SecurityInfo.OAuth2Info'

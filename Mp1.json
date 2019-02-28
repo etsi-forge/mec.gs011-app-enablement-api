@@ -750,21 +750,6 @@
           "$ref": "#/components/schemas/EndPointInfo.Uri"
         }
       },
-      "EndPointInfo": {
-        "description": "This type represents information about a transport endpoint",
-        "type": "object",
-        "properties": {
-          "uris": {
-            "$ref": "#/components/schemas/EndPointInfo.Uris"
-          },
-          "addresses": {
-            "$ref": "#/components/schemas/EndPointInfo.Addresses"
-          },
-          "alternative": {
-            "$ref": "#/components/schemas/EndPointInfo.Alternative"
-          }
-        }
-      },
       "LinkType": {
         "description": "This type represents a type of link and may be referenced from data structures",
         "type": "object",
@@ -911,9 +896,6 @@
       "SecurityInfo": {
         "description": "This type represents security information related to a transport",
         "type": "object",
-        "required": [
-          "oAuth2Info"
-        ],
         "properties": {
           "oAuth2Info": {
             "$ref": "#/components/schemas/SecurityInfo.OAuth2Info"
@@ -1518,7 +1500,19 @@
             "$ref": "#/components/schemas/TransportInfo.Version"
           },
           "endpoint": {
-            "$ref": "#/components/schemas/EndPointInfo"
+            "description": "This type represents information about a transport endpoint",
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EndPointInfo.Uris"
+              },
+              {
+                "$ref": "#/components/schemas/EndPointInfo.Addresses"
+              },
+              {
+                "$ref": "#/components/schemas/EndPointInfo.Alternative"
+              }
+            ]
           },
           "security": {
             "$ref": "#/components/schemas/SecurityInfo"
@@ -2227,12 +2221,6 @@
             "endpoint": {
               "uris": [
                 "/meMp1/service/EntryPoint"
-              ],
-              "addresses": [
-                {
-                  "host": "192.0.2.0",
-                  "port": 8080
-                }
               ]
             },
             "security": {
@@ -2267,9 +2255,6 @@
               "protocol": "HTTP",
               "version": "2.0",
               "endpoint": {
-                "uris": [
-                  "/meMp1/service/EntryPoint"
-                ],
                 "addresses": [
                   {
                     "host": "192.0.2.0",
