@@ -552,14 +552,25 @@ components:
       description: >-
         Entry point information of the service as one or more pairs of IP
         address and port
-      type: array
-      items:
-        $ref: '#/components/schemas/EndPointInfo.Address'
+      type: object
+      required:
+        - addresses
+      properties:
+        addresses:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/EndPointInfo.Address'
     EndPointInfo.Alternative:
       description: >-
         Entry point information of the service in a format defined by an
         implementation, or in an external specification.
       type: object
+      required:
+        - alternative
+      properties: 
+        alternative:
+          type: object
     EndPointInfo.Uri:
       description: Entry point information of the service
       type: string
@@ -569,9 +580,15 @@ components:
       description: >-
         Entry point information of the service as string, formatted according to
         URI syntax
-      type: array
-      items:
-        $ref: '#/components/schemas/EndPointInfo.Uri'
+      type: object
+      required:
+        - uris
+      properties:
+        uris:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/EndPointInfo.Uri'
     LinkType:
       description: This type represents a type of link and may be referenced from data structures
       type: object
