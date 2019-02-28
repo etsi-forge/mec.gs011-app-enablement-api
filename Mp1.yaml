@@ -603,14 +603,25 @@ components:
       description: >-
         Entry point information of the service as one or more pairs of IP
         address and port
-      type: array
-      items:
-        $ref: '#/components/schemas/EndPointInfo.Address'
+      type: object
+      required:
+        - addresses
+      properties:
+        addresses:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/EndPointInfo.Address'
     EndPointInfo.Alternative:
       description: >-
         Entry point information of the service in a format defined by an
         implementation, or in an external specification.
       type: object
+      required:
+        - alternative
+      properties: 
+        alternative:
+          type: object
     EndPointInfo.Uri:
       description: Entry point information of the service
       type: string
@@ -620,19 +631,15 @@ components:
       description: >-
         Entry point information of the service as string, formatted according to
         URI syntax
-      type: array
-      items:
-        $ref: '#/components/schemas/EndPointInfo.Uri'
-    EndPointInfo:
-      description: This type represents information about a transport endpoint
       type: object
+      required:
+        - uris
       properties:
         uris:
-          $ref: '#/components/schemas/EndPointInfo.Uris'
-        addresses:
-          $ref: '#/components/schemas/EndPointInfo.Addresses'
-        alternative:
-          $ref: '#/components/schemas/EndPointInfo.Alternative'
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/EndPointInfo.Uri'
     LinkType:
       description: This type represents a type of link and may be referenced from data structures
       type: object
@@ -746,8 +753,6 @@ components:
     SecurityInfo:
       description: This type represents security information related to a transport
       type: object
-      required:
-        - oAuth2Info
       properties:
         oAuth2Info:
           $ref: '#/components/schemas/SecurityInfo.OAuth2Info'
@@ -1278,7 +1283,12 @@ components:
         version:
           $ref: '#/components/schemas/TransportInfo.Version'
         endpoint:
-          $ref: '#/components/schemas/EndPointInfo'
+          description: This type represents information about a transport endpoint
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/EndPointInfo.Uris'
+            - $ref: '#/components/schemas/EndPointInfo.Addresses'
+            - $ref: '#/components/schemas/EndPointInfo.Alternative'
         security:
           $ref: '#/components/schemas/SecurityInfo'
         implSpecificInfo:
@@ -1824,9 +1834,6 @@ components:
           endpoint:
             uris:
               - '/meMp1/service/EntryPoint'
-            addresses:
-              - host: '192.0.2.0'
-                port: 8080
           security:
             oAuth2Info:
               grantTypes: 'OAUTH2_CLIENT_CREDENTIALS'
@@ -1852,8 +1859,6 @@ components:
             protocol: 'HTTP'
             version: '2.0'
             endpoint:
-              uris:
-                - '/meMp1/service/EntryPoint'
               addresses:
                 - host: '192.0.2.0'
                   port: 8080
