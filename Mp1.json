@@ -1067,12 +1067,6 @@
                       "endpoint": {
                         "uris": [
                           "/meMp1/service/EntryPoint"
-                        ],
-                        "addresses": [
-                          {
-                            "host": "192.0.2.0",
-                            "port": 8080
-                          }
                         ]
                       },
                       "security": {
@@ -1177,9 +1171,6 @@
                     "protocol": "HTTP",
                     "version": "2.0",
                     "endpoint": {
-                      "uris": [
-                        "/meMp1/service/EntryPoint"
-                      ],
                       "addresses": [
                         {
                           "host": "192.0.2.0",
@@ -1283,9 +1274,6 @@
                     "protocol": "HTTP",
                     "version": "2.0",
                     "endpoint": {
-                      "uris": [
-                        "/meMp1/service/EntryPoint"
-                      ],
                       "addresses": [
                         {
                           "host": "192.0.2.0",
@@ -1389,12 +1377,6 @@
                     "endpoint": {
                       "uris": [
                         "/meMp1/service/EntryPoint"
-                      ],
-                      "addresses": [
-                        {
-                          "host": "192.0.2.0",
-                          "port": 8080
-                        }
                       ]
                     },
                     "security": {
@@ -1912,6 +1894,10 @@
     "EndPointInfo.Address": {
       "description": "A IP address and port pair",
       "type": "object",
+      "required": [
+        "host",
+        "port"
+      ],
       "properties": {
         "host": {
           "$ref": "#/definitions/EndPointInfo.Address.Host"

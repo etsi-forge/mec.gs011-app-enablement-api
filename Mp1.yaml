@@ -775,9 +775,6 @@ paths:
                     endpoint:
                       uris:
                         - '/meMp1/service/EntryPoint'
-                      addresses:
-                        - host: '192.0.2.0'
-                          port: 8080
                     security:
                       oAuth2Info:
                         grantTypes: 'OAUTH2_CLIENT_CREDENTIALS'
@@ -852,8 +849,6 @@ paths:
                   protocol: 'HTTP'
                   version: '2.0'
                   endpoint:
-                    uris:
-                      - '/meMp1/service/EntryPoint'
                     addresses:
                       - host: '192.0.2.0'
                         port: 8080
@@ -926,8 +921,6 @@ paths:
                   protocol: 'HTTP'
                   version: '2.0'
                   endpoint:
-                    uris:
-                      - '/meMp1/service/EntryPoint'
                     addresses:
                       - host: '192.0.2.0'
                         port: 8080
@@ -999,9 +992,6 @@ paths:
                   endpoint:
                     uris:
                       - '/meMp1/service/EntryPoint'
-                    addresses:
-                      - host: '192.0.2.0'
-                        port: 8080
                   security:
                     oAuth2Info:
                       grantTypes: 'OAUTH2_CLIENT_CREDENTIALS'
@@ -1388,6 +1378,9 @@ definitions:
   EndPointInfo.Address:
     description: A IP address and port pair
     type: object
+    required:
+      - host
+      - port
     properties:
       host:
         $ref: '#/definitions/EndPointInfo.Address.Host'
