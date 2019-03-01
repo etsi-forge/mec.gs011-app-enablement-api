@@ -594,6 +594,9 @@ components:
     EndPointInfo.Address:
       description: A IP address and port pair
       type: object
+      required:
+        - host
+        - port
       properties:
         host:
           $ref: '#/components/schemas/EndPointInfo.Address.Host'
