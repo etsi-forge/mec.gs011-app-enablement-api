@@ -1716,7 +1716,6 @@ components:
           version: 'version1'
         version: 'ServiceVersion1'
         state: 'ACTIVE'
-        transportId: 'Rest1'
         transportInfo:
           id: 'TransId12345'
           name: 'REST'
@@ -1743,7 +1742,6 @@ components:
             version: 'version1'
           version: 'ServiceVersion1'
           state: 'ACTIVE'
-          transportId: 'Rest1'
           transportInfo:
             id: 'TransId12345'
             name: 'REST'

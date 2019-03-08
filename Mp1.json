@@ -2240,7 +2240,6 @@
           },
           "version": "ServiceVersion1",
           "state": "ACTIVE",
-          "transportId": "Rest1",
           "transportInfo": {
             "id": "TransId12345",
             "name": "REST",
@@ -2276,7 +2275,6 @@
             },
             "version": "ServiceVersion1",
             "state": "ACTIVE",
-            "transportId": "Rest1",
             "transportInfo": {
               "id": "TransId12345",
               "name": "REST",
