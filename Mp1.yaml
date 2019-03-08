@@ -227,7 +227,7 @@ paths:
         '404':
           $ref: '#/components/responses/Error.404'
       requestBody:
-        $ref: '#/components/requestBodies/Services'
+        $ref: '#/components/requestBodies/Services.Post'
   '/services/{serviceId}':
     parameters:
       - $ref: '#/components/parameters/Path.ServiceId'
@@ -776,7 +776,7 @@ components:
         - JSON
         - XML
         - PROTOBUF3
-      example: JSON
+      example: 'JSON'
     ServiceInfo.SerInstanceId:
       description: >-
         Identifier of the service instance assigned by the MEPM / mobile edge
@@ -805,12 +805,13 @@ components:
         platform-provided transport for the service, and shall be absent
         otherwise.
       type: string
+      writeOnly: true
       example: 'Rest1'
     ServiceInfo.Version:
       description: Service version
       type: string
       example: 'ServiceVersion1'
-    ServiceInfo:
+    ServiceInfo.Post:
       description: This type represents the general information of a mobile edge service.
       type: object
       required:
@@ -818,6 +819,9 @@ components:
         - version
         - state
         - serializer
+      oneOf:
+        - required: [transportId]
+        - required: [transportInfo]
       properties:
         serInstanceId:
           $ref: '#/components/schemas/ServiceInfo.SerInstanceId'
@@ -831,6 +835,30 @@ components:
           $ref: '#/components/schemas/ServiceInfo.State'
         transportId:
           $ref: '#/components/schemas/ServiceInfo.TransportId'
+        transportInfo:
+          $ref: '#/components/schemas/TransportInfo'
+        serializer:
+          $ref: '#/components/schemas/SerializerTypes'
+    ServiceInfo:
+      description: This type represents the general information of a mobile edge service.
+      type: object
+      required:
+        - serName
+        - version
+        - state
+        - transportInfo
+        - serializer
+      properties:
+        serInstanceId:
+          $ref: '#/components/schemas/ServiceInfo.SerInstanceId'
+        serName:
+          $ref: '#/components/schemas/ServiceInfo.SerName'
+        serCategory:
+          $ref: '#/components/schemas/CategoryRef'
+        version:
+          $ref: '#/components/schemas/ServiceInfo.Version'
+        state:
+          $ref: '#/components/schemas/ServiceInfo.State'
         transportInfo:
           $ref: '#/components/schemas/TransportInfo'
         serializer:
@@ -1527,6 +1555,9 @@ components:
             minItems: 0
             items:
               $ref: '#/components/schemas/TransportInfo'
+      links:
+        getTransportInfo:
+          $ref: '#/components/links/GetTransportInfo'
     Error.400:
       description: Bad Request
       content:
@@ -1591,6 +1622,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ServiceInfo'
+      description: >-
+        New ServiceInfo with updated "state" is included as entity body of the
+        request
+      required: true
+    Services.Post:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceInfo.Post'
       description: >-
         New ServiceInfo with updated "state" is included as entity body of the
         request
@@ -1664,6 +1704,11 @@ components:
       description: The `trafficRuleId` value returned in the response can be used as the `trafficRuleId` parameter in `PUT /applications/{appInstanceId}/traffic_rules/{trafficRuleId}`
       parameters:
         trafficRuleId: '$response.body#/trafficRuleId'
+    GetTransportInfo:
+      operationId: AppServices_POST
+      description: The `id` value returned in the response can be used as the `transportId` parameter in `POST /applications/{appInstanceId}/services`. The first transport is provided as the link as wildcards are not supported
+      parameters:
+        transportId: '$response.body#/0/id'
     GetIndividualMeMp1Subscription:
       operationId: ApplicationsSubscription_GET
       description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`
@@ -1716,7 +1761,6 @@ components:
           version: 'version1'
         version: 'ServiceVersion1'
         state: 'ACTIVE'
-        transportId: 'Rest1'
         transportInfo:
           id: 'TransId12345'
           name: 'REST'
@@ -1743,7 +1787,6 @@ components:
             version: 'version1'
           version: 'ServiceVersion1'
           state: 'ACTIVE'
-          transportId: 'Rest1'
           transportInfo:
             id: 'TransId12345'
             name: 'REST'
