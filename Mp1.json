@@ -338,7 +338,7 @@
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/Services"
+          "$ref": "#/components/requestBodies/Services.Post"
         }
       }
     },
@@ -1130,6 +1130,7 @@
       "ServiceInfo.TransportId": {
         "description": "Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the \"Transport information query\" procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.",
         "type": "string",
+        "writeOnly": true,
         "example": "Rest1"
       },
       "ServiceInfo.Version": {
@@ -1147,7 +1148,7 @@
         "type": "boolean",
         "example": true
       },
-      "ServiceInfo": {
+      "ServiceInfo.Post": {
         "description": "This type represents the general information of a mobile edge service.",
         "type": "object",
         "required": [
@@ -1155,6 +1156,18 @@
           "version",
           "state",
           "serializer"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "transportId"
+            ]
+          },
+          {
+            "required": [
+              "transportInfo"
+            ]
+          }
         ],
         "properties": {
           "serInstanceId": {
@@ -1174,6 +1187,49 @@
           },
           "transportId": {
             "$ref": "#/components/schemas/ServiceInfo.TransportId"
+          },
+          "transportInfo": {
+            "$ref": "#/components/schemas/TransportInfo"
+          },
+          "serializer": {
+            "$ref": "#/components/schemas/SerializerTypes"
+          },
+          "scopeOfLocality": {
+            "$ref": "#/components/schemas/LocalityTypes"
+          },
+          "consumedLocalOnly": {
+            "$ref": "#/components/schemas/ServiceInfo.ConsumedLocalOnly"
+          },
+          "isLocal": {
+            "$ref": "#/components/schemas/ServiceInfo.IsLocal"
+          }
+        }
+      },
+      "ServiceInfo": {
+        "description": "This type represents the general information of a mobile edge service.",
+        "type": "object",
+        "required": [
+          "serName",
+          "version",
+          "state",
+          "transportInfo",
+          "serializer"
+        ],
+        "properties": {
+          "serInstanceId": {
+            "$ref": "#/components/schemas/ServiceInfo.SerInstanceId"
+          },
+          "serName": {
+            "$ref": "#/components/schemas/ServiceInfo.SerName"
+          },
+          "serCategory": {
+            "$ref": "#/components/schemas/CategoryRef"
+          },
+          "version": {
+            "$ref": "#/components/schemas/ServiceInfo.Version"
+          },
+          "state": {
+            "$ref": "#/components/schemas/ServiceInfo.State"
           },
           "transportInfo": {
             "$ref": "#/components/schemas/TransportInfo"
@@ -2098,6 +2154,11 @@
               }
             }
           }
+        },
+        "links": {
+          "getTransportInfo": {
+            "$ref": "#/components/links/GetTransportInfo"
+          }
         }
       },
       "Error.400": {
@@ -2208,6 +2269,17 @@
         "description": "New ServiceInfo with updated \"state\" is included as entity body of the request",
         "required": true
       },
+      "Services.Post": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceInfo.Post"
+            }
+          }
+        },
+        "description": "New ServiceInfo with updated \"state\" is included as entity body of the request",
+        "required": true
+      },
       "ServicesServiceId": {
         "content": {
           "application/json": {
@@ -2311,6 +2383,13 @@
         "description": "The `trafficRuleId` value returned in the response can be used as the `trafficRuleId` parameter in `PUT /applications/{appInstanceId}/traffic_rules/{trafficRuleId}`",
         "parameters": {
           "trafficRuleId": "$response.body#/trafficRuleId"
+        }
+      },
+      "GetTransportInfo": {
+        "operationId": "AppServices_POST",
+        "description": "The `id` value returned in the response can be used as the `transportId` parameter in `POST /applications/{appInstanceId}/services`. The first transport is provided as the link as wildcards are not supported",
+        "parameters": {
+          "transportId": "$response.body#/0/id"
         }
       },
       "GetIndividualMeMp1Subscription": {

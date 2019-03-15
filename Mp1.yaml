@@ -232,7 +232,7 @@ paths:
         '404':
           $ref: '#/components/responses/Error.404'
       requestBody:
-        $ref: '#/components/requestBodies/Services'
+        $ref: '#/components/requestBodies/Services.Post'
   '/applications/{appInstanceId}/services/{serviceId}':
     parameters:
       - $ref: '#/components/parameters/Path.AppInstanceId'
@@ -308,10 +308,6 @@ paths:
           $ref: '#/components/responses/Error.403'
         '404':
           $ref: '#/components/responses/Error.404'
-
-
-
-
   '/timing/current_time':
     get:
       description: >-
@@ -867,6 +863,7 @@ components:
         platform-provided transport for the service, and shall be absent
         otherwise.
       type: string
+      writeOnly: true
       example: 'Rest1'
     ServiceInfo.Version:
       description: Service version
@@ -885,7 +882,7 @@ components:
         by scopeOfLocality) as the consuming MEC application.
       type: boolean
       example: true
-    ServiceInfo:
+    ServiceInfo.Post:
       description: This type represents the general information of a mobile edge service.
       type: object
       required:
@@ -893,6 +890,9 @@ components:
         - version
         - state
         - serializer
+      oneOf:
+        - required: [transportId]
+        - required: [transportInfo]
       properties:
         serInstanceId:
           $ref: '#/components/schemas/ServiceInfo.SerInstanceId'
@@ -906,6 +906,36 @@ components:
           $ref: '#/components/schemas/ServiceInfo.State'
         transportId:
           $ref: '#/components/schemas/ServiceInfo.TransportId'
+        transportInfo:
+          $ref: '#/components/schemas/TransportInfo'
+        serializer:
+          $ref: '#/components/schemas/SerializerTypes'
+        scopeOfLocality:
+          $ref: '#/components/schemas/LocalityTypes'
+        consumedLocalOnly:
+          $ref: '#/components/schemas/ServiceInfo.ConsumedLocalOnly'
+        isLocal:
+          $ref: '#/components/schemas/ServiceInfo.IsLocal'
+    ServiceInfo:
+      description: This type represents the general information of a mobile edge service.
+      type: object
+      required:
+        - serName
+        - version
+        - state
+        - transportInfo
+        - serializer
+      properties:
+        serInstanceId:
+          $ref: '#/components/schemas/ServiceInfo.SerInstanceId'
+        serName:
+          $ref: '#/components/schemas/ServiceInfo.SerName'
+        serCategory:
+          $ref: '#/components/schemas/CategoryRef'
+        version:
+          $ref: '#/components/schemas/ServiceInfo.Version'
+        state:
+          $ref: '#/components/schemas/ServiceInfo.State'
         transportInfo:
           $ref: '#/components/schemas/TransportInfo'
         serializer:
@@ -1637,6 +1667,9 @@ components:
             minItems: 0
             items:
               $ref: '#/components/schemas/TransportInfo'
+      links:
+        getTransportInfo:
+          $ref: '#/components/links/GetTransportInfo'
     Error.400:
       description: Bad Request
       content:
@@ -1701,6 +1734,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ServiceInfo'
+      description: >-
+        New ServiceInfo with updated "state" is included as entity body of the
+        request
+      required: true
+    Services.Post:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceInfo.Post'
       description: >-
         New ServiceInfo with updated "state" is included as entity body of the
         request
@@ -1774,6 +1816,11 @@ components:
       description: The `trafficRuleId` value returned in the response can be used as the `trafficRuleId` parameter in `PUT /applications/{appInstanceId}/traffic_rules/{trafficRuleId}`
       parameters:
         trafficRuleId: '$response.body#/trafficRuleId'
+    GetTransportInfo:
+      operationId: AppServices_POST
+      description: The `id` value returned in the response can be used as the `transportId` parameter in `POST /applications/{appInstanceId}/services`. The first transport is provided as the link as wildcards are not supported
+      parameters:
+        transportId: '$response.body#/0/id'
     GetIndividualMeMp1Subscription:
       operationId: ApplicationsSubscription_GET
       description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`
