@@ -1,11 +1,11 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.0.2",
   "servers": [
     {
-      "url": "http://127.0.0.1:8081/mp1/v1/"
+      "url": "http://127.0.0.1:8081/mp1/v1"
     },
     {
-      "url": "https://127.0.0.1:8081/mp1/v1/"
+      "url": "https://127.0.0.1:8081/mp1/v1"
     }
   ],
   "info": {
@@ -15,12 +15,38 @@
     "license": {
       "name": "ETSI Forge copyright notice",
       "url": "https://forge.etsi.org/etsi-forge-copyright-notice.txt"
+    },
+    "contact": {
+      "email": "cti_support@etsi.org"
     }
   },
   "externalDocs": {
     "description": "ETSI GS MEC011 Application Enablement API, V1.1.1",
     "url": "http://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/01.01.01_60/gs_mec011v010101p.pdf"
   },
+  "tags": [
+    {
+      "name": "trafficRules"
+    },
+    {
+      "name": "dnsRules"
+    },
+    {
+      "name": "subscriptions"
+    },
+    {
+      "name": "services"
+    },
+    {
+      "name": "timing"
+    },
+    {
+      "name": "transports"
+    },
+    {
+      "name": "callbacks"
+    }
+  ],
   "paths": {
     "/applications/{appInstanceId}/dns_rules": {
       "parameters": [
@@ -31,6 +57,9 @@
       "get": {
         "description": "This method retrieves information about all the DNS rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsDnsRules_GET",
+        "tags": [
+          "trafficRules"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsDnsRules.200"
@@ -59,6 +88,9 @@
       "get": {
         "description": "This method retrieves information about a DNS rule associated with a mobile edge application instance.",
         "operationId": "ApplicationsDnsRule_GET",
+        "tags": [
+          "dnsRules"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsDnsRule.200"
@@ -77,6 +109,9 @@
       "put": {
         "description": "This method activates, de-activates or updates a traffic rule.",
         "operationId": "ApplicationsDnsRule_PUT",
+        "tags": [
+          "dnsRules"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsDnsRule.200"
@@ -108,6 +143,9 @@
       "get": {
         "description": "The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.",
         "operationId": "ApplicationsSubscriptions_GET",
+        "tags": [
+          "subscriptions"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsSubscriptions.200"
@@ -126,6 +164,9 @@
       "post": {
         "description": "The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription.",
         "operationId": "ApplicationsSubscriptions_POST",
+        "tags": [
+          "subscriptions"
+        ],
         "responses": {
           "201": {
             "$ref": "#/components/responses/ApplicationsSubscriptions.201"
@@ -168,6 +209,9 @@
       "get": {
         "description": "The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.",
         "operationId": "ApplicationsSubscription_GET",
+        "tags": [
+          "subscriptions"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsSubscription.200"
@@ -186,6 +230,9 @@
       "delete": {
         "description": "This method deletes a meMp1Subscription. This method is typically used in \"Unsubscribing from service availability event notifications\" procedure.",
         "operationId": "ApplicationsSubscription_DELETE",
+        "tags": [
+          "subscriptions"
+        ],
         "responses": {
           "204": {
             "description": "No Content"
@@ -208,6 +255,9 @@
       "get": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsTrafficRules_GET",
+        "tags": [
+          "trafficRules"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsTrafficRules.200"
@@ -236,6 +286,9 @@
       "get": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsTrafficRule_GET",
+        "tags": [
+          "trafficRules"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsTrafficRule.200"
@@ -254,6 +307,9 @@
       "put": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsTrafficRule_PUT",
+        "tags": [
+          "trafficRules"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ApplicationsTrafficRule.200"
@@ -280,6 +336,9 @@
       "get": {
         "description": "This method retrieves information about a list of meService resources. This method is typically used in \"service availability query\" procedure",
         "operationId": "Services_GET",
+        "tags": [
+          "services"
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/Query.Ser_instance_id"
@@ -309,6 +368,9 @@
       "post": {
         "description": "This method is used to create a meService resource. This method is typically used in \"service availability update and new service registration\" procedure",
         "operationId": "Services_POST",
+        "tags": [
+          "services"
+        ],
         "responses": {
           "201": {
             "$ref": "#/components/responses/Services.201"
@@ -337,6 +399,9 @@
       "get": {
         "description": "This method retrieves information about a meService resource. This method is typically used in \"service availability query\" procedure",
         "operationId": "ServicesServiceId_GET",
+        "tags": [
+          "services"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ServicesServiceId.200"
@@ -355,6 +420,9 @@
       "put": {
         "description": "This method updates the information about a meService resource",
         "operationId": "ServicesServiceId_PUT",
+        "tags": [
+          "services"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ServicesServiceId.200"
@@ -381,6 +449,9 @@
       "get": {
         "description": "This method retrieves the information of the platform's current time which corresponds to the get platform time procedure",
         "operationId": "TimingCurrentTime_GET",
+        "tags": [
+          "timing"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/TimingCurrentTime.200"
@@ -401,6 +472,9 @@
       "get": {
         "description": "This method retrieves the information of the platform's timing capabilities which corresponds to the timing capabilities query",
         "operationId": "TimingCaps_GET",
+        "tags": [
+          "timing"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/TimingCaps.200"
@@ -421,6 +495,9 @@
       "get": {
         "description": "This method retrieves information about a list of available transports. This method is typically used by a service-producing application to discover transports provided by the mobile edge platform in the \"transport information query\" procedure",
         "operationId": "Transports_GET",
+        "tags": [
+          "transports"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/Transports.200"
@@ -2148,8 +2225,7 @@
               "$ref": "#/components/schemas/AppTerminationNotification"
             }
           }
-        },
-        "required": true
+        }
       },
       "ServiceAvailabilityNotification": {
         "content": {
@@ -2158,14 +2234,18 @@
               "$ref": "#/components/schemas/ServiceAvailabilityNotification"
             }
           }
-        },
-        "required": true
+        }
       }
     },
     "callbacks": {
       "AppTerminationNotification": {
-        "$request.body#/callbackReference": {
+        "{$request.body#/callbackReference}": {
           "post": {
+            "description": "Represents the information that the MEP notifies the subscribed application instance about the corresponding  application instance termination/stop",
+            "operationId": "AppTerminationNotification_POST",
+            "tags": [
+              "callback"
+            ],
             "requestBody": {
               "$ref": "#/components/requestBodies/AppTerminationNotification"
             },
@@ -2178,8 +2258,13 @@
         }
       },
       "ServiceAvailabilityNotification": {
-        "$request.body#/callbackReference": {
+        "{$request.body#/callbackReference}": {
           "post": {
+            "description": "'Represents the service availability information that  is used in the following cases - when the MEC platform announces the newly available\n services to the authorized relevant MEC applications (e.g. \n the applications that indicate the services as \"optional\" \n or \"required\") that are subscribed to the corresponding \n service availability notifications\n-  when the MEC platform notifies the authorized relevant  applications that are subscribed to the corresponding  service availability notifications about the service availability changes.'",
+            "operationId": "ServiceAvailabilityNotification_POST",
+            "tags": [
+              "callback"
+            ],
             "requestBody": {
               "$ref": "#/components/requestBodies/ServiceAvailabilityNotification"
             },
