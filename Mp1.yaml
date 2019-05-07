@@ -4,7 +4,7 @@ servers:
   - url: 'https://127.0.0.1:8081/mp1/v1'
 info:
   title: Mp1 API
-  version: 1.1.1
+  version: 2.0.5
   description: The ETSI MEC ISG MEC011 Application Enablement API described using OpenAPI
   license:
     name: ETSI Forge copyright notice
@@ -12,9 +12,9 @@ info:
   contact:
     email: cti_support@etsi.org
 externalDocs:
-  description: 'ETSI GS MEC011 Application Enablement API, V1.1.1'
+  description: 'ETSI GS MEC011 Application Enablement API, V2.0.5'
   url: >-
-    http://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/01.01.01_60/gs_mec011v010101p.pdf
+    https://docbox.etsi.org/ISG/MEC/70-Draft/0011v211Plat.App.Enabl/MEC-0011v211Plat.App.Enablv205.zip
 tags:
   - name: trafficRules
   - name: dnsRules
@@ -222,18 +222,23 @@ paths:
           $ref: '#/components/responses/Error.412'
       requestBody:
         $ref: '#/components/requestBodies/ApplicationsTrafficRule'
-  '/services':
+  '/applications/{appInstanceId}/services':
+    parameters:
+      - $ref: '#/components/parameters/Path.AppInstanceId'
     get:
       description: >-
         This method retrieves information about a list of meService resources.
         This method is typically used in "service availability query" procedure
-      operationId: Services_GET
+      operationId: AppServices_GET
       tags:
         - services
       parameters:
         - $ref: '#/components/parameters/Query.Ser_instance_id'
         - $ref: '#/components/parameters/Query.Ser_name'
         - $ref: '#/components/parameters/Query.Ser_category_id'
+        - $ref: '#/components/parameters/Query.Consumed_local_only'
+        - $ref: '#/components/parameters/Query.Is_local'
+        - $ref: '#/components/parameters/Query.LocalityTypes' 
       responses:
         '200':
           $ref: '#/components/responses/Services.200'
@@ -248,7 +253,7 @@ paths:
         This method is used to create a meService resource. This method is
         typically used in "service availability update and new service
         registration" procedure
-      operationId: Services_POST
+      operationId: AppServices_POST
       tags:
         - services
       responses:
@@ -262,14 +267,15 @@ paths:
           $ref: '#/components/responses/Error.404'
       requestBody:
         $ref: '#/components/requestBodies/Services.Post'
-  '/services/{serviceId}':
+  '/applications/{appInstanceId}/services/{serviceId}':
     parameters:
+      - $ref: '#/components/parameters/Path.AppInstanceId'
       - $ref: '#/components/parameters/Path.ServiceId'
     get:
       description: >-
         This method retrieves information about a meService resource. This
         method is typically used in "service availability query" procedure
-      operationId: ServicesServiceId_GET
+      operationId: AppServicesServiceId_GET
       tags:
         - services
       responses:
@@ -283,7 +289,7 @@ paths:
           $ref: '#/components/responses/Error.404'
     put:
       description: This method updates the information about a meService resource
-      operationId: ServicesServiceId_PUT
+      operationId: AppServicesServiceId_PUT
       tags:
         - services
       responses:
@@ -299,6 +305,47 @@ paths:
           $ref: '#/components/responses/Error.412'
       requestBody:
         $ref: '#/components/requestBodies/ServicesServiceId'
+
+
+  '/services':
+    get:
+      description: >-
+        This method retrieves information about a list of meService resources.
+        This method is typically used in "service availability query" procedure
+      operationId: Services_GET
+      parameters:
+        - $ref: '#/components/parameters/Query.Ser_instance_id'
+        - $ref: '#/components/parameters/Query.Ser_name'
+        - $ref: '#/components/parameters/Query.Ser_category_id'
+        - $ref: '#/components/parameters/Query.Consumed_local_only'
+        - $ref: '#/components/parameters/Query.Is_local'
+        - $ref: '#/components/parameters/Query.LocalityTypes' 
+      responses:
+        '200':
+          $ref: '#/components/responses/Services.200'
+        '400':
+          $ref: '#/components/responses/Error.400'
+        '403':
+          $ref: '#/components/responses/Error.403'
+        '404':
+          $ref: '#/components/responses/Error.404'
+  '/services/{serviceId}':
+    parameters:
+      - $ref: '#/components/parameters/Path.ServiceId'
+    get:
+      description: >-
+        This method retrieves information about a meService resource. This
+        method is typically used in "service availability query" procedure
+      operationId: ServicesServiceId_GET
+      responses:
+        '200':
+          $ref: '#/components/responses/ServicesServiceId.200'
+        '400':
+          $ref: '#/components/responses/Error.400'
+        '403':
+          $ref: '#/components/responses/Error.403'
+        '404':
+          $ref: '#/components/responses/Error.404'
   '/timing/current_time':
     get:
       description: >-
@@ -821,6 +868,17 @@ components:
         - XML
         - PROTOBUF3
       example: 'JSON'
+    LocalityTypes:
+      description: The scope of locality as expressed by "consumedLocalOnly" and "isLocal". If absent, defaults to MEC_HOST
+      type: string
+      enum:
+        - MEC_SYSTEM
+        - MEC_HOST
+        - NFVI_POP
+        - ZONE
+        - ZONE_GROUP
+        - NFVI_NODE
+      example: 'MEC_SYSTEM'
     ServiceInfo.SerInstanceId:
       description: >-
         Identifier of the service instance assigned by the MEPM / mobile edge
@@ -855,6 +913,19 @@ components:
       description: Service version
       type: string
       example: 'ServiceVersion1'
+    ServiceInfo.ConsumedLocalOnly:
+      description: >-
+        Indicate whether the service can only be consumed by the MEC applications
+        located in the same locality (as defined by scopeOfLocality) as this 
+        service instance.
+      type: boolean
+      example: false
+    ServiceInfo.IsLocal:
+      description: >-
+        Indicate whether the service is located in the same locality (as defined
+        by scopeOfLocality) as the consuming MEC application.
+      type: boolean
+      example: true
     ServiceInfo.Post:
       description: This type represents the general information of a mobile edge service.
       type: object
@@ -883,6 +954,12 @@ components:
           $ref: '#/components/schemas/TransportInfo'
         serializer:
           $ref: '#/components/schemas/SerializerTypes'
+        scopeOfLocality:
+          $ref: '#/components/schemas/LocalityTypes'
+        consumedLocalOnly:
+          $ref: '#/components/schemas/ServiceInfo.ConsumedLocalOnly'
+        isLocal:
+          $ref: '#/components/schemas/ServiceInfo.IsLocal'
     ServiceInfo:
       description: This type represents the general information of a mobile edge service.
       type: object
@@ -907,6 +984,12 @@ components:
           $ref: '#/components/schemas/TransportInfo'
         serializer:
           $ref: '#/components/schemas/SerializerTypes'
+        scopeOfLocality:
+          $ref: '#/components/schemas/LocalityTypes'
+        consumedLocalOnly:
+          $ref: '#/components/schemas/ServiceInfo.ConsumedLocalOnly'
+        isLocal: 
+          $ref: '#/components/schemas/ServiceInfo.IsLocal'
     Subscription:
       description: A link to the related subscription
       type: object
@@ -1415,6 +1498,35 @@ components:
         type: array
         items:
           type: string
+    Query.LocalityTypes:
+      name: scope_of_locality
+      description: >-
+        A MEC application instance may use scope_of_locality as an input 
+        parameter to query the availability of a list of MEC service instances 
+        with a certain scope of locality.
+      in: query
+      required: false
+      schema:
+        type: string
+    Query.Is_local:
+      name: is_local
+      description: >-
+        Indicate whether the service is located in the same locality (as 
+        defined by scopeOfLocality) as the consuming MEC application.
+      in: query
+      required: false
+      schema:
+        type: boolean
+    Query.Consumed_local_only:
+      name: consumed_local_only
+      description: >-
+        Indicate whether the service can only be consumed by the MEC 
+        applications located in the same locality (as defined by 
+        scopeOfLocality) as this service instance.
+      in: query
+      required: false
+      schema:
+        type: boolean
   responses:
     ApplicationsDnsRules.200:
       description: >-
@@ -1693,11 +1805,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AppTerminationNotification'
+      required: true
     ServiceAvailabilityNotification:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ServiceAvailabilityNotification'
+      required: true
   callbacks:
     AppTerminationNotification:
       '{$request.body#/callbackReference}':
