@@ -1,4 +1,0 @@
-type: integer
-format: uint32
-description: >-
-  The HTTP status code for this occurrence of the problem

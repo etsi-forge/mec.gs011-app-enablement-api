@@ -1,8 +1,0 @@
-parameters:
-- $ref: '#/parameters/Path.AppInstanceId'
-
-get:
-  $ref: ./ApplicationsSubscriptions.GET.yaml
-
-post:
-  $ref: ./ApplicationsSubscriptions.POST.yaml

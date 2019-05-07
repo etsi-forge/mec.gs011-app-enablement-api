@@ -1,5 +1,13 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.2",
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8081/mp1/v1"
+    },
+    {
+      "url": "https://127.0.0.1:8081/mp1/v1"
+    }
+  ],
   "info": {
     "title": "Mp1 API",
     "version": "1.1.1",
@@ -7,210 +15,63 @@
     "license": {
       "name": "ETSI Forge copyright notice",
       "url": "https://forge.etsi.org/etsi-forge-copyright-notice.txt"
+    },
+    "contact": {
+      "email": "cti_support@etsi.org"
     }
   },
   "externalDocs": {
     "description": "ETSI GS MEC011 Application Enablement API, V1.1.1",
     "url": "http://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/01.01.01_60/gs_mec011v010101p.pdf"
   },
-  "host": "127.0.0.1:8081",
-  "basePath": "/exampleAPI/mp1/v1/",
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "parameters": {
-    "Body.AppTerminationNotificationSubscription": {
-      "name": "AppTerminationNotificationSubscription",
-      "description": "Entity body in the request contains a subscription to the mobile edge application termination notifications that is to be created.",
-      "in": "body",
-      "required": true,
-      "schema": {
-        "$ref": "#/definitions/AppTerminationNotificationSubscription"
-      }
+  "tags": [
+    {
+      "name": "trafficRules"
     },
-    "Body.DnsRule": {
-      "name": "DnsRule",
-      "description": "The updated state is included in the entity body of the request.",
-      "in": "body",
-      "required": true,
-      "schema": {
-        "$ref": "#/definitions/DnsRule"
-      }
+    {
+      "name": "dnsRules"
     },
-    "Body.SerAvailabilityNotificationSubscription": {
-      "name": "SerAvailabilityNotificationSubscription",
-      "description": "Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created.",
-      "in": "body",
-      "required": true,
-      "schema": {
-        "$ref": "#/definitions/SerAvailabilityNotificationSubscription"
-      }
+    {
+      "name": "subscriptions"
     },
-    "Body.ServiceInfo": {
-      "name": "ServiceInfo",
-      "description": "New ServiceInfo with updated \"state\" is included as entity body of the request",
-      "in": "body",
-      "required": true,
-      "schema": {
-        "$ref": "#/definitions/ServiceInfo"
-      }
+    {
+      "name": "services"
     },
-    "Body.TrafficRule": {
-      "name": "TrafficRule",
-      "description": "One or more updated attributes that are allowed to be changed",
-      "in": "body",
-      "required": true,
-      "schema": {
-        "$ref": "#/definitions/TrafficRule"
-      }
+    {
+      "name": "timing"
     },
-    "Path.AppInstanceId": {
-      "name": "appInstanceId",
-      "description": "Represents a mobile edge application instance. Note that the appInstanceId is allocated by the mobile edge platform manager.",
-      "in": "path",
-      "required": true,
-      "type": "string"
+    {
+      "name": "transports"
     },
-    "Path.DnsRuleId": {
-      "name": "dnsRuleId",
-      "description": "Represents a DNS rule.",
-      "in": "path",
-      "required": true,
-      "type": "string"
-    },
-    "Path.SubscriptionId": {
-      "name": "subscriptionId",
-      "description": "Represents a subscription to the notifications from the mobile edge platform.",
-      "in": "path",
-      "required": true,
-      "type": "string"
-    },
-    "Path.ServiceId": {
-      "name": "serviceId",
-      "description": "Represents a mobile edge service instance.",
-      "in": "path",
-      "required": true,
-      "type": "string"
-    },
-    "Path.TrafficRuleId": {
-      "name": "trafficRuleId",
-      "description": "Represents a traffic rule.",
-      "in": "path",
-      "required": true,
-      "type": "string"
-    },
-    "Query.Ser_category_id": {
-      "name": "ser_category_id",
-      "description": "A mobile edge application instance may use ser_category_id as an input parameter to query the availability of a list of mobile edge service instances in a serCategory. Either \"ser_instance_id\" or \"ser_name\" or \"ser_category_id\" or none of them shall be present.",
-      "in": "query",
-      "required": false,
-      "type": "string"
-    },
-    "Query.Ser_instance_id": {
-      "name": "ser_instance_id",
-      "description": "A mobile edge application instance may use multiple ser_instance_ids as an input parameter to query the availability of a list of mobile edge service instances. Either \"ser_instance_id\" or \"ser_name\" or \"ser_category_id\" or none of them shall be present.",
-      "in": "query",
-      "required": false,
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "Query.Ser_name": {
-      "name": "ser_name",
-      "description": "A mobile edge application instance may use multiple ser_names as an input parameter to query the availability of a list of mobile edge service instances. Either \"ser_instance_id\" or \"ser_name\" or \"ser_category_id\" or none of them shall be present.",
-      "in": "query",
-      "required": false,
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+    {
+      "name": "callbacks"
     }
-  },
+  ],
   "paths": {
     "/applications/{appInstanceId}/dns_rules": {
       "parameters": [
         {
-          "$ref": "#/parameters/Path.AppInstanceId"
+          "$ref": "#/components/parameters/Path.AppInstanceId"
         }
       ],
       "get": {
         "description": "This method retrieves information about all the DNS rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsDnsRules_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "trafficRules"
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "DnsRule": {
-                    "$ref": "#/definitions/DnsRule"
-                  }
-                }
-              }
-            },
-            "examples": {
-              "application/json": [
-                {
-                  "DnsRule": {
-                    "dnsRuleId": "DnsRule1",
-                    "domainName": "www.example.com",
-                    "ipAddressType": "IP_V4",
-                    "ipAddress": "146.241.7.3",
-                    "ttl": 300,
-                    "state": "ACTIVE"
-                  }
-                }
-              ]
-            }
+            "$ref": "#/components/responses/ApplicationsDnsRules.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       }
@@ -218,498 +79,169 @@
     "/applications/{appInstanceId}/dns_rules/{dnsRuleId}": {
       "parameters": [
         {
-          "$ref": "#/parameters/Path.AppInstanceId"
+          "$ref": "#/components/parameters/Path.AppInstanceId"
         },
         {
-          "$ref": "#/parameters/Path.DnsRuleId"
+          "$ref": "#/components/parameters/Path.DnsRuleId"
         }
       ],
       "get": {
         "description": "This method retrieves information about a DNS rule associated with a mobile edge application instance.",
         "operationId": "ApplicationsDnsRule_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "dnsRules"
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "DnsRule": {
-                  "$ref": "#/definitions/DnsRule"
-                }
-              }
-            },
-            "examples": {
-              "application/json": {
-                "DnsRule": {
-                  "dnsRuleId": "DnsRule1",
-                  "domainName": "www.example.com",
-                  "ipAddressType": "IP_V4",
-                  "ipAddress": "146.241.7.3",
-                  "ttl": 300,
-                  "state": "ACTIVE"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ApplicationsDnsRule.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       },
       "put": {
         "description": "This method activates, de-activates or updates a traffic rule.",
         "operationId": "ApplicationsDnsRule_PUT",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/Body.DnsRule"
-          }
+        "tags": [
+          "dnsRules"
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "DnsRule": {
-                  "$ref": "#/definitions/DnsRule"
-                }
-              }
-            },
-            "examples": {
-              "application/json": {
-                "DnsRule": {
-                  "dnsRuleId": "DnsRule1",
-                  "domainName": "www.example.com",
-                  "ipAddressType": "IP_V4",
-                  "ipAddress": "146.241.7.3",
-                  "ttl": 300,
-                  "state": "ACTIVE"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ApplicationsDnsRule.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           },
           "412": {
-            "description": "Precondition Failed",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.412"
           }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ApplicationsDnsRule"
         }
       }
     },
     "/applications/{appInstanceId}/subscriptions": {
       "parameters": [
         {
-          "$ref": "#/parameters/Path.AppInstanceId"
+          "$ref": "#/components/parameters/Path.AppInstanceId"
         }
       ],
       "get": {
         "description": "The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.",
         "operationId": "ApplicationsSubscriptions_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "subscriptions"
         ],
         "responses": {
           "200": {
-            "description": "Upon success, a response body containing the list of links to the requested subscriptions is returned.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Mp1SubscriptionLinkList": {
-                  "$ref": "#/definitions/Mp1SubscriptionLinkList"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ApplicationsSubscriptions.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       },
       "post": {
         "description": "The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription.",
         "operationId": "ApplicationsSubscriptions_POST",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/Body.AppTerminationNotificationSubscription"
-          }
+        "tags": [
+          "subscriptions"
         ],
         "responses": {
           "201": {
-            "description": "Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created.",
-            "headers": {
-              "location": {
-                "description": "The resource URI of the created resource",
-                "type": "string",
-                "format": "uri"
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "AppTerminationNotificationSubscription": {
-                  "$ref": "#/definitions/AppTerminationNotificationSubscription"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ApplicationsSubscriptions.201"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ApplicationsSubscriptions"
+        },
+        "callbacks": {
+          "appTerminationNotification": {
+            "$ref": "#/components/callbacks/AppTerminationNotification"
+          },
+          "serviceAvailabilityNotification": {
+            "$ref": "#/components/callbacks/ServiceAvailabilityNotification"
           }
         }
       }
     },
-    "/applications/{appInstanceId}/subscriptions/AppTerminationNotificationSubscription/{subscriptionId}": {
+    "/applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}": {
       "parameters": [
         {
-          "$ref": "#/parameters/Path.AppInstanceId"
+          "$ref": "#/components/parameters/Path.AppInstanceId"
         },
         {
-          "$ref": "#/parameters/Path.SubscriptionId"
+          "$ref": "#/components/parameters/Path.SubscriptionType"
+        },
+        {
+          "$ref": "#/components/parameters/Path.SubscriptionId"
         }
       ],
       "get": {
         "description": "The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.",
-        "operationId": "AppTerminationSubscription_GET",
-        "produces": [
-          "application/json"
+        "operationId": "ApplicationsSubscription_GET",
+        "tags": [
+          "subscriptions"
         ],
         "responses": {
           "200": {
-            "description": "Upon success, a response body containing the requested subscription is returned.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "AppTerminationNotificationSubscription": {
-                  "$ref": "#/definitions/AppTerminationNotificationSubscription"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ApplicationsSubscription.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       },
       "delete": {
         "description": "This method deletes a meMp1Subscription. This method is typically used in \"Unsubscribing from service availability event notifications\" procedure.",
-        "operationId": "AppTerminationSubscription_DELETE",
-        "produces": [
-          "application/json"
+        "operationId": "ApplicationsSubscription_DELETE",
+        "tags": [
+          "subscriptions"
         ],
         "responses": {
           "204": {
             "description": "No Content"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/applications/{appInstanceId}/subscriptions/SerAvailabilityNotificationSubscription/{subscriptionId}": {
-      "parameters": [
-        {
-          "$ref": "#/parameters/Path.AppInstanceId"
-        },
-        {
-          "$ref": "#/parameters/Path.SubscriptionId"
-        }
-      ],
-      "get": {
-        "description": "The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.",
-        "operationId": "SerAvailabilitySubscription_GET",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Upon success, a response body containing the requested subscription is returned.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "SerAvailabilityNotificationSubscription": {
-                  "$ref": "#/definitions/SerAvailabilityNotificationSubscription"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "This method deletes a meMp1Subscription. This method is typically used in \"Unsubscribing from service availability event notifications\" procedure.",
-        "operationId": "SerAvailabilitySubscription_DELETE",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       }
@@ -717,97 +249,27 @@
     "/applications/{appInstanceId}/traffic_rules": {
       "parameters": [
         {
-          "$ref": "#/parameters/Path.AppInstanceId"
+          "$ref": "#/components/parameters/Path.AppInstanceId"
         }
       ],
       "get": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsTrafficRules_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "trafficRules"
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "TrafficRule": {
-                    "$ref": "#/definitions/TrafficRule"
-                  }
-                }
-              }
-            },
-            "examples": {
-              "application/json": [
-                {
-                  "TrafficRule": {
-                    "trafficRuleId": "TrafficRule123",
-                    "serName": "ExampleService",
-                    "filterType": "FLOW",
-                    "priority": 1,
-                    "trafficFilter": [
-                      {
-                        "srcAddress": [
-                          "192.168.2.0/24",
-                          "192.168.3.0/24"
-                        ],
-                        "dstAddress": [
-                          "192.127.4.100/32"
-                        ],
-                        "dstPort": [
-                          "80"
-                        ]
-                      }
-                    ],
-                    "action": "FORWARD_DECAPSULATED",
-                    "dstInterface": {
-                      "interfaceType": "IP",
-                      "dstIpAddress": "20.1.1.1"
-                    },
-                    "state": "ACTIVE"
-                  }
-                }
-              ]
-            }
+            "$ref": "#/components/responses/ApplicationsTrafficRules.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       }
@@ -815,198 +277,58 @@
     "/applications/{appInstanceId}/traffic_rules/{trafficRuleId}": {
       "parameters": [
         {
-          "$ref": "#/parameters/Path.AppInstanceId"
+          "$ref": "#/components/parameters/Path.AppInstanceId"
         },
         {
-          "$ref": "#/parameters/Path.TrafficRuleId"
+          "$ref": "#/components/parameters/Path.TrafficRuleId"
         }
       ],
       "get": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsTrafficRule_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "trafficRules"
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "TrafficRule": {
-                  "$ref": "#/definitions/TrafficRule"
-                }
-              }
-            },
-            "examples": {
-              "application/json": {
-                "TrafficRule": {
-                  "trafficRuleId": "TrafficRule123",
-                  "serName": "ExampleService",
-                  "filterType": "FLOW",
-                  "priority": 1,
-                  "trafficFilter": [
-                    {
-                      "srcAddress": [
-                        "192.168.2.0/24",
-                        "192.168.3.0/24"
-                      ],
-                      "dstAddress": [
-                        "192.127.4.100/32"
-                      ],
-                      "dstPort": [
-                        "80"
-                      ]
-                    }
-                  ],
-                  "action": "FORWARD_DECAPSULATED",
-                  "dstInterface": {
-                    "interfaceType": "IP",
-                    "dstIpAddress": "20.1.1.1"
-                  },
-                  "state": "ACTIVE"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ApplicationsTrafficRule.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       },
       "put": {
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRules_PUT",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/Body.TrafficRule"
-          }
+        "operationId": "ApplicationsTrafficRule_PUT",
+        "tags": [
+          "trafficRules"
         ],
         "responses": {
           "200": {
-            "description": "Upon success, a response body containing data type describing the updated TrafficRule is returned.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "TrafficRule": {
-                  "$ref": "#/definitions/TrafficRule"
-                }
-              }
-            },
-            "examples": {
-              "application/json": {
-                "TrafficRule": {
-                  "trafficRuleId": "TrafficRule123",
-                  "serName": "ExampleService",
-                  "filterType": "FLOW",
-                  "priority": 1,
-                  "trafficFilter": [
-                    {
-                      "srcAddress": [
-                        "192.168.2.0/24",
-                        "192.168.3.0/24"
-                      ],
-                      "dstAddress": [
-                        "192.127.4.100/32"
-                      ],
-                      "dstPort": [
-                        "80"
-                      ]
-                    }
-                  ],
-                  "action": "FORWARD_DECAPSULATED",
-                  "dstInterface": {
-                    "interfaceType": "IP",
-                    "dstIpAddress": "20.1.1.1"
-                  },
-                  "state": "ACTIVE"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ApplicationsTrafficRule.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           },
           "412": {
-            "description": "Precondition Failed",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.412"
           }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ApplicationsTrafficRule"
         }
       }
     },
@@ -1014,426 +336,112 @@
       "get": {
         "description": "This method retrieves information about a list of meService resources. This method is typically used in \"service availability query\" procedure",
         "operationId": "Services_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "services"
         ],
         "parameters": [
           {
-            "$ref": "#/parameters/Query.Ser_instance_id"
+            "$ref": "#/components/parameters/Query.Ser_instance_id"
           },
           {
-            "$ref": "#/parameters/Query.Ser_name"
+            "$ref": "#/components/parameters/Query.Ser_name"
           },
           {
-            "$ref": "#/parameters/Query.Ser_category_id"
+            "$ref": "#/components/parameters/Query.Ser_category_id"
           }
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "ServiceInfo": {
-                    "$ref": "#/definitions/ServiceInfo"
-                  }
-                }
-              }
-            },
-            "examples": {
-              "application/json": [
-                {
-                  "ServiceInfo": {
-                    "serInstanceId": "ServiceInstance123",
-                    "serName": "ExampleService",
-                    "serCategory": {
-                      "href": "catItem1",
-                      "id": "id12345",
-                      "name": "RNI",
-                      "version": "version1"
-                    },
-                    "version": "ServiceVersion1",
-                    "state": "ACTIVE",
-                    "transportInfo": {
-                      "id": "TransId12345",
-                      "name": "REST",
-                      "description": "REST API",
-                      "type": "JSON",
-                      "protocol": "HTTP",
-                      "version": "2.0",
-                      "endpoint": {
-                        "uris": [
-                          "/meMp1/service/EntryPoint"
-                        ]
-                      },
-                      "security": {
-                        "oAuth2Info": {
-                          "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
-                          "tokenEndpoint": "/meMp1/security/TokenEndPoint"
-                        }
-                      }
-                    },
-                    "serializer": "JSON"
-                  }
-                }
-              ]
-            }
+            "$ref": "#/components/responses/Services.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       },
       "post": {
         "description": "This method is used to create a meService resource. This method is typically used in \"service availability update and new service registration\" procedure",
         "operationId": "Services_POST",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/Body.ServiceInfo"
-          }
+        "tags": [
+          "services"
         ],
         "responses": {
           "201": {
-            "description": "Upon success, the HTTP response shall include a Location HTTP header that contains the resource URI of the created resource.",
-            "headers": {
-              "location": {
-                "description": "The resource URI of the created resource",
-                "type": "string",
-                "format": "uri"
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ServiceInfo": {
-                  "$ref": "#/definitions/ServiceInfo"
-                }
-              }
-            },
-            "examples": {
-              "application/json": {
-                "ServiceInfo": {
-                  "serInstanceId": "ServiceInstance123",
-                  "serName": "ExampleService",
-                  "serCategory": {
-                    "href": "catItem1",
-                    "id": "id12345",
-                    "name": "RNI",
-                    "version": "version1"
-                  },
-                  "version": "ServiceVersion1",
-                  "state": "ACTIVE",
-                  "transportInfo": {
-                    "id": "TransId12345",
-                    "name": "REST",
-                    "description": "REST API",
-                    "type": "REST_HTTP",
-                    "protocol": "HTTP",
-                    "version": "2.0",
-                    "endpoint": {
-                      "addresses": [
-                        {
-                          "host": "192.0.2.0",
-                          "port": 8080
-                        }
-                      ]
-                    },
-                    "security": {
-                      "oAuth2Info": {
-                        "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
-                        "tokenEndpoint": "/meMp1/security/TokenEndPoint"
-                      }
-                    }
-                  },
-                  "serializer": "JSON"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Services.201"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Services.Post"
         }
       }
     },
     "/services/{serviceId}": {
       "parameters": [
         {
-          "$ref": "#/parameters/Path.ServiceId"
+          "$ref": "#/components/parameters/Path.ServiceId"
         }
       ],
       "get": {
         "description": "This method retrieves information about a meService resource. This method is typically used in \"service availability query\" procedure",
         "operationId": "ServicesServiceId_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "services"
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ServiceInfo": {
-                  "$ref": "#/definitions/ServiceInfo"
-                }
-              }
-            },
-            "examples": {
-              "application/json": {
-                "ServiceInfo": {
-                  "serInstanceId": "ServiceInstance123",
-                  "serName": "ExampleService",
-                  "serCategory": {
-                    "href": "catItem1",
-                    "id": "id12345",
-                    "name": "RNI",
-                    "version": "version1"
-                  },
-                  "version": "ServiceVersion1",
-                  "state": "ACTIVE",
-                  "transportInfo": {
-                    "id": "TransId12345",
-                    "name": "REST",
-                    "description": "REST API",
-                    "type": "REST_HTTP",
-                    "protocol": "HTTP",
-                    "version": "2.0",
-                    "endpoint": {
-                      "addresses": [
-                        {
-                          "host": "192.0.2.0",
-                          "port": 8080
-                        }
-                      ]
-                    },
-                    "security": {
-                      "oAuth2Info": {
-                        "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
-                        "tokenEndpoint": "/meMp1/security/TokenEndPoint"
-                      }
-                    }
-                  },
-                  "serializer": "JSON"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServicesServiceId.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       },
       "put": {
         "description": "This method updates the information about a meService resource",
         "operationId": "ServicesServiceId_PUT",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/parameters/Body.ServiceInfo"
-          }
+        "tags": [
+          "services"
         ],
         "responses": {
           "200": {
-            "description": "Upon success, a response body containing data type describing the updated ServiceInfo is returned",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ServiceInfo": {
-                  "$ref": "#/definitions/ServiceInfo"
-                }
-              }
-            },
-            "examples": {
-              "application/json": {
-                "ServiceInfo": {
-                  "serInstanceId": "ServiceInstance123",
-                  "serName": "ExampleService",
-                  "serCategory": {
-                    "href": "catItem1",
-                    "id": "id12345",
-                    "name": "RNI",
-                    "version": "version1"
-                  },
-                  "version": "ServiceVersion1",
-                  "state": "ACTIVE",
-                  "transportInfo": {
-                    "id": "TransId12345",
-                    "name": "REST",
-                    "description": "REST API",
-                    "type": "REST_HTTP",
-                    "protocol": "HTTP",
-                    "version": "2.0",
-                    "endpoint": {
-                      "uris": [
-                        "/meMp1/service/EntryPoint"
-                      ]
-                    },
-                    "security": {
-                      "oAuth2Info": {
-                        "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
-                        "tokenEndpoint": "/meMp1/security/TokenEndPoint"
-                      }
-                    }
-                  },
-                  "serializer": "JSON"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServicesServiceId.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           },
           "412": {
-            "description": "Precondition Failed",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.412"
           }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ServicesServiceId"
         }
       }
     },
@@ -1441,56 +449,21 @@
       "get": {
         "description": "This method retrieves the information of the platform's current time which corresponds to the get platform time procedure",
         "operationId": "TimingCurrentTime_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "timing"
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "CurrentTime": {
-                  "$ref": "#/definitions/CurrentTime"
-                }
-              }
-            }
+            "$ref": "#/components/responses/TimingCurrentTime.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       }
@@ -1499,56 +472,21 @@
       "get": {
         "description": "This method retrieves the information of the platform's timing capabilities which corresponds to the timing capabilities query",
         "operationId": "TimingCaps_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "timing"
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "TimingCaps": {
-                  "$ref": "#/definitions/TimingCaps"
-                }
-              }
-            }
+            "$ref": "#/components/responses/TimingCaps.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       }
@@ -1557,1165 +495,2024 @@
       "get": {
         "description": "This method retrieves information about a list of available transports. This method is typically used by a service-producing application to discover transports provided by the mobile edge platform in the \"transport information query\" procedure",
         "operationId": "Transports_GET",
-        "produces": [
-          "application/json"
+        "tags": [
+          "transports"
         ],
         "responses": {
           "200": {
-            "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "TransportInfo": {
-                    "$ref": "#/definitions/TransportInfo"
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/Transports.200"
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.400"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "type": "object",
-              "required": [
-                "ProblemDetails"
-              ],
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.403"
           },
           "404": {
-            "description": "Not Found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "ProblemDetails": {
-                  "$ref": "#/definitions/ProblemDetails"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Error.404"
           }
         }
       }
     }
   },
-  "definitions": {
-    "AppTerminationNotification.MaxGracefulTimeout": {
-      "description": "Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.",
-      "type": "integer",
-      "format": "uint32",
-      "example": 10
-    },
-    "AppTerminationNotification.NotificationType": {
-      "description": "Shall be set to AppTerminationNotification.",
-      "type": "string",
-      "example": "AppTerminationNotification"
-    },
-    "AppTerminationNotification": {
-      "description": "This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.",
-      "type": "object",
-      "required": [
-        "notificationType",
-        "maxGracefulTimeout",
-        "_links"
-      ],
-      "properties": {
-        "notificationType": {
-          "$ref": "#/definitions/AppTerminationNotification.NotificationType"
-        },
-        "maxGracefulTimeout": {
-          "$ref": "#/definitions/AppTerminationNotification.MaxGracefulTimeout"
-        },
-        "_links": {
-          "$ref": "#/definitions/Subscription"
-        }
-      }
-    },
-    "AppTerminationNotificationSubscription.AppInstanceId": {
-      "description": "It is used as the filtering criterion for the subscribed events.",
-      "type": "string",
-      "example": "ID1"
-    },
-    "AppTerminationNotificationSubscription.CallbackReference": {
-      "description": "URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge application instance management information. This shall be included in both the request and the response.",
-      "type": "string",
-      "format": "uri"
-    },
-    "AppTerminationNotificationSubscription": {
-      "description": "This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.",
-      "type": "object",
-      "required": [
-        "subscriptionType",
-        "callbackReference",
-        "_links",
-        "appInstanceId"
-      ],
-      "properties": {
-        "subscriptionType": {
-          "$ref": "#/definitions/AppTerminationNotificationSubscription.SubscriptionType"
-        },
-        "callbackReference": {
-          "$ref": "#/definitions/AppTerminationNotificationSubscription.CallbackReference"
-        },
-        "_links": {
-          "$ref": "#/definitions/Self"
-        },
-        "appInstanceId": {
-          "$ref": "#/definitions/AppTerminationNotificationSubscription.AppInstanceId"
-        }
-      }
-    },
-    "AppTerminationNotificationSubscription.SubscriptionType": {
-      "description": "Shall be set to AppTerminationNotificationSubscription.",
-      "type": "string",
-      "example": "AppTerminationNotificationSubscription"
-    },
-    "CategoryRef.Href": {
-      "description": "Reference of the catalogue",
-      "type": "string",
-      "example": "catItem1"
-    },
-    "CategoryRef.Id": {
-      "description": "Unique identifier of the category",
-      "type": "string",
-      "example": "id12345"
-    },
-    "CategoryRef.Name": {
-      "description": "Name of the category",
-      "type": "string",
-      "example": "RNI"
-    },
-    "CategoryRef.Version": {
-      "description": "Category version",
-      "type": "string",
-      "example": "version1"
-    },
-    "CategoryRef": {
-      "description": "This type represents the category reference",
-      "type": "object",
-      "required": [
-        "href",
-        "id",
-        "name",
-        "version"
-      ],
-      "properties": {
-        "href": {
-          "$ref": "#/definitions/CategoryRef.Href"
-        },
-        "id": {
-          "$ref": "#/definitions/CategoryRef.Id"
-        },
-        "name": {
-          "$ref": "#/definitions/CategoryRef.Name"
-        },
-        "version": {
-          "$ref": "#/definitions/CategoryRef.Version"
-        }
-      }
-    },
-    "CurrentTime": {
-      "description": "This type represents the information provided by the mobile edge platform in response to the Get Platform Time Request message.",
-      "type": "object",
-      "required": [
-        "nanoSeconds",
-        "seconds",
-        "timeSourceStatus"
-      ],
-      "properties": {
-        "seconds": {
-          "type": "integer",
-          "format": "uint32",
-          "description": "The seconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC",
-          "example": 1577836800
-        },
-        "nanoSeconds": {
-          "type": "integer",
-          "format": "uint32",
-          "description": "The nanoseconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC",
-          "example": 0
-        },
-        "timeSourceStatus": {
-          "type": "string",
-          "enum": [
-            "TRACEABLE",
-            "NONTRACEABLE"
-          ],
-          "description": "Platform Time Source status. 1 = TRACEABLE - time source is locked to the UTC time source. 2 = NONTRACEABLE - time source is not locked to the UTC time source",
-          "example": "TRACEABLE"
-        }
-      }
-    },
-    "DestinationInterface.InterfaceType": {
-      "description": "Type of the interface",
-      "type": "string",
-      "enum": [
-        "TUNNEL",
-        "MAC",
-        "IP"
-      ],
-      "example": "TUNNEL"
-    },
-    "DestinationInterface.IpAddress": {
-      "description": "IP address of the remote destination",
-      "type": "string",
-      "example": "192.0.2.0"
-    },
-    "DestinationInterface.MacAddress": {
-      "description": "Source address identifies the MAC address of the interface",
-      "type": "string",
-      "example": "02-00-00-00-00-00"
-    },
-    "DestinationInterface": {
-      "description": "This type represents the destination interface.",
-      "type": "object",
-      "required": [
-        "interfaceType"
-      ],
-      "properties": {
-        "interfaceType": {
-          "$ref": "#/definitions/DestinationInterface.InterfaceType"
-        },
-        "tunnelInfo": {
-          "$ref": "#/definitions/TunnelInfo"
-        },
-        "srcMacAddress": {
-          "$ref": "#/definitions/DestinationInterface.MacAddress"
-        },
-        "dstMacAddress": {
-          "$ref": "#/definitions/DestinationInterface.MacAddress"
-        },
-        "dstIpAddress": {
-          "$ref": "#/definitions/DestinationInterface.IpAddress"
-        }
-      }
-    },
-    "DnsRule.DomainName": {
-      "description": "FQDN resolved by the DNS rule",
-      "type": "string",
-      "example": "www.example.com"
-    },
-    "DnsRule.Id": {
-      "description": "Identifies the DNS Rule",
-      "type": "string",
-      "example": "dnsRule1"
-    },
-    "DnsRule.IpAddress": {
-      "description": "IP address associated with the FQDN resolved by the DNS rule",
-      "type": "string",
-      "example": "192.0.2.0"
-    },
-    "DnsRule.IpAddressType": {
-      "description": "IP address type",
-      "type": "string",
-      "enum": [
-        "IP_V6",
-        "IP_V4"
-      ],
-      "example": "IP_V6"
-    },
-    "DnsRule.State": {
-      "description": "DNS rule state",
-      "type": "string",
-      "enum": [
-        "ACTIVE",
-        "INACTIVE"
-      ],
-      "example": "ACTIVE"
-    },
-    "DnsRule.Ttl": {
-      "description": "Time to live value",
-      "type": "integer",
-      "format": "uint32",
-      "example": "?"
-    },
-    "DnsRule": {
-      "description": "This type represents the general information of a DNS rule.",
-      "type": "object",
-      "required": [
-        "dnsRuleId",
-        "domainName",
-        "ipAddressType",
-        "ipAddress",
-        "state"
-      ],
-      "properties": {
-        "dnsRuleId": {
-          "$ref": "#/definitions/DnsRule.Id"
-        },
-        "domainName": {
-          "$ref": "#/definitions/DnsRule.DomainName"
-        },
-        "ipAddressType": {
-          "$ref": "#/definitions/DnsRule.IpAddressType"
-        },
-        "ipAddress": {
-          "$ref": "#/definitions/DnsRule.IpAddress"
-        },
-        "ttl": {
-          "$ref": "#/definitions/DnsRule.Ttl"
-        },
-        "state": {
-          "$ref": "#/definitions/DnsRule.State"
-        }
-      }
-    },
-    "EndPointInfo.Address.Host": {
-      "description": "Host portion of the address",
-      "type": "string",
-      "example": "192.0.2.0"
-    },
-    "EndPointInfo.Address.Port": {
-      "description": "Port portion of the address",
-      "type": "integer",
-      "format": "uint32",
-      "example": 8080
-    },
-    "EndPointInfo.Address": {
-      "description": "A IP address and port pair",
-      "type": "object",
-      "required": [
-        "host",
-        "port"
-      ],
-      "properties": {
-        "host": {
-          "$ref": "#/definitions/EndPointInfo.Address.Host"
-        },
-        "port": {
-          "$ref": "#/definitions/EndPointInfo.Address.Port"
-        }
-      }
-    },
-    "EndPointInfo.Addresses": {
-      "description": "Entry point information of the service as one or more pairs of IP address and port",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/EndPointInfo.Address"
-      }
-    },
-    "EndPointInfo.Alternative": {
-      "description": "Entry point information of the service in a format defined by an implementation, or in an external specification.",
-      "type": "object"
-    },
-    "EndPointInfo.Uri": {
-      "description": "Entry point information of the service",
-      "type": "string",
-      "format": "uri",
-      "example": "/meMp1/service/EntryPoint"
-    },
-    "EndPointInfo.Uris": {
-      "description": "Entry point information of the service as string, formatted according to URI syntax",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/EndPointInfo.Uri"
-      }
-    },
-    "EndPointInfo": {
-      "description": "This type represents information about a transport endpoint",
-      "type": "object",
-      "properties": {
-        "uris": {
-          "$ref": "#/definitions/EndPointInfo.Uris"
-        },
-        "addresses": {
-          "$ref": "#/definitions/EndPointInfo.Addresses"
-        },
-        "alternative": {
-          "$ref": "#/definitions/EndPointInfo.Alternative"
-        }
-      }
-    },
-    "LinkType": {
-      "description": "URI referring to a resource",
-      "type": "string",
-      "format": "uri",
-      "readOnly": true,
-      "example": "/meMp1/example"
-    },
-    "Mp1SubscriptionLinkList.Links": {
-      "description": "Self-referring URI.",
-      "type": "object",
-      "required": [
-        "self"
-      ],
-      "properties": {
-        "self": {
-          "$ref": "#/definitions/LinkType"
-        },
-        "subscription": {
-          "description": "Subscription list",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Mp1SubscriptionLinkList.Subscription"
+  "components": {
+    "schemas": {
+      "Empty": {
+        "description": "Empty schema"
+      },
+      "AppTerminationNotification.MaxGracefulTimeout": {
+        "description": "Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.",
+        "type": "integer",
+        "format": "uint32",
+        "example": 10
+      },
+      "AppTerminationNotification.NotificationType": {
+        "description": "Shall be set to AppTerminationNotification.",
+        "type": "string",
+        "example": "AppTerminationNotification"
+      },
+      "AppTerminationNotification": {
+        "description": "This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.",
+        "type": "object",
+        "required": [
+          "notificationType",
+          "maxGracefulTimeout",
+          "_links"
+        ],
+        "properties": {
+          "notificationType": {
+            "$ref": "#/components/schemas/AppTerminationNotification.NotificationType"
+          },
+          "maxGracefulTimeout": {
+            "$ref": "#/components/schemas/AppTerminationNotification.MaxGracefulTimeout"
+          },
+          "_links": {
+            "$ref": "#/components/schemas/Subscription"
           }
-        }
-      }
-    },
-    "Mp1SubscriptionLinkList.Subscription": {
-      "description": "A link to a subscription.",
-      "type": "object",
-      "required": [
-        "href",
-        "rel"
-      ],
-      "properties": {
-        "href": {
-          "description": "The URI referring to the subscription",
-          "type": "string",
-          "format": "uri"
-        },
-        "rel": {
-          "description": "The values are as defined in the \"subscriptionType\" attribute for each different Mp1 event subscription data type.",
-          "type": "string"
-        }
-      }
-    },
-    "Mp1SubscriptionLinkList": {
-      "description": "This type represents a list of links related to currently existing subscriptions for a mobile edge application instance. This information is returned when sending a request to receive current subscriptions.",
-      "type": "object",
-      "required": [
-        "_links"
-      ],
-      "properties": {
-        "_links": {
-          "$ref": "#/definitions/Mp1SubscriptionLinkList.Links"
-        }
-      }
-    },
-    "ProblemDetails": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "$ref": "#/definitions/Problem.type"
-        },
-        "title": {
-          "$ref": "#/definitions/Problem.title"
-        },
-        "status": {
-          "$ref": "#/definitions/Problem.status"
-        },
-        "detail": {
-          "$ref": "#/definitions/Problem.detail"
-        },
-        "instance": {
-          "$ref": "#/definitions/Problem.instance"
-        }
-      }
-    },
-    "Problem.detail": {
-      "type": "string",
-      "description": "A human-readable explanation specific to this occurrence of the problem"
-    },
-    "Problem.instance": {
-      "type": "string",
-      "format": "uri",
-      "description": "A URI reference that identifies the specific occurrence of the problem"
-    },
-    "Problem.status": {
-      "type": "integer",
-      "format": "uint32",
-      "description": "The HTTP status code for this occurrence of the problem"
-    },
-    "Problem.title": {
-      "type": "string",
-      "description": "A short, human-readable summary of the problem type"
-    },
-    "Problem.type": {
-      "type": "string",
-      "format": "uri",
-      "description": "A URI reference according to IETF RFC 3986 that identifies the problem type"
-    },
-    "SecurityInfo.OAuth2Info.GrantTypes": {
-      "description": "List of supported OAuth 2.0 grant types",
-      "type": "string",
-      "enum": [
-        "OAUTH2_AUTHORIZATION_CODE",
-        "OAUTH2_IMPLICIT_GRANT",
-        "OAUTH2_RESOURCE_OWNER",
-        "OAUTH2_CLIENT_CREDENTIALS"
-      ],
-      "example": "OAUTH2_CLIENT_CREDENTIALS"
-    },
-    "SecurityInfo.OAuth2Info.TokenEndpoint": {
-      "description": "The token endpoint",
-      "type": "string",
-      "format": "uri",
-      "example": "/meMp1/security/TokenEndPoint"
-    },
-    "SecurityInfo.OAuth2Info": {
-      "description": "Parameters related to use of OAuth 2.0",
-      "required": [
-        "grantTypes",
-        "tokenEndpoint"
-      ],
-      "properties": {
-        "grantTypes": {
-          "$ref": "#/definitions/SecurityInfo.OAuth2Info.GrantTypes"
-        },
-        "tokenEndpoint": {
-          "$ref": "#/definitions/SecurityInfo.OAuth2Info.TokenEndpoint"
-        }
-      }
-    },
-    "SecurityInfo": {
-      "description": "This type represents security information related to a transport",
-      "type": "object",
-      "properties": {
-        "oAuth2Info": {
-          "$ref": "#/definitions/SecurityInfo.OAuth2Info"
-        }
-      }
-    },
-    "Self": {
-      "description": "Self-referring URI.",
-      "type": "object",
-      "required": [
-        "self"
-      ],
-      "properties": {
-        "self": {
-          "$ref": "#/definitions/LinkType"
         }
       },
-      "readOnly": true
-    },
-    "SerAvailabilityNotificationSubscription.CallbackReference": {
-      "description": "URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge service availability information. This shall be included in both the request and the response.",
-      "type": "string",
-      "format": "uri"
-    },
-    "SerAvailabilityNotificationSubscription": {
-      "description": "This type represents a subscription to the notifications from the mobile edge platform regarding the availability of a mobile edge service or a list of mobile edge services.",
-      "type": "object",
-      "required": [
-        "subscriptionType",
-        "callbackReference",
-        "_links",
-        "filteringCriteria"
-      ],
-      "properties": {
-        "subscriptionType": {
-          "$ref": "#/definitions/SerAvailabilityNotificationSubscription.SubscriptionType"
+      "AppTerminationNotificationSubscription.AppInstanceId": {
+        "description": "It is used as the filtering criterion for the subscribed events.",
+        "type": "string",
+        "example": "ID1"
+      },
+      "AppTerminationNotificationSubscription.CallbackReference": {
+        "description": "URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge application instance management information. This shall be included in both the request and the response.",
+        "type": "string",
+        "format": "uri"
+      },
+      "AppTerminationNotificationSubscription": {
+        "description": "This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.",
+        "type": "object",
+        "required": [
+          "subscriptionType",
+          "callbackReference",
+          "_links",
+          "appInstanceId"
+        ],
+        "properties": {
+          "subscriptionType": {
+            "$ref": "#/components/schemas/AppTerminationNotificationSubscription.SubscriptionType"
+          },
+          "callbackReference": {
+            "$ref": "#/components/schemas/AppTerminationNotificationSubscription.CallbackReference"
+          },
+          "_links": {
+            "$ref": "#/components/schemas/Self"
+          },
+          "appInstanceId": {
+            "$ref": "#/components/schemas/AppTerminationNotificationSubscription.AppInstanceId"
+          }
+        }
+      },
+      "AppTerminationNotificationSubscription.SubscriptionType": {
+        "description": "Shall be set to AppTerminationNotificationSubscription.",
+        "type": "string",
+        "example": "AppTerminationNotificationSubscription"
+      },
+      "CategoryRef.Href": {
+        "description": "Reference of the catalogue",
+        "type": "string",
+        "example": "catItem1"
+      },
+      "CategoryRef.Id": {
+        "description": "Unique identifier of the category",
+        "type": "string",
+        "example": "id12345"
+      },
+      "CategoryRef.Name": {
+        "description": "Name of the category",
+        "type": "string",
+        "example": "RNI"
+      },
+      "CategoryRef.Version": {
+        "description": "Category version",
+        "type": "string",
+        "example": "version1"
+      },
+      "CategoryRef": {
+        "description": "This type represents the category reference",
+        "type": "object",
+        "required": [
+          "href",
+          "id",
+          "name",
+          "version"
+        ],
+        "properties": {
+          "href": {
+            "$ref": "#/components/schemas/CategoryRef.Href"
+          },
+          "id": {
+            "$ref": "#/components/schemas/CategoryRef.Id"
+          },
+          "name": {
+            "$ref": "#/components/schemas/CategoryRef.Name"
+          },
+          "version": {
+            "$ref": "#/components/schemas/CategoryRef.Version"
+          }
+        }
+      },
+      "CurrentTime": {
+        "description": "This type represents the information provided by the mobile edge platform in response to the Get Platform Time Request message.",
+        "type": "object",
+        "required": [
+          "nanoSeconds",
+          "seconds",
+          "timeSourceStatus"
+        ],
+        "properties": {
+          "seconds": {
+            "type": "integer",
+            "format": "uint32",
+            "description": "The seconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC",
+            "example": 1577836800
+          },
+          "nanoSeconds": {
+            "type": "integer",
+            "format": "uint32",
+            "description": "The nanoseconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC",
+            "example": 0
+          },
+          "timeSourceStatus": {
+            "type": "string",
+            "enum": [
+              "TRACEABLE",
+              "NONTRACEABLE"
+            ],
+            "description": "Platform Time Source status. 1 = TRACEABLE - time source is locked to the UTC time source. 2 = NONTRACEABLE - time source is not locked to the UTC time source",
+            "example": "TRACEABLE"
+          }
+        }
+      },
+      "DestinationInterface.InterfaceType": {
+        "description": "Type of the interface",
+        "type": "string",
+        "enum": [
+          "TUNNEL",
+          "MAC",
+          "IP"
+        ],
+        "example": "TUNNEL"
+      },
+      "DestinationInterface.IpAddress": {
+        "description": "IP address of the remote destination",
+        "type": "string",
+        "example": "192.0.2.0"
+      },
+      "DestinationInterface.MacAddress": {
+        "description": "Source address identifies the MAC address of the interface",
+        "type": "string",
+        "example": "02-00-00-00-00-00"
+      },
+      "DestinationInterface": {
+        "description": "This type represents the destination interface.",
+        "type": "object",
+        "required": [
+          "interfaceType"
+        ],
+        "properties": {
+          "interfaceType": {
+            "$ref": "#/components/schemas/DestinationInterface.InterfaceType"
+          },
+          "tunnelInfo": {
+            "$ref": "#/components/schemas/TunnelInfo"
+          },
+          "srcMacAddress": {
+            "$ref": "#/components/schemas/DestinationInterface.MacAddress"
+          },
+          "dstMacAddress": {
+            "$ref": "#/components/schemas/DestinationInterface.MacAddress"
+          },
+          "dstIpAddress": {
+            "$ref": "#/components/schemas/DestinationInterface.IpAddress"
+          }
+        }
+      },
+      "DnsRule.DomainName": {
+        "description": "FQDN resolved by the DNS rule",
+        "type": "string",
+        "example": "www.example.com"
+      },
+      "DnsRule.Id": {
+        "description": "Identifies the DNS Rule",
+        "type": "string",
+        "example": "dnsRule1"
+      },
+      "DnsRule.IpAddress": {
+        "description": "IP address associated with the FQDN resolved by the DNS rule",
+        "type": "string",
+        "example": "192.0.2.0"
+      },
+      "DnsRule.IpAddressType": {
+        "description": "IP address type",
+        "type": "string",
+        "enum": [
+          "IP_V6",
+          "IP_V4"
+        ],
+        "example": "IP_V6"
+      },
+      "DnsRule.State": {
+        "description": "DNS rule state",
+        "type": "string",
+        "enum": [
+          "ACTIVE",
+          "INACTIVE"
+        ],
+        "example": "ACTIVE"
+      },
+      "DnsRule.Ttl": {
+        "description": "Time to live value",
+        "type": "integer",
+        "format": "uint32",
+        "example": "?"
+      },
+      "DnsRule": {
+        "description": "This type represents the general information of a DNS rule.",
+        "type": "object",
+        "required": [
+          "dnsRuleId",
+          "domainName",
+          "ipAddressType",
+          "ipAddress",
+          "state"
+        ],
+        "properties": {
+          "dnsRuleId": {
+            "$ref": "#/components/schemas/DnsRule.Id"
+          },
+          "domainName": {
+            "$ref": "#/components/schemas/DnsRule.DomainName"
+          },
+          "ipAddressType": {
+            "$ref": "#/components/schemas/DnsRule.IpAddressType"
+          },
+          "ipAddress": {
+            "$ref": "#/components/schemas/DnsRule.IpAddress"
+          },
+          "ttl": {
+            "$ref": "#/components/schemas/DnsRule.Ttl"
+          },
+          "state": {
+            "$ref": "#/components/schemas/DnsRule.State"
+          }
+        }
+      },
+      "EndPointInfo.Address.Host": {
+        "description": "Host portion of the address",
+        "type": "string",
+        "example": "192.0.2.0"
+      },
+      "EndPointInfo.Address_Port": {
+        "description": "Port portion of the address",
+        "type": "integer",
+        "format": "uint32",
+        "example": 8080
+      },
+      "EndPointInfo.Address": {
+        "description": "A IP address and port pair",
+        "type": "object",
+        "required": [
+          "host",
+          "port"
+        ],
+        "properties": {
+          "host": {
+            "$ref": "#/components/schemas/EndPointInfo.Address.Host"
+          },
+          "port": {
+            "$ref": "#/components/schemas/EndPointInfo.Address_Port"
+          }
+        }
+      },
+      "EndPointInfo.Addresses": {
+        "description": "Entry point information of the service as one or more pairs of IP address and port",
+        "type": "object",
+        "required": [
+          "addresses"
+        ],
+        "properties": {
+          "addresses": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "$ref": "#/components/schemas/EndPointInfo.Address"
+            }
+          }
+        }
+      },
+      "EndPointInfo.Alternative": {
+        "description": "Entry point information of the service in a format defined by an implementation, or in an external specification.",
+        "type": "object",
+        "required": [
+          "alternative"
+        ],
+        "properties": {
+          "alternative": {
+            "type": "object"
+          }
+        }
+      },
+      "EndPointInfo.Uri": {
+        "description": "Entry point information of the service",
+        "type": "string",
+        "format": "uri",
+        "example": "/meMp1/service/EntryPoint"
+      },
+      "EndPointInfo.Uris": {
+        "description": "Entry point information of the service as string, formatted according to URI syntax",
+        "type": "object",
+        "required": [
+          "uris"
+        ],
+        "properties": {
+          "uris": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "$ref": "#/components/schemas/EndPointInfo.Uri"
+            }
+          }
+        }
+      },
+      "LinkType": {
+        "description": "This type represents a type of link and may be referenced from data structures",
+        "type": "object",
+        "properties": {
+          "href": {
+            "$ref": "#/components/schemas/Href"
+          }
+        }
+      },
+      "Href": {
+        "description": "URI referring to a resource",
+        "type": "string",
+        "format": "uri",
+        "example": "/meMp1/example"
+      },
+      "Mp1SubscriptionLinkList.Links": {
+        "description": "Self-referring URI.",
+        "type": "object",
+        "required": [
+          "self"
+        ],
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/LinkType"
+          },
+          "subscription": {
+            "description": "Subscription list",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Mp1SubscriptionLinkList.Subscription"
+            }
+          }
+        }
+      },
+      "Mp1SubscriptionLinkList.Subscription": {
+        "description": "A link to a subscription.",
+        "type": "object",
+        "required": [
+          "href",
+          "rel"
+        ],
+        "properties": {
+          "href": {
+            "$ref": "#/components/schemas/Href"
+          },
+          "rel": {
+            "description": "The values are as defined in the \"subscriptionType\" attribute for each different Mp1 event subscription data type.",
+            "type": "string",
+            "enum": [
+              "AppTerminationNotificationSubscription",
+              "SerAvailabilityNotificationSubscription"
+            ]
+          }
+        }
+      },
+      "Mp1SubscriptionLinkList": {
+        "description": "This type represents a list of links related to currently existing subscriptions for a mobile edge application instance. This information is returned when sending a request to receive current subscriptions.",
+        "type": "object",
+        "required": [
+          "_links"
+        ],
+        "properties": {
+          "_links": {
+            "$ref": "#/components/schemas/Mp1SubscriptionLinkList.Links"
+          }
+        }
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/Problem.type"
+          },
+          "title": {
+            "$ref": "#/components/schemas/Problem.title"
+          },
+          "status": {
+            "$ref": "#/components/schemas/Problem.status"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/Problem.detail"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/Problem.instance"
+          }
+        }
+      },
+      "Problem.detail": {
+        "type": "string",
+        "description": "A human-readable explanation specific to this occurrence of the problem"
+      },
+      "Problem.instance": {
+        "type": "string",
+        "format": "uri",
+        "description": "A URI reference that identifies the specific occurrence of the problem"
+      },
+      "Problem.status": {
+        "type": "integer",
+        "format": "uint32",
+        "description": "The HTTP status code for this occurrence of the problem"
+      },
+      "Problem.title": {
+        "type": "string",
+        "description": "A short, human-readable summary of the problem type"
+      },
+      "Problem.type": {
+        "type": "string",
+        "format": "uri",
+        "description": "A URI reference according to IETF RFC 3986 that identifies the problem type"
+      },
+      "SecurityInfo.OAuth2Info.GrantTypes": {
+        "description": "List of supported OAuth 2.0 grant types",
+        "type": "string",
+        "enum": [
+          "OAUTH2_AUTHORIZATION_CODE",
+          "OAUTH2_IMPLICIT_GRANT",
+          "OAUTH2_RESOURCE_OWNER",
+          "OAUTH2_CLIENT_CREDENTIALS"
+        ],
+        "example": "OAUTH2_CLIENT_CREDENTIALS"
+      },
+      "SecurityInfo.OAuth2Info.TokenEndpoint": {
+        "description": "The token endpoint",
+        "type": "string",
+        "format": "uri",
+        "example": "/meMp1/security/TokenEndPoint"
+      },
+      "SecurityInfo.OAuth2Info": {
+        "description": "Parameters related to use of OAuth 2.0",
+        "required": [
+          "grantTypes",
+          "tokenEndpoint"
+        ],
+        "properties": {
+          "grantTypes": {
+            "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.GrantTypes"
+          },
+          "tokenEndpoint": {
+            "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.TokenEndpoint"
+          }
         },
-        "callbackReference": {
-          "$ref": "#/definitions/SerAvailabilityNotificationSubscription.CallbackReference"
+        "type": "object"
+      },
+      "SecurityInfo": {
+        "description": "This type represents security information related to a transport",
+        "type": "object",
+        "properties": {
+          "oAuth2Info": {
+            "$ref": "#/components/schemas/SecurityInfo.OAuth2Info"
+          }
+        }
+      },
+      "Self": {
+        "description": "Self-referring URI.",
+        "type": "object",
+        "required": [
+          "self"
+        ],
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/LinkType"
+          }
         },
-        "_links": {
-          "$ref": "#/definitions/Self"
-        },
-        "filteringCriteria": {
-          "$ref": "#/definitions/ServiceInfo"
+        "readOnly": true
+      },
+      "SerAvailabilityNotificationSubscription.CallbackReference": {
+        "description": "URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge service availability information. This shall be included in both the request and the response.",
+        "type": "string",
+        "format": "uri"
+      },
+      "SerAvailabilityNotificationSubscription": {
+        "description": "This type represents a subscription to the notifications from the mobile edge platform regarding the availability of a mobile edge service or a list of mobile edge services.",
+        "type": "object",
+        "required": [
+          "subscriptionType",
+          "callbackReference",
+          "_links",
+          "filteringCriteria"
+        ],
+        "properties": {
+          "subscriptionType": {
+            "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription.SubscriptionType"
+          },
+          "callbackReference": {
+            "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription.CallbackReference"
+          },
+          "_links": {
+            "$ref": "#/components/schemas/Self"
+          },
+          "filteringCriteria": {
+            "$ref": "#/components/schemas/ServiceInfo"
+          }
+        }
+      },
+      "SerAvailabilityNotificationSubscription.SubscriptionType": {
+        "description": "Shall be set to SerAvailabilityNotificationSubscription.",
+        "type": "string",
+        "example": "SerAvailabilityNotificationSubscription"
+      },
+      "ServiceAvailabilityNotification": {
+        "description": "This type represents the service availability information.",
+        "type": "object",
+        "required": [
+          "notificationType",
+          "services",
+          "_links"
+        ],
+        "properties": {
+          "notificationType": {
+            "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription.SubscriptionType"
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceInfo"
+            }
+          },
+          "_links": {
+            "$ref": "#/components/schemas/Subscription"
+          }
+        }
+      },
+      "SerializerTypes": {
+        "description": "The enumeration SerializerTypes represents types of serializers",
+        "type": "string",
+        "enum": [
+          "JSON",
+          "XML",
+          "PROTOBUF3"
+        ],
+        "example": "JSON"
+      },
+      "ServiceInfo.SerInstanceId": {
+        "description": "Identifier of the service instance assigned by the MEPM / mobile edge platform.",
+        "type": "string",
+        "readOnly": true,
+        "example": "ServiceInstance123"
+      },
+      "ServiceInfo.SerName": {
+        "description": "The name of the service. This is how the service producing mobile edge application identifies the service instance it produces.",
+        "type": "string",
+        "example": "ExampleService"
+      },
+      "ServiceInfo.State": {
+        "description": "Contains the state",
+        "type": "string",
+        "enum": [
+          "ACTIVE",
+          "INACTIVE"
+        ],
+        "example": "ACTIVE"
+      },
+      "ServiceInfo.TransportId": {
+        "description": "Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the \"Transport information query\" procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.",
+        "type": "string",
+        "writeOnly": true,
+        "example": "Rest1"
+      },
+      "ServiceInfo.Version": {
+        "description": "Service version",
+        "type": "string",
+        "example": "ServiceVersion1"
+      },
+      "ServiceInfo.Post": {
+        "description": "This type represents the general information of a mobile edge service.",
+        "type": "object",
+        "required": [
+          "serName",
+          "version",
+          "state",
+          "serializer"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "transportId"
+            ]
+          },
+          {
+            "required": [
+              "transportInfo"
+            ]
+          }
+        ],
+        "properties": {
+          "serInstanceId": {
+            "$ref": "#/components/schemas/ServiceInfo.SerInstanceId"
+          },
+          "serName": {
+            "$ref": "#/components/schemas/ServiceInfo.SerName"
+          },
+          "serCategory": {
+            "$ref": "#/components/schemas/CategoryRef"
+          },
+          "version": {
+            "$ref": "#/components/schemas/ServiceInfo.Version"
+          },
+          "state": {
+            "$ref": "#/components/schemas/ServiceInfo.State"
+          },
+          "transportId": {
+            "$ref": "#/components/schemas/ServiceInfo.TransportId"
+          },
+          "transportInfo": {
+            "$ref": "#/components/schemas/TransportInfo"
+          },
+          "serializer": {
+            "$ref": "#/components/schemas/SerializerTypes"
+          }
+        }
+      },
+      "ServiceInfo": {
+        "description": "This type represents the general information of a mobile edge service.",
+        "type": "object",
+        "required": [
+          "serName",
+          "version",
+          "state",
+          "transportInfo",
+          "serializer"
+        ],
+        "properties": {
+          "serInstanceId": {
+            "$ref": "#/components/schemas/ServiceInfo.SerInstanceId"
+          },
+          "serName": {
+            "$ref": "#/components/schemas/ServiceInfo.SerName"
+          },
+          "serCategory": {
+            "$ref": "#/components/schemas/CategoryRef"
+          },
+          "version": {
+            "$ref": "#/components/schemas/ServiceInfo.Version"
+          },
+          "state": {
+            "$ref": "#/components/schemas/ServiceInfo.State"
+          },
+          "transportInfo": {
+            "$ref": "#/components/schemas/TransportInfo"
+          },
+          "serializer": {
+            "$ref": "#/components/schemas/SerializerTypes"
+          }
+        }
+      },
+      "Subscription": {
+        "description": "A link to the related subscription",
+        "type": "object",
+        "required": [
+          "subscription"
+        ],
+        "properties": {
+          "subscription": {
+            "$ref": "#/components/schemas/LinkType"
+          }
+        }
+      },
+      "TimingCaps.NtpServers.AuthenticationKeyNum": {
+        "description": "Authentication key number",
+        "type": "integer",
+        "format": "uint32",
+        "example": 1
+      },
+      "TimingCaps.NtpServers.AuthenticationOption": {
+        "description": "NTP authentication option",
+        "type": "string",
+        "enum": [
+          "NONE",
+          "SYMMETRIC_KEY",
+          "AUTO_KEY"
+        ],
+        "example": "NONE"
+      },
+      "TimingCaps.NtpServers.DelayReqMaxRate": {
+        "description": "Acceptable maximum rate of the Delay_Req messages in packets per second",
+        "type": "integer",
+        "format": "uint32",
+        "example": 10
+      },
+      "TimingCaps.NtpServers.LocalPriority": {
+        "description": "NTP server local priority",
+        "type": "integer",
+        "format": "uint32",
+        "example": 1
+      },
+      "TimingCaps.NtpServers.MaxPollingInterval": {
+        "description": "Maximum poll interval for NTP messages, in seconds as a power of two. Range 3...17",
+        "type": "integer",
+        "format": "uint32",
+        "example": 17
+      },
+      "TimingCaps.NtpServers.MinPollingInterval": {
+        "description": "Minimum poll interval for NTP messages, in seconds as a power of two. Range 3...17",
+        "type": "integer",
+        "format": "uint32",
+        "example": 3
+      },
+      "TimingCaps.NtpServers.NtpServerAddr": {
+        "description": "NTP server address",
+        "type": "string",
+        "example": "192.0.2.0"
+      },
+      "TimingCaps.NtpServers.NtpServerAddrType": {
+        "description": "Address type of NTP server",
+        "type": "string",
+        "enum": [
+          "IP_ADDRESS",
+          "DNS_NAME"
+        ],
+        "example": "IP_ADDRESS"
+      },
+      "TimingCaps.NtpServers_PtpMasterIpAddress": {
+        "description": "PTP Master IP Address",
+        "type": "string",
+        "example": "192.0.2.0"
+      },
+      "TimingCaps.NtpServers_PtpMasterLocalPriority": {
+        "description": "PTP Master local priority",
+        "type": "integer",
+        "format": "uint32",
+        "example": 1
+      },
+      "TimingCaps.NtpServers": {
+        "description": "NTP server detail.",
+        "type": "object",
+        "required": [
+          "ntpServerAddrType",
+          "ntpServerAddr",
+          "minPollingInterval",
+          "maxPollingInterval",
+          "localPriority",
+          "authenticationOption",
+          "authenticationKeyNum"
+        ],
+        "properties": {
+          "ntpServerAddrType": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers.NtpServerAddrType"
+          },
+          "ntpServerAddr": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers.NtpServerAddr"
+          },
+          "minPollingInterval": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers.MinPollingInterval"
+          },
+          "maxPollingInterval": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers.MaxPollingInterval"
+          },
+          "localPriority": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers.LocalPriority"
+          },
+          "authenticationOption": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers.AuthenticationOption"
+          },
+          "authenticationKeyNum": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers.AuthenticationKeyNum"
+          }
+        }
+      },
+      "TimingCaps_PtpMasters": {
+        "description": "NTP server detail.",
+        "type": "object",
+        "required": [
+          "ptpMasterIpAddress",
+          "ptpMasterLocalPriority",
+          "delayReqMaxRate"
+        ],
+        "properties": {
+          "ptpMasterIpAddress": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers_PtpMasterIpAddress"
+          },
+          "ptpMasterLocalPriority": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers_PtpMasterLocalPriority"
+          },
+          "delayReqMaxRate": {
+            "$ref": "#/components/schemas/TimingCaps.NtpServers.DelayReqMaxRate"
+          }
+        }
+      },
+      "TimingCaps.TimeStamp": {
+        "description": "time",
+        "type": "object",
+        "required": [
+          "nanoSeconds",
+          "seconds"
+        ],
+        "properties": {
+          "seconds": {
+            "type": "integer",
+            "format": "uint32",
+            "description": "The seconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC",
+            "example": 1577836800
+          },
+          "nanoSeconds": {
+            "type": "integer",
+            "format": "uint32",
+            "description": "The nanoseconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC",
+            "example": 0
+          }
+        }
+      },
+      "TimingCaps": {
+        "description": "This type represents the information provided by the mobile edge platform in response to the Timing capabilities Query message.",
+        "type": "object",
+        "properties": {
+          "timeStamp": {
+            "$ref": "#/components/schemas/TimingCaps.TimeStamp"
+          },
+          "ntpServers": {
+            "description": "Available NTP servers",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimingCaps.NtpServers"
+            }
+          },
+          "ptpMasters": {
+            "description": "Available PTP Masters",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimingCaps_PtpMasters"
+            }
+          }
+        }
+      },
+      "TrafficFilter.Address": {
+        "description": "Identify the traffic ip address.",
+        "type": "string",
+        "example": "192.168.1.1"
+      },
+      "TrafficFilter.DSCP": {
+        "description": "Used to match all IPv4 packets that have the same Differentiated Services Code Point (DSCP)",
+        "type": "integer",
+        "format": "uint32",
+        "example": 0
+      },
+      "TrafficFilter.Port": {
+        "description": "A port",
+        "type": "string",
+        "example": "8080"
+      },
+      "TrafficFilter.Protocol": {
+        "description": "Protocol of the traffic filter",
+        "type": "string",
+        "example": "?"
+      },
+      "TrafficFilter.QCI": {
+        "description": "Used to match all packets that have the same Quality Class Indicator (QCI).",
+        "type": "integer",
+        "format": "uint32",
+        "example": 1
+      },
+      "TrafficFilter.TC": {
+        "description": "Used to match all IPv6 packets that have the same Traffic Class.",
+        "type": "integer",
+        "format": "uint32",
+        "example": 1
+      },
+      "TrafficFilter.Token": {
+        "description": "Used for token based traffic rule",
+        "type": "string",
+        "example": "?"
+      },
+      "TrafficFilter.TunnelAddress": {
+        "description": "Used for GTP tunnel based traffic rule",
+        "type": "string",
+        "example": "?"
+      },
+      "TrafficFilter.TunnelPort": {
+        "description": "Used for GTP tunnel based traffic rule",
+        "type": "string",
+        "example": "?"
+      },
+      "TrafficFilter": {
+        "description": "This type represents the traffic filter.",
+        "type": "object",
+        "properties": {
+          "srcAddress": {
+            "description": "An IP address or a range of IP address. For IPv4, the IP address could be an IP address plus mask, or an individual IP address, or a range of IP addresses. For IPv6, the IP address could be an IP prefix, or a range of IP prefixes.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.Address"
+            }
+          },
+          "dstAddress": {
+            "description": "An IP address or a range of IP address. For IPv4, the IP address could be an IP address plus mask, or an individual IP address, or a range of IP addresses. For IPv6, the IP address could be an IP prefix, or a range of IP prefixes.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.Address"
+            }
+          },
+          "srcPort": {
+            "description": "A port or a range of ports",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.Port"
+            }
+          },
+          "dstPort": {
+            "description": "A port or a range of ports",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.Port"
+            }
+          },
+          "protocol": {
+            "description": "Specify the protocol of the traffic filter",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.Protocol"
+            }
+          },
+          "token": {
+            "description": "Used for token based traffic rule",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.Token"
+            }
+          },
+          "srcTunnelAddress": {
+            "description": "Used for GTP tunnel based traffic rule",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.TunnelAddress"
+            }
+          },
+          "tgtTunnelAddress": {
+            "description": "Used for GTP tunnel based traffic rule",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.TunnelAddress"
+            }
+          },
+          "srcTunnelPort": {
+            "description": "Used for GTP tunnel based traffic rule",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.TunnelPort"
+            }
+          },
+          "dstTunnelPort": {
+            "description": "Used for GTP tunnel based traffic rule",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter.TunnelPort"
+            }
+          },
+          "qCI": {
+            "$ref": "#/components/schemas/TrafficFilter.QCI"
+          },
+          "dSCP": {
+            "$ref": "#/components/schemas/TrafficFilter.DSCP"
+          },
+          "tC": {
+            "$ref": "#/components/schemas/TrafficFilter.TC"
+          }
+        }
+      },
+      "TrafficRule.Action": {
+        "description": "The action of the ME host data plane when a packet matches the trafficFilter",
+        "type": "string",
+        "enum": [
+          "DROP",
+          "FORWARD_DECAPSULATED",
+          "FORWARD_AS_IS",
+          "PASSTHROUGH",
+          "DUPLICATE_DECAPSULATED",
+          "DUPLICATE_AS_IS"
+        ],
+        "example": "DROP"
+      },
+      "TrafficRule.FilterType": {
+        "description": "Definition of filter per FLOW or PACKET. If flow the filter match UE->EPC packet and the reverse packet is handled in the same context",
+        "type": "string",
+        "enum": [
+          "FLOW",
+          "PACKET"
+        ],
+        "example": "FLOW"
+      },
+      "TrafficRule.Id": {
+        "description": "Identify the traffic rule.",
+        "type": "string",
+        "example": "TrafficRule1"
+      },
+      "TrafficRule_Priority": {
+        "description": "Priority of this traffic rule. If traffic rule conflicts, the one with higher priority take precedence",
+        "type": "integer",
+        "format": "uint32",
+        "example": 1
+      },
+      "TrafficRule.State": {
+        "description": "Contains the traffic rule state",
+        "type": "string",
+        "enum": [
+          "ACTIVE",
+          "INACTIVE"
+        ],
+        "example": "ACTIVE"
+      },
+      "TrafficRule": {
+        "description": "This type represents the general information of a traffic rule.",
+        "type": "object",
+        "required": [
+          "trafficRuleId",
+          "filterType",
+          "priority",
+          "trafficFilter",
+          "action",
+          "state"
+        ],
+        "properties": {
+          "trafficRuleId": {
+            "$ref": "#/components/schemas/TrafficRule.Id"
+          },
+          "filterType": {
+            "$ref": "#/components/schemas/TrafficRule.FilterType"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/TrafficRule_Priority"
+          },
+          "trafficFilter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrafficFilter"
+            }
+          },
+          "action": {
+            "$ref": "#/components/schemas/TrafficRule.Action"
+          },
+          "dstInterface": {
+            "$ref": "#/components/schemas/DestinationInterface"
+          },
+          "state": {
+            "$ref": "#/components/schemas/TrafficRule.State"
+          }
+        }
+      },
+      "TransportInfo.Description": {
+        "description": "Human-readable description of this transport",
+        "type": "string",
+        "example": "REST API"
+      },
+      "TransportInfo.Id": {
+        "description": "The identifier of this transport",
+        "type": "string",
+        "example": "TransId12345"
+      },
+      "TransportInfo.ImplSpecificInfo": {
+        "description": "Additional implementation specific details of the transport",
+        "type": "object"
+      },
+      "TransportInfo.Name": {
+        "description": "The name of this transport",
+        "type": "string",
+        "example": "REST"
+      },
+      "TransportInfo.Protocol": {
+        "description": "The name of the protocol used. Shall be set to HTTP for a REST API.",
+        "type": "string",
+        "example": "HTTP"
+      },
+      "TransportInfo.Version": {
+        "description": "The version of the protocol used",
+        "type": "string",
+        "example": "2.0"
+      },
+      "TransportInfo": {
+        "description": "This type represents the general information of a mobile edge service.",
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "type",
+          "protocol",
+          "version",
+          "endpoint",
+          "security"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/TransportInfo.Id"
+          },
+          "name": {
+            "$ref": "#/components/schemas/TransportInfo.Name"
+          },
+          "description": {
+            "$ref": "#/components/schemas/TransportInfo.Description"
+          },
+          "type": {
+            "$ref": "#/components/schemas/TransportTypes"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/TransportInfo.Protocol"
+          },
+          "version": {
+            "$ref": "#/components/schemas/TransportInfo.Version"
+          },
+          "endpoint": {
+            "description": "This type represents information about a transport endpoint",
+            "type": "object",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EndPointInfo.Uris"
+              },
+              {
+                "$ref": "#/components/schemas/EndPointInfo.Addresses"
+              },
+              {
+                "$ref": "#/components/schemas/EndPointInfo.Alternative"
+              }
+            ]
+          },
+          "security": {
+            "$ref": "#/components/schemas/SecurityInfo"
+          },
+          "implSpecificInfo": {
+            "$ref": "#/components/schemas/TransportInfo.ImplSpecificInfo"
+          }
+        }
+      },
+      "TransportTypes": {
+        "description": "The enumeration TransportTypes represents types of transports",
+        "type": "string",
+        "enum": [
+          "REST_HTTP",
+          "MB_TOPIC_BASED",
+          "MB_ROUTING",
+          "MB_PUBSUB",
+          "RPC",
+          "RPC_STREAMING",
+          "WEBSOCKET"
+        ],
+        "example": "REST_HTTP"
+      },
+      "TunnelInfo.TunnelDstAddress": {
+        "description": "Destination address of the tunnel",
+        "type": "string",
+        "example": "?"
+      },
+      "TunnelInfo.TunnelSrcAddress": {
+        "description": "Source address of the tunnel",
+        "type": "string",
+        "example": "?"
+      },
+      "TunnelInfo.TunnelType": {
+        "description": "This type represents the tunnel information.",
+        "type": "string",
+        "enum": [
+          "GTP_U",
+          "GRE"
+        ],
+        "example": "GTP_U"
+      },
+      "TunnelInfo": {
+        "description": "This type represents the tunnel information.",
+        "type": "object",
+        "required": [
+          "tunnelType"
+        ],
+        "properties": {
+          "tunnelType": {
+            "$ref": "#/components/schemas/TunnelInfo.TunnelType"
+          },
+          "tunnelDstAddress": {
+            "$ref": "#/components/schemas/TunnelInfo.TunnelDstAddress"
+          },
+          "tunnelSrcAddress": {
+            "$ref": "#/components/schemas/TunnelInfo.TunnelSrcAddress"
+          }
         }
       }
     },
-    "SerAvailabilityNotificationSubscription.SubscriptionType": {
-      "description": "Shall be set to SerAvailabilityNotificationSubscription.",
-      "type": "string",
-      "example": "SerAvailabilityNotificationSubscription"
-    },
-    "SerializerTypes": {
-      "description": "The enumeration SerializerTypes represents types of serializers",
-      "type": "string",
-      "enum": [
-        "JSON",
-        "XML",
-        "PROTOBUF3"
-      ],
-      "example": "JSON"
-    },
-    "ServiceInfo.SerInstanceId": {
-      "description": "Identifier of the service instance assigned by the MEPM / mobile edge platform.",
-      "type": "string",
-      "example": "ServiceInstance123"
-    },
-    "ServiceInfo.SerName": {
-      "description": "The name of the service. This is how the service producing mobile edge application identifies the service instance it produces.",
-      "type": "string",
-      "example": "ExampleService"
-    },
-    "ServiceInfo.State": {
-      "description": "Contains the state",
-      "type": "string",
-      "enum": [
-        "ACTIVE",
-        "INACTIVE"
-      ],
-      "example": "ACTIVE"
-    },
-    "ServiceInfo.TransportId": {
-      "description": "Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the \"Transport information query\" procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.",
-      "type": "string",
-      "example": "Rest1"
-    },
-    "ServiceInfo.Version": {
-      "description": "Service version",
-      "type": "string",
-      "example": "ServiceVersion1"
-    },
-    "ServiceInfo": {
-      "description": "This type represents the general information of a mobile edge service.",
-      "type": "object",
-      "required": [
-        "serName",
-        "version",
-        "state",
-        "serializer"
-      ],
-      "properties": {
-        "serInstanceId": {
-          "$ref": "#/definitions/ServiceInfo.SerInstanceId"
-        },
-        "serName": {
-          "$ref": "#/definitions/ServiceInfo.SerName"
-        },
-        "serCategory": {
-          "$ref": "#/definitions/CategoryRef"
-        },
-        "version": {
-          "$ref": "#/definitions/ServiceInfo.Version"
-        },
-        "state": {
-          "$ref": "#/definitions/ServiceInfo.State"
-        },
-        "transportId": {
-          "$ref": "#/definitions/ServiceInfo.TransportId"
-        },
-        "transportInfo": {
-          "$ref": "#/definitions/TransportInfo"
-        },
-        "serializer": {
-          "$ref": "#/definitions/SerializerTypes"
+    "parameters": {
+      "Path.AppInstanceId": {
+        "name": "appInstanceId",
+        "description": "Represents a mobile edge application instance. Note that the appInstanceId is allocated by the mobile edge platform manager.",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
         }
-      }
-    },
-    "Subscription": {
-      "description": "A link to the related subscription",
-      "type": "object",
-      "required": [
-        "subscription"
-      ],
-      "properties": {
-        "subscription": {
-          "$ref": "#/definitions/LinkType"
+      },
+      "Path.DnsRuleId": {
+        "name": "dnsRuleId",
+        "description": "Represents a DNS rule.",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
         }
-      }
-    },
-    "TimingCaps.NtpServers.AuthenticationKeyNum": {
-      "description": "Authentication key number",
-      "type": "integer",
-      "format": "uint32",
-      "example": 1
-    },
-    "TimingCaps.NtpServers.AuthenticationOption": {
-      "description": "NTP authentication option",
-      "type": "string",
-      "enum": [
-        "NONE",
-        "SYMMETRIC_KEY",
-        "AUTO_KEY"
-      ],
-      "example": "NONE"
-    },
-    "TimingCaps.NtpServers.DelayReqMaxRate": {
-      "description": "Acceptable maximum rate of the Delay_Req messages in packets per second",
-      "type": "integer",
-      "format": "uint32",
-      "example": 10
-    },
-    "TimingCaps.NtpServers.LocalPriority": {
-      "description": "NTP server local priority",
-      "type": "integer",
-      "format": "uint32",
-      "example": 1
-    },
-    "TimingCaps.NtpServers.MaxPollingInterval": {
-      "description": "Maximum poll interval for NTP messages, in seconds as a power of two. Range 3...17",
-      "type": "integer",
-      "format": "uint32",
-      "example": 17
-    },
-    "TimingCaps.NtpServers.MinPollingInterval": {
-      "description": "Minimum poll interval for NTP messages, in seconds as a power of two. Range 3...17",
-      "type": "integer",
-      "format": "uint32",
-      "example": 3
-    },
-    "TimingCaps.NtpServers.NtpServerAddr": {
-      "description": "NTP server address",
-      "type": "string",
-      "example": "192.0.2.0"
-    },
-    "TimingCaps.NtpServers.NtpServerAddrType": {
-      "description": "Address type of NTP server",
-      "type": "string",
-      "enum": [
-        "IP_ADDRESS",
-        "DNS_NAME"
-      ],
-      "example": "IP_ADDRESS"
-    },
-    "TimingCaps.NtpServers.PtpMasterIpAddress": {
-      "description": "PTP Master IP Address",
-      "type": "string",
-      "example": "192.0.2.0"
-    },
-    "TimingCaps.NtpServers.PtpMasterLocalPriority": {
-      "description": "PTP Master local priority",
-      "type": "integer",
-      "format": "uint32",
-      "example": 1
-    },
-    "TimingCaps.NtpServers": {
-      "description": "NTP server detail.",
-      "type": "object",
-      "required": [
-        "ntpServerAddrType",
-        "ntpServerAddr",
-        "minPollingInterval",
-        "maxPollingInterval",
-        "localPriority",
-        "authenticationOption",
-        "authenticationKeyNum"
-      ],
-      "properties": {
-        "ntpServerAddrType": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.NtpServerAddrType"
-        },
-        "ntpServerAddr": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.NtpServerAddr"
-        },
-        "minPollingInterval": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.MinPollingInterval"
-        },
-        "maxPollingInterval": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.MaxPollingInterval"
-        },
-        "localPriority": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.LocalPriority"
-        },
-        "authenticationOption": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.AuthenticationOption"
-        },
-        "authenticationKeyNum": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.AuthenticationKeyNum"
+      },
+      "Path.SubscriptionId": {
+        "name": "subscriptionId",
+        "description": "Represents a subscription to the notifications from the mobile edge platform.",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
         }
-      }
-    },
-    "TimingCaps.PtpMasters": {
-      "description": "NTP server detail.",
-      "type": "object",
-      "required": [
-        "ptpMasterIpAddress",
-        "ptpMasterLocalPriority",
-        "delayReqMaxRate"
-      ],
-      "properties": {
-        "ptpMasterIpAddress": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.PtpMasterIpAddress"
-        },
-        "ptpMasterLocalPriority": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.PtpMasterLocalPriority"
-        },
-        "delayReqMaxRate": {
-          "$ref": "#/definitions/TimingCaps.NtpServers.DelayReqMaxRate"
+      },
+      "Path.SubscriptionType": {
+        "name": "subscriptionType",
+        "description": "Represents a subscription type to the notifications from the mobile edge platform.",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "AppTerminationNotificationSubscription",
+            "SerAvailabilityNotificationSubscription"
+          ]
         }
-      }
-    },
-    "TimingCaps.TimeStamp": {
-      "description": "time",
-      "type": "object",
-      "required": [
-        "nanoSeconds",
-        "seconds"
-      ],
-      "properties": {
-        "seconds": {
-          "type": "integer",
-          "format": "uint32",
-          "description": "The seconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC",
-          "example": 1577836800
-        },
-        "nanoSeconds": {
-          "type": "integer",
-          "format": "uint32",
-          "description": "The nanoseconds part of the time. Time is defined as Unix-time since January 1, 1970, 00:00:00 UTC",
-          "example": 0
+      },
+      "Path.ServiceId": {
+        "name": "serviceId",
+        "description": "Represents a mobile edge service instance.",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
         }
-      }
-    },
-    "TimingCaps": {
-      "description": "This type represents the information provided by the mobile edge platform in response to the Timing capabilities Query message.",
-      "type": "object",
-      "properties": {
-        "timeStamp": {
-          "$ref": "#/definitions/TimingCaps.TimeStamp"
-        },
-        "ntpServers": {
-          "description": "Available NTP servers",
+      },
+      "Path.TrafficRuleId": {
+        "name": "trafficRuleId",
+        "description": "Represents a traffic rule.",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "Query.Ser_category_id": {
+        "name": "ser_category_id",
+        "description": "A mobile edge application instance may use ser_category_id as an input parameter to query the availability of a list of mobile edge service instances in a serCategory. Either \"ser_instance_id\" or \"ser_name\" or \"ser_category_id\" or none of them shall be present.",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "Query.Ser_instance_id": {
+        "name": "ser_instance_id",
+        "description": "A mobile edge application instance may use multiple ser_instance_ids as an input parameter to query the availability of a list of mobile edge service instances. Either \"ser_instance_id\" or \"ser_name\" or \"ser_category_id\" or none of them shall be present.",
+        "in": "query",
+        "required": false,
+        "schema": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TimingCaps.NtpServers"
+            "type": "string"
           }
-        },
-        "ptpMasters": {
-          "description": "Available PTP Masters",
+        }
+      },
+      "Query.Ser_name": {
+        "name": "ser_name",
+        "description": "A mobile edge application instance may use multiple ser_names as an input parameter to query the availability of a list of mobile edge service instances. Either \"ser_instance_id\" or \"ser_name\" or \"ser_category_id\" or none of them shall be present.",
+        "in": "query",
+        "required": false,
+        "schema": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TimingCaps.PtpMasters"
+            "type": "string"
           }
         }
       }
     },
-    "TrafficFilter.Address": {
-      "description": "Identify the traffic ip address.",
-      "type": "string",
-      "example": "192.168.1.1"
-    },
-    "TrafficFilter.DSCP": {
-      "description": "Used to match all IPv4 packets that have the same Differentiated Services Code Point (DSCP)",
-      "type": "integer",
-      "format": "uint32",
-      "example": 0
-    },
-    "TrafficFilter.Port": {
-      "description": "A port",
-      "type": "string",
-      "example": "8080"
-    },
-    "TrafficFilter.Protocol": {
-      "description": "Protocol of the traffic filter",
-      "type": "string",
-      "example": "?"
-    },
-    "TrafficFilter.QCI": {
-      "description": "Used to match all packets that have the same Quality Class Indicator (QCI).",
-      "type": "integer",
-      "format": "uint32",
-      "example": 1
-    },
-    "TrafficFilter.TC": {
-      "description": "Used to match all IPv6 packets that have the same Traffic Class.",
-      "type": "integer",
-      "format": "uint32",
-      "example": 1
-    },
-    "TrafficFilter.Token": {
-      "description": "Used for token based traffic rule",
-      "type": "string",
-      "example": "?"
-    },
-    "TrafficFilter.TunnelAddress": {
-      "description": "Used for GTP tunnel based traffic rule",
-      "type": "string",
-      "example": "?"
-    },
-    "TrafficFilter.TunnelPort": {
-      "description": "Used for GTP tunnel based traffic rule",
-      "type": "string",
-      "example": "?"
-    },
-    "TrafficFilter": {
-      "description": "This type represents the traffic filter.",
-      "type": "object",
-      "properties": {
-        "srcAddress": {
-          "description": "An IP address or a range of IP address. For IPv4, the IP address could be an IP address plus mask, or an individual IP address, or a range of IP addresses. For IPv6, the IP address could be an IP prefix, or a range of IP prefixes.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.Address"
+    "responses": {
+      "ApplicationsDnsRules.200": {
+        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/components/schemas/DnsRule"
+              }
+            },
+            "examples": {
+              "DnsRules": {
+                "$ref": "#/components/examples/DnsRules"
+              }
+            }
           }
         },
-        "dstAddress": {
-          "description": "An IP address or a range of IP address. For IPv4, the IP address could be an IP address plus mask, or an individual IP address, or a range of IP addresses. For IPv6, the IP address could be an IP prefix, or a range of IP prefixes.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.Address"
+        "links": {
+          "getIndividualMeDNSRule": {
+            "$ref": "#/components/links/GetIndividualMeDNSRule"
+          },
+          "putIndividualMeDNSRule": {
+            "$ref": "#/components/links/PutIndividualMeDNSRule"
+          }
+        }
+      },
+      "ApplicationsDnsRule.200": {
+        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DnsRule"
+            },
+            "examples": {
+              "DnsRule": {
+                "$ref": "#/components/examples/DnsRule"
+              }
+            }
+          }
+        }
+      },
+      "ApplicationsSubscriptions.200": {
+        "description": "Upon success, a response body containing the list of links to the requested subscriptions is returned.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Mp1SubscriptionLinkList"
+            }
           }
         },
-        "srcPort": {
-          "description": "A port or a range of ports",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.Port"
+        "links": {
+          "getIndividualMeMp1SubscriptionLinkList": {
+            "$ref": "#/components/links/GetIndividualMeMp1SubscriptionLinkList"
+          },
+          "delIndividualMeMp1SubscriptionLinkList": {
+            "$ref": "#/components/links/DelIndividualMeMp1SubscriptionLinkList"
+          }
+        }
+      },
+      "ApplicationsSubscriptions.201": {
+        "description": "Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created.",
+        "headers": {
+          "location": {
+            "description": "The resource URI of the created resource",
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            }
           }
         },
-        "dstPort": {
-          "description": "A port or a range of ports",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.Port"
+        "content": {
+          "application/json": {
+            "schema": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/AppTerminationNotificationSubscription"
+                },
+                {
+                  "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription"
+                }
+              ]
+            }
           }
         },
-        "protocol": {
-          "description": "Specify the protocol of the traffic filter",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.Protocol"
+        "links": {
+          "getIndividualMeMp1Subscription": {
+            "$ref": "#/components/links/GetIndividualMeMp1Subscription"
+          },
+          "delIndividualMeMp1Subscription": {
+            "$ref": "#/components/links/DelIndividualMeMp1Subscription"
+          }
+        }
+      },
+      "ApplicationsSubscription.200": {
+        "description": "Upon success, a response body containing the requested subscription is returned.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/AppTerminationNotificationSubscription"
+                },
+                {
+                  "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "ApplicationsTrafficRules.200": {
+        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/components/schemas/TrafficRule"
+              }
+            },
+            "examples": {
+              "TrafficRules": {
+                "$ref": "#/components/examples/TrafficRules"
+              }
+            }
           }
         },
-        "token": {
-          "description": "Used for token based traffic rule",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.Token"
+        "links": {
+          "getIndividualMeTrafficRule": {
+            "$ref": "#/components/links/GetIndividualMeTrafficRule"
+          },
+          "putIndividualMeTrafficRule": {
+            "$ref": "#/components/links/PutIndividualMeTrafficRule"
+          }
+        }
+      },
+      "ApplicationsTrafficRule.200": {
+        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TrafficRule"
+            },
+            "examples": {
+              "TrafficRule": {
+                "$ref": "#/components/examples/TrafficRule"
+              }
+            }
+          }
+        }
+      },
+      "Services.200": {
+        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/components/schemas/ServiceInfo"
+              }
+            },
+            "examples": {
+              "ServiceInfoList": {
+                "$ref": "#/components/examples/ServiceInfoList"
+              }
+            }
           }
         },
-        "srcTunnelAddress": {
-          "description": "Used for GTP tunnel based traffic rule",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.TunnelAddress"
+        "links": {
+          "getIndividualMeService": {
+            "$ref": "#/components/links/GetIndividualMeService"
+          },
+          "putIndividualMeService": {
+            "$ref": "#/components/links/PutIndividualMeService"
+          }
+        }
+      },
+      "Services.201": {
+        "description": "Upon success, the HTTP response shall include a Location HTTP header that contains the resource URI of the created resource.",
+        "headers": {
+          "location": {
+            "description": "The resource URI of the created resource",
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            }
           }
         },
-        "tgtTunnelAddress": {
-          "description": "Used for GTP tunnel based traffic rule",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.TunnelAddress"
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceInfo"
+            },
+            "examples": {
+              "ServiceInfo": {
+                "$ref": "#/components/examples/ServiceInfo"
+              }
+            }
           }
         },
-        "srcTunnelPort": {
-          "description": "Used for GTP tunnel based traffic rule",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.TunnelPort"
+        "links": {
+          "getIndividualMeService": {
+            "$ref": "#/components/links/GetIndividualMeService"
+          },
+          "putIndividualMeService": {
+            "$ref": "#/components/links/PutIndividualMeService"
+          }
+        }
+      },
+      "ServicesServiceId.200": {
+        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceInfo"
+            },
+            "examples": {
+              "ServiceInfo": {
+                "$ref": "#/components/examples/ServiceInfo"
+              }
+            }
+          }
+        }
+      },
+      "TimingCurrentTime.200": {
+        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CurrentTime"
+            }
+          }
+        }
+      },
+      "TimingCaps.200": {
+        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TimingCaps"
+            }
+          }
+        }
+      },
+      "Transports.200": {
+        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/components/schemas/TransportInfo"
+              }
+            }
           }
         },
-        "dstTunnelPort": {
-          "description": "Used for GTP tunnel based traffic rule",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter.TunnelPort"
+        "links": {
+          "getTransportInfo": {
+            "$ref": "#/components/links/GetTransportInfo"
           }
-        },
-        "qCI": {
-          "$ref": "#/definitions/TrafficFilter.QCI"
-        },
-        "dSCP": {
-          "$ref": "#/definitions/TrafficFilter.DSCP"
-        },
-        "tC": {
-          "$ref": "#/definitions/TrafficFilter.TC"
+        }
+      },
+      "Error.400": {
+        "description": "Bad Request",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/Empty"
+            }
+          }
+        }
+      },
+      "Error.403": {
+        "description": "Forbidden",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          }
+        }
+      },
+      "Error.404": {
+        "description": "Not Found",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/Empty"
+            }
+          }
+        }
+      },
+      "Error.412": {
+        "description": "Precondition Failed",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/Empty"
+            }
+          }
         }
       }
     },
-    "TrafficRule.Action": {
-      "description": "The action of the ME host data plane when a packet matches the trafficFilter",
-      "type": "string",
-      "enum": [
-        "DROP",
-        "FORWARD_DECAPSULATED",
-        "FORWARD_AS_IS",
-        "PASSTHROUGH",
-        "DUPLICATE_DECAPSULATED",
-        "DUPLICATE_AS_IS"
-      ],
-      "example": "DROP"
-    },
-    "TrafficRule.FilterType": {
-      "description": "Definition of filter per FLOW or PACKET. If flow the filter match UE->EPC packet and the reverse packet is handled in the same context",
-      "type": "string",
-      "enum": [
-        "FLOW",
-        "PACKET"
-      ],
-      "example": "FLOW"
-    },
-    "TrafficRule.Id": {
-      "description": "Identify the traffic rule.",
-      "type": "string",
-      "example": "TrafficRule1"
-    },
-    "TrafficRule.Priority": {
-      "description": "Priority of this traffic rule. If traffic rule conflicts, the one with higher priority take precedence",
-      "type": "integer",
-      "format": "uint32",
-      "example": 1
-    },
-    "TrafficRule.State": {
-      "description": "Contains the traffic rule state",
-      "type": "string",
-      "enum": [
-        "ACTIVE",
-        "INACTIVE"
-      ],
-      "example": "ACTIVE"
-    },
-    "TrafficRule": {
-      "description": "This type represents the general information of a traffic rule.",
-      "type": "object",
-      "required": [
-        "trafficRuleId",
-        "filterType",
-        "priority",
-        "trafficFilter",
-        "action",
-        "state"
-      ],
-      "properties": {
-        "trafficRuleId": {
-          "$ref": "#/definitions/TrafficRule.Id"
-        },
-        "filterType": {
-          "$ref": "#/definitions/TrafficRule.FilterType"
-        },
-        "priority": {
-          "$ref": "#/definitions/TrafficRule.Priority"
-        },
-        "trafficFilter": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TrafficFilter"
+    "requestBodies": {
+      "ApplicationsDnsRule": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DnsRule"
+            }
           }
         },
-        "action": {
-          "$ref": "#/definitions/TrafficRule.Action"
+        "description": "The updated state is included in the entity body of the request.",
+        "required": true
+      },
+      "ApplicationsSubscriptions": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/AppTerminationNotificationSubscription"
+                },
+                {
+                  "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription"
+                }
+              ]
+            }
+          }
         },
-        "dstInterface": {
-          "$ref": "#/definitions/DestinationInterface"
+        "description": "Entity body in the request contains a subscription to the mobile edge application termination notifications that is to be created.",
+        "required": true
+      },
+      "ApplicationsTrafficRule": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TrafficRule"
+            }
+          }
         },
-        "state": {
-          "$ref": "#/definitions/TrafficRule.State"
+        "description": "One or more updated attributes that are allowed to be changed",
+        "required": true
+      },
+      "Services": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceInfo"
+            }
+          }
+        },
+        "description": "New ServiceInfo with updated \"state\" is included as entity body of the request",
+        "required": true
+      },
+      "Services.Post": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceInfo.Post"
+            }
+          }
+        },
+        "description": "New ServiceInfo with updated \"state\" is included as entity body of the request",
+        "required": true
+      },
+      "ServicesServiceId": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceInfo"
+            }
+          }
+        },
+        "description": "New ServiceInfo with updated \"state\" is included as entity body of the request",
+        "required": true
+      },
+      "AppTerminationNotification": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AppTerminationNotification"
+            }
+          }
+        }
+      },
+      "ServiceAvailabilityNotification": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceAvailabilityNotification"
+            }
+          }
         }
       }
     },
-    "TransportInfo.Description": {
-      "description": "Human-readable description of this transport",
-      "type": "string",
-      "example": "REST API"
-    },
-    "TransportInfo.Id": {
-      "description": "The identifier of this transport",
-      "type": "string",
-      "example": "TransId12345"
-    },
-    "TransportInfo.ImplSpecificInfo": {
-      "description": "Additional implementation specific details of the transport",
-      "type": "object"
-    },
-    "TransportInfo.Name": {
-      "description": "The name of this transport",
-      "type": "string",
-      "example": "REST"
-    },
-    "TransportInfo.Protocol": {
-      "description": "The name of the protocol used. Shall be set to HTTP for a REST API.",
-      "type": "string",
-      "example": "HTTP"
-    },
-    "TransportInfo.Version": {
-      "description": "The version of the protocol used",
-      "type": "string",
-      "example": "2.0"
-    },
-    "TransportInfo": {
-      "description": "This type represents the general information of a mobile edge service.",
-      "type": "object",
-      "required": [
-        "id",
-        "name",
-        "type",
-        "protocol",
-        "version",
-        "endpoint",
-        "security"
-      ],
-      "properties": {
-        "id": {
-          "$ref": "#/definitions/TransportInfo.Id"
-        },
-        "name": {
-          "$ref": "#/definitions/TransportInfo.Name"
-        },
-        "description": {
-          "$ref": "#/definitions/TransportInfo.Description"
-        },
-        "type": {
-          "$ref": "#/definitions/TransportTypes"
-        },
-        "protocol": {
-          "$ref": "#/definitions/TransportInfo.Protocol"
-        },
-        "version": {
-          "$ref": "#/definitions/TransportInfo.Version"
-        },
-        "endpoint": {
-          "$ref": "#/definitions/EndPointInfo"
-        },
-        "security": {
-          "$ref": "#/definitions/SecurityInfo"
-        },
-        "implSpecificInfo": {
-          "$ref": "#/definitions/TransportInfo.ImplSpecificInfo"
+    "callbacks": {
+      "AppTerminationNotification": {
+        "{$request.body#/callbackReference}": {
+          "post": {
+            "description": "Represents the information that the MEP notifies the subscribed application instance about the corresponding  application instance termination/stop",
+            "operationId": "AppTerminationNotification_POST",
+            "tags": [
+              "callback"
+            ],
+            "requestBody": {
+              "$ref": "#/components/requestBodies/AppTerminationNotification"
+            },
+            "responses": {
+              "200": {
+                "description": "Expected responses from callback consumer, if it accepts the callback"
+              }
+            }
+          }
+        }
+      },
+      "ServiceAvailabilityNotification": {
+        "{$request.body#/callbackReference}": {
+          "post": {
+            "description": "'Represents the service availability information that  is used in the following cases - when the MEC platform announces the newly available\n services to the authorized relevant MEC applications (e.g. \n the applications that indicate the services as \"optional\" \n or \"required\") that are subscribed to the corresponding \n service availability notifications\n-  when the MEC platform notifies the authorized relevant  applications that are subscribed to the corresponding  service availability notifications about the service availability changes.'",
+            "operationId": "ServiceAvailabilityNotification_POST",
+            "tags": [
+              "callback"
+            ],
+            "requestBody": {
+              "$ref": "#/components/requestBodies/ServiceAvailabilityNotification"
+            },
+            "responses": {
+              "200": {
+                "description": "Expected responses from callback consumer, if it accepts the callback"
+              }
+            }
+          }
         }
       }
     },
-    "TransportTypes": {
-      "description": "The enumeration TransportTypes represents types of transports",
-      "type": "string",
-      "enum": [
-        "REST_HTTP",
-        "MB_TOPIC_BASED",
-        "MB_ROUTING",
-        "MB_PUBSUB",
-        "RPC",
-        "RPC_STREAMING",
-        "WEBSOCKET"
-      ],
-      "example": "REST_HTTP"
-    },
-    "TunnelInfo.TunnelDstAddress": {
-      "description": "Destination address of the tunnel",
-      "type": "string",
-      "example": "?"
-    },
-    "TunnelInfo.TunnelSrcAddress": {
-      "description": "Source address of the tunnel",
-      "type": "string",
-      "example": "?"
-    },
-    "TunnelInfo.TunnelType": {
-      "description": "This type represents the tunnel information.",
-      "type": "string",
-      "enum": [
-        "GTP_U",
-        "GRE"
-      ],
-      "example": "GTP_U"
-    },
-    "TunnelInfo": {
-      "description": "This type represents the tunnel information.",
-      "type": "object",
-      "required": [
-        "tunnelType"
-      ],
-      "properties": {
-        "tunnelType": {
-          "$ref": "#/definitions/TunnelInfo.TunnelType"
-        },
-        "tunnelDstAddress": {
-          "$ref": "#/definitions/TunnelInfo.TunnelDstAddress"
-        },
-        "tunnelSrcAddress": {
-          "$ref": "#/definitions/TunnelInfo.TunnelSrcAddress"
+    "links": {
+      "GetIndividualMeService": {
+        "operationId": "ServicesServiceId_GET",
+        "description": "The `serviceId` value returned in the response can be used as the `serviceId` parameter in `GET /services/{serviceId}`",
+        "parameters": {
+          "serviceId": "$response.body#/serviceId"
         }
+      },
+      "PutIndividualMeService": {
+        "operationId": "ServicesServiceId_PUT",
+        "description": "The `serviceId` value returned in the response can be used as the `serviceId` parameter in `PUT /services/{serviceId}`",
+        "parameters": {
+          "serviceId": "$response.body#/serviceId"
+        }
+      },
+      "GetIndividualMeDNSRule": {
+        "operationId": "ApplicationsDnsRule_GET",
+        "description": "The `dnsRuleId` value returned in the response can be used as the `dnsRuleId` parameter in `GET /applications/{appInstanceId}/dns_rules/{dnsRuleId}`",
+        "parameters": {
+          "dnsRuleId": "$response.body#/dnsRuleId"
+        }
+      },
+      "PutIndividualMeDNSRule": {
+        "operationId": "ApplicationsDnsRule_PUT",
+        "description": "The `dnsRuleId` value returned in the response can be used as the `dnsRuleId` parameter in `PUT /applications/{appInstanceId}/dns_rules/{dnsRuleId}`",
+        "parameters": {
+          "dnsRuleId": "$response.body#/dnsRuleId"
+        }
+      },
+      "GetIndividualMeTrafficRule": {
+        "operationId": "ApplicationsTrafficRule_GET",
+        "description": "The `trafficRuleId` value returned in the response can be used as the `trafficRuleId` parameter in `GET /applications/{appInstanceId}/traffic_rules/{trafficRuleId}`",
+        "parameters": {
+          "trafficRuleId": "$response.body#/trafficRuleId"
+        }
+      },
+      "PutIndividualMeTrafficRule": {
+        "operationId": "ApplicationsTrafficRule_PUT",
+        "description": "The `trafficRuleId` value returned in the response can be used as the `trafficRuleId` parameter in `PUT /applications/{appInstanceId}/traffic_rules/{trafficRuleId}`",
+        "parameters": {
+          "trafficRuleId": "$response.body#/trafficRuleId"
+        }
+      },
+      "GetTransportInfo": {
+        "operationId": "AppServices_POST",
+        "description": "The `id` value returned in the response can be used as the `transportId` parameter in `POST /applications/{appInstanceId}/services`. The first transport is provided as the link as wildcards are not supported",
+        "parameters": {
+          "transportId": "$response.body#/0/id"
+        }
+      },
+      "GetIndividualMeMp1Subscription": {
+        "operationId": "ApplicationsSubscription_GET",
+        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
+        "parameters": {
+          "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
+          "subscriptionId": "TBC"
+        }
+      },
+      "DelIndividualMeMp1Subscription": {
+        "operationId": "ApplicationsSubscription_DELETE",
+        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
+        "parameters": {
+          "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
+          "subscriptionId": "TBC"
+        }
+      },
+      "GetIndividualMeMp1SubscriptionLinkList": {
+        "operationId": "ApplicationsSubscription_GET",
+        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
+        "parameters": {
+          "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
+          "subscriptionId": "TBC"
+        }
+      },
+      "DelIndividualMeMp1SubscriptionLinkList": {
+        "operationId": "ApplicationsSubscription_DELETE",
+        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
+        "parameters": {
+          "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
+          "subscriptionId": "TBC"
+        }
+      }
+    },
+    "examples": {
+      "DnsRule": {
+        "value": {
+          "dnsRuleId": "DnsRule1",
+          "domainName": "www.example.com",
+          "ipAddressType": "IP_V4",
+          "ipAddress": "146.241.7.3",
+          "ttl": 300,
+          "state": "ACTIVE"
+        }
+      },
+      "DnsRules": {
+        "value": [
+          {
+            "dnsRuleId": "DnsRule1",
+            "domainName": "www.example.com",
+            "ipAddressType": "IP_V4",
+            "ipAddress": "146.241.7.3",
+            "ttl": 300,
+            "state": "ACTIVE"
+          }
+        ]
+      },
+      "ServiceInfo": {
+        "value": {
+          "serInstanceId": "ServiceInstance123",
+          "serName": "ExampleService",
+          "serCategory": {
+            "href": "catItem1",
+            "id": "id12345",
+            "name": "RNI",
+            "version": "version1"
+          },
+          "version": "ServiceVersion1",
+          "state": "ACTIVE",
+          "transportInfo": {
+            "id": "TransId12345",
+            "name": "REST",
+            "description": "REST API",
+            "type": "REST_HTTP",
+            "protocol": "HTTP",
+            "version": "2.0",
+            "endpoint": {
+              "uris": [
+                "/meMp1/service/EntryPoint"
+              ]
+            },
+            "security": {
+              "oAuth2Info": {
+                "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
+                "tokenEndpoint": "/meMp1/security/TokenEndPoint"
+              }
+            }
+          },
+          "serializer": "JSON"
+        }
+      },
+      "ServiceInfoList": {
+        "value": [
+          {
+            "serInstanceId": "ServiceInstance123",
+            "serName": "ExampleService",
+            "serCategory": {
+              "href": "catItem1",
+              "id": "id12345",
+              "name": "RNI",
+              "version": "version1"
+            },
+            "version": "ServiceVersion1",
+            "state": "ACTIVE",
+            "transportInfo": {
+              "id": "TransId12345",
+              "name": "REST",
+              "description": "REST API",
+              "type": "REST_HTTP",
+              "protocol": "HTTP",
+              "version": "2.0",
+              "endpoint": {
+                "addresses": [
+                  {
+                    "host": "192.0.2.0",
+                    "port": 8080
+                  }
+                ]
+              },
+              "security": {
+                "oAuth2Info": {
+                  "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
+                  "tokenEndpoint": "/meMp1/security/TokenEndPoint"
+                }
+              }
+            },
+            "serializer": "JSON"
+          }
+        ]
+      },
+      "TrafficRule": {
+        "value": {
+          "trafficRuleId": "TrafficRule123",
+          "serName": "ExampleService",
+          "filterType": "FLOW",
+          "priority": 1,
+          "trafficFilter": [
+            {
+              "srcAddress": [
+                "192.168.2.0/24",
+                "192.168.3.0/24"
+              ],
+              "dstAddress": [
+                "192.127.4.100/32"
+              ],
+              "dstPort": [
+                "80"
+              ]
+            }
+          ],
+          "action": "FORWARD_DECAPSULATED",
+          "dstInterface": {
+            "interfaceType": "IP",
+            "dstIpAddress": "20.1.1.1"
+          },
+          "state": "ACTIVE"
+        }
+      },
+      "TrafficRules": {
+        "value": [
+          {
+            "trafficRuleId": "TrafficRule123",
+            "serName": "ExampleService",
+            "filterType": "FLOW",
+            "priority": 1,
+            "trafficFilter": [
+              {
+                "srcAddress": [
+                  "192.168.2.0/24",
+                  "192.168.3.0/24"
+                ],
+                "dstAddress": [
+                  "192.127.4.100/32"
+                ],
+                "dstPort": [
+                  "80"
+                ]
+              }
+            ],
+            "action": "FORWARD_DECAPSULATED",
+            "dstInterface": {
+              "interfaceType": "IP",
+              "dstIpAddress": "20.1.1.1"
+            },
+            "state": "ACTIVE"
+          }
+        ]
       }
     }
   }

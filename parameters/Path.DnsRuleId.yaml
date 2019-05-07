@@ -1,5 +1,0 @@
-name: dnsRuleId
-description: Represents a DNS rule.
-in: path
-required: true
-type: string

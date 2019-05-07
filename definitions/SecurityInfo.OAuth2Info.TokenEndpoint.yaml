@@ -1,4 +1,0 @@
-description: The token endpoint
-type: string
-format: uri
-example: '/meMp1/security/TokenEndPoint'

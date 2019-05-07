@@ -1,8 +1,0 @@
-name: subscriptionType
-description: Represents a subscription type to the notifications from the mobile edge platform.
-in: path
-required: true
-type: string
-enum:
-- SerAvailabilityNotificationSubscription
-- AppTerminationNotificationSubscription

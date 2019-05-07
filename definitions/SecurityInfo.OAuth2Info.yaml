@@ -1,9 +1,0 @@
-description: Parameters related to use of OAuth 2.0
-required:
-- grantTypes
-- tokenEndpoint
-properties:
-  grantTypes:
-    $ref: '#/definitions/SecurityInfo.OAuth2Info.GrantTypes'
-  tokenEndpoint:
-    $ref: '#/definitions/SecurityInfo.OAuth2Info.TokenEndpoint'
