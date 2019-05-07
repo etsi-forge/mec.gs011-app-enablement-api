@@ -10,7 +10,7 @@
   ],
   "info": {
     "title": "Mp1 API",
-    "version": "2.0.5",
+    "version": "2.0.8",
     "description": "The ETSI MEC ISG MEC011 Application Enablement API described using OpenAPI",
     "license": {
       "name": "ETSI Forge copyright notice",
@@ -21,18 +21,24 @@
     }
   },
   "externalDocs": {
-    "description": "ETSI GS MEC011 Application Enablement API, V2.0.5",
-    "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0011v211Plat.App.Enabl/MEC-0011v211Plat.App.Enablv205.zip"
+    "description": "ETSI GS MEC011 Application Enablement API, V2.0.8",
+    "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0011v211Plat.App.Enabl/MEC-0011v211Plat.App.Enablv208.zip"
   },
   "tags": [
     {
-      "name": "trafficRules"
+      "name": "appTrafficRules"
     },
     {
-      "name": "dnsRules"
+      "name": "appDnsRules"
     },
     {
-      "name": "subscriptions"
+      "name": "appSubscriptions"
+    },
+    {
+      "name": "appConfirmTermination"
+    },
+    {
+      "name": "appServices"
     },
     {
       "name": "services"
@@ -48,6 +54,40 @@
     }
   ],
   "paths": {
+    "/applications/{appInstanceId}/confirm_termination": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Path.AppInstanceId"
+        }
+      ],
+      "post": {
+        "description": "This method is used to confirm the application level termination  of an application instance.",
+        "operationId": "ApplicationsConfirmTermination_POST",
+        "tags": [
+          "appConfirmTermination"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error.401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error.403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error.404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error.409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error.429"
+          }
+        }
+      }
+    },
     "/applications/{appInstanceId}/dns_rules": {
       "parameters": [
         {
@@ -58,7 +98,7 @@
         "description": "This method retrieves information about all the DNS rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsDnsRules_GET",
         "tags": [
-          "trafficRules"
+          "appTrafficRules"
         ],
         "responses": {
           "200": {
@@ -89,7 +129,7 @@
         "description": "This method retrieves information about a DNS rule associated with a mobile edge application instance.",
         "operationId": "ApplicationsDnsRule_GET",
         "tags": [
-          "dnsRules"
+          "appDnsRules"
         ],
         "responses": {
           "200": {
@@ -110,7 +150,7 @@
         "description": "This method activates, de-activates or updates a traffic rule.",
         "operationId": "ApplicationsDnsRule_PUT",
         "tags": [
-          "dnsRules"
+          "appDnsRules"
         ],
         "responses": {
           "200": {
@@ -144,7 +184,7 @@
         "description": "The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.",
         "operationId": "ApplicationsSubscriptions_GET",
         "tags": [
-          "subscriptions"
+          "appSubscriptions"
         ],
         "responses": {
           "200": {
@@ -165,7 +205,7 @@
         "description": "The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription.",
         "operationId": "ApplicationsSubscriptions_POST",
         "tags": [
-          "subscriptions"
+          "appSubscriptions"
         ],
         "responses": {
           "201": {
@@ -210,7 +250,7 @@
         "description": "The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.",
         "operationId": "ApplicationsSubscription_GET",
         "tags": [
-          "subscriptions"
+          "appSubscriptions"
         ],
         "responses": {
           "200": {
@@ -231,7 +271,7 @@
         "description": "This method deletes a meMp1Subscription. This method is typically used in \"Unsubscribing from service availability event notifications\" procedure.",
         "operationId": "ApplicationsSubscription_DELETE",
         "tags": [
-          "subscriptions"
+          "appSubscriptions"
         ],
         "responses": {
           "204": {
@@ -256,7 +296,7 @@
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsTrafficRules_GET",
         "tags": [
-          "trafficRules"
+          "appTrafficRules"
         ],
         "responses": {
           "200": {
@@ -287,7 +327,7 @@
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsTrafficRule_GET",
         "tags": [
-          "trafficRules"
+          "appTrafficRules"
         ],
         "responses": {
           "200": {
@@ -308,7 +348,7 @@
         "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsTrafficRule_PUT",
         "tags": [
-          "trafficRules"
+          "appTrafficRules"
         ],
         "responses": {
           "200": {
@@ -342,7 +382,7 @@
         "description": "This method retrieves information about a list of meService resources. This method is typically used in \"service availability query\" procedure",
         "operationId": "AppServices_GET",
         "tags": [
-          "services"
+          "appServices"
         ],
         "parameters": [
           {
@@ -383,7 +423,7 @@
         "description": "This method is used to create a meService resource. This method is typically used in \"service availability update and new service registration\" procedure",
         "operationId": "AppServices_POST",
         "tags": [
-          "services"
+          "appServices"
         ],
         "responses": {
           "201": {
@@ -417,7 +457,7 @@
         "description": "This method retrieves information about a meService resource. This method is typically used in \"service availability query\" procedure",
         "operationId": "AppServicesServiceId_GET",
         "tags": [
-          "services"
+          "appServices"
         ],
         "responses": {
           "200": {
@@ -438,7 +478,7 @@
         "description": "This method updates the information about a meService resource",
         "operationId": "AppServicesServiceId_PUT",
         "tags": [
-          "services"
+          "appServices"
         ],
         "responses": {
           "200": {
@@ -466,6 +506,9 @@
       "get": {
         "description": "This method retrieves information about a list of meService resources. This method is typically used in \"service availability query\" procedure",
         "operationId": "Services_GET",
+        "tags": [
+          "services"
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/Query.Ser_instance_id"
@@ -511,6 +554,9 @@
       "get": {
         "description": "This method retrieves information about a meService resource. This method is typically used in \"service availability query\" procedure",
         "operationId": "ServicesServiceId_GET",
+        "tags": [
+          "services"
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/ServicesServiceId.200"
@@ -602,6 +648,21 @@
       "Empty": {
         "description": "Empty schema"
       },
+      "AppTerminationNotification.Links": {
+        "description": "List of hyperlinks related to the resource.",
+        "type": "object",
+        "required": [
+          "subscription"
+        ],
+        "properties": {
+          "subscription": {
+            "$ref": "#/components/schemas/LinkType"
+          },
+          "confirmTermination": {
+            "$ref": "#/components/schemas/LinkType.ConfirmTermination"
+          }
+        }
+      },
       "AppTerminationNotification.MaxGracefulTimeout": {
         "description": "Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.",
         "type": "integer",
@@ -629,7 +690,7 @@
             "$ref": "#/components/schemas/AppTerminationNotification.MaxGracefulTimeout"
           },
           "_links": {
-            "$ref": "#/components/schemas/Subscription"
+            "$ref": "#/components/schemas/AppTerminationNotification.Links"
           }
         }
       },
@@ -683,7 +744,7 @@
         "example": "id12345"
       },
       "CategoryRef.Name": {
-        "description": "Name of the category",
+        "description": "Name of the category, example values include RNI, Location & Bandwidth Management",
         "type": "string",
         "example": "RNI"
       },
@@ -948,6 +1009,15 @@
           }
         }
       },
+      "LinkType.ConfirmTermination": {
+        "description": "Link to the task resource where to confirm termination in case the  application is ready to be terminated before expiry of the timeout.",
+        "type": "object",
+        "properties": {
+          "href": {
+            "$ref": "#/components/schemas/Href"
+          }
+        }
+      },
       "Href": {
         "description": "URI referring to a resource",
         "type": "string",
@@ -964,8 +1034,8 @@
           "self": {
             "$ref": "#/components/schemas/LinkType"
           },
-          "subscription": {
-            "description": "Subscription list",
+          "subscriptions": {
+            "description": "The MEC application instance's subscriptions",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Mp1SubscriptionLinkList.Subscription"
@@ -1322,40 +1392,6 @@
           },
           "isLocal": {
             "$ref": "#/components/schemas/ServiceInfo.IsLocal"
-          }
-        }
-      },
-      "ServiceInfo": {
-        "description": "This type represents the general information of a mobile edge service.",
-        "type": "object",
-        "required": [
-          "serName",
-          "version",
-          "state",
-          "transportInfo",
-          "serializer"
-        ],
-        "properties": {
-          "serInstanceId": {
-            "$ref": "#/components/schemas/ServiceInfo.SerInstanceId"
-          },
-          "serName": {
-            "$ref": "#/components/schemas/ServiceInfo.SerName"
-          },
-          "serCategory": {
-            "$ref": "#/components/schemas/CategoryRef"
-          },
-          "version": {
-            "$ref": "#/components/schemas/ServiceInfo.Version"
-          },
-          "state": {
-            "$ref": "#/components/schemas/ServiceInfo.State"
-          },
-          "transportInfo": {
-            "$ref": "#/components/schemas/TransportInfo"
-          },
-          "serializer": {
-            "$ref": "#/components/schemas/SerializerTypes"
           }
         }
       },
@@ -2273,7 +2309,22 @@
         }
       },
       "Error.400": {
-        "description": "Bad Request",
+        "description": "Bad Request. It is used to indicate that incorrect parameters were passed to the request.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/Empty"
+            }
+          }
+        }
+      },
+      "Error.401": {
+        "description": "Unauthorized. It is used when the client did not submit the appropriate credentials.",
         "content": {
           "application/problem+json": {
             "schema": {
@@ -2288,7 +2339,7 @@
         }
       },
       "Error.403": {
-        "description": "Forbidden",
+        "description": "Forbidden. The operation is not allowed given the current status of the resource. ",
         "content": {
           "application/problem+json": {
             "schema": {
@@ -2298,7 +2349,22 @@
         }
       },
       "Error.404": {
-        "description": "Not Found",
+        "description": "Not Found. It is used when a client provided a URI that cannot be mapped  to a valid resource URI.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/Empty"
+            }
+          }
+        }
+      },
+      "Error.409": {
+        "description": "Conflict. The operation cannot be executed currently, due to a conflict with  the state of the resource. Typically, this is because the application  instance resource is in NOT_INSTANTIATED state.",
         "content": {
           "application/problem+json": {
             "schema": {
@@ -2313,7 +2379,22 @@
         }
       },
       "Error.412": {
-        "description": "Precondition Failed",
+        "description": "Precondition Failed. It is used when a condition has failed during conditional requests,  e.g. when using ETags to avoid write conflicts.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/Empty"
+            }
+          }
+        }
+      },
+      "Error.429": {
+        "description": "Too Many Requests. It is used when a rate limiter has triggered.",
         "content": {
           "application/problem+json": {
             "schema": {
@@ -2409,7 +2490,8 @@
               "$ref": "#/components/schemas/AppTerminationNotification"
             }
           }
-        }
+        },
+        "required": true
       },
       "ServiceAvailabilityNotification": {
         "content": {
@@ -2418,7 +2500,8 @@
               "$ref": "#/components/schemas/ServiceAvailabilityNotification"
             }
           }
-        }
+        },
+        "required": true
       }
     },
     "callbacks": {
