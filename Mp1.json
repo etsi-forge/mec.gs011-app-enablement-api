@@ -98,7 +98,7 @@
         "description": "This method retrieves information about all the DNS rules associated with a mobile edge application instance.",
         "operationId": "ApplicationsDnsRules_GET",
         "tags": [
-          "appTrafficRules"
+          "appDnsRules"
         ],
         "responses": {
           "200": {
@@ -890,7 +890,7 @@
         "description": "Time to live value",
         "type": "integer",
         "format": "uint32",
-        "example": "?"
+        "example": 300
       },
       "DnsRule": {
         "description": "This type represents the general information of a DNS rule.",
@@ -2647,6 +2647,14 @@
             "ipAddress": "146.241.7.3",
             "ttl": 300,
             "state": "ACTIVE"
+          },
+          {
+            "dnsRuleId": "DnsRule2",
+            "domainName": "www.example.com",
+            "ipAddressType": "IP_V4",
+            "ipAddress": "146.241.7.4",
+            "ttl": 300,
+            "state": "INACTIVE"
           }
         ]
       },

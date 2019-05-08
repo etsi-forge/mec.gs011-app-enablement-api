@@ -58,7 +58,7 @@ paths:
         with a mobile edge application instance.
       operationId: ApplicationsDnsRules_GET
       tags:
-        - appTrafficRules
+        - appDnsRules
       responses:
         '200':
           $ref: '#/components/responses/ApplicationsDnsRules.200'
@@ -2018,6 +2018,12 @@ components:
           ipAddress: '146.241.7.3'
           ttl: 300
           state: 'ACTIVE'
+        - dnsRuleId: 'DnsRule2'
+          domainName: 'www.example.com'
+          ipAddressType: 'IP_V4'
+          ipAddress: '146.241.7.4'
+          ttl: 300
+          state: 'INACTIVE'
     ServiceInfo:
       value:
         serInstanceId: 'ServiceInstance123'
