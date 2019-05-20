@@ -992,7 +992,13 @@
         ],
         "properties": {
           "grantTypes": {
-            "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.GrantTypes"
+            "description": "List of supported OAuth 2.0 grant types.",
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.GrantTypes"
+            }
           },
           "tokenEndpoint": {
             "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.TokenEndpoint"
@@ -2409,7 +2415,9 @@
             },
             "security": {
               "oAuth2Info": {
-                "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
+                "grantTypes": [
+                  "OAUTH2_CLIENT_CREDENTIALS"
+                ],
                 "tokenEndpoint": "/meMp1/security/TokenEndPoint"
               }
             }
@@ -2447,7 +2455,9 @@
               },
               "security": {
                 "oAuth2Info": {
-                  "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
+                  "grantTypes": [
+                    "OAUTH2_CLIENT_CREDENTIALS"
+                  ],
                   "tokenEndpoint": "/meMp1/security/TokenEndPoint"
                 }
               }
