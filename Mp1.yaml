@@ -2053,7 +2053,8 @@ components:
               - '/meMp1/service/EntryPoint'
           security:
             oAuth2Info:
-              grantTypes: 'OAUTH2_CLIENT_CREDENTIALS'
+              grantTypes: 
+                - 'OAUTH2_CLIENT_CREDENTIALS'
               tokenEndpoint: '/meMp1/security/TokenEndPoint'
         serializer: 'JSON'
     ServiceInfoList:
@@ -2080,7 +2081,8 @@ components:
                   port: 8080
             security:
               oAuth2Info:
-                grantTypes: 'OAUTH2_CLIENT_CREDENTIALS'
+                grantTypes: 
+                  - 'OAUTH2_CLIENT_CREDENTIALS'
                 tokenEndpoint: '/meMp1/security/TokenEndPoint'
           serializer: 'JSON'
     TrafficRule:
