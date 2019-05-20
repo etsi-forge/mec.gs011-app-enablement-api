@@ -2690,7 +2690,9 @@
             },
             "security": {
               "oAuth2Info": {
-                "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
+                "grantTypes": [
+                  "OAUTH2_CLIENT_CREDENTIALS"
+                ],
                 "tokenEndpoint": "/meMp1/security/TokenEndPoint"
               }
             }
@@ -2728,7 +2730,9 @@
               },
               "security": {
                 "oAuth2Info": {
-                  "grantTypes": "OAUTH2_CLIENT_CREDENTIALS",
+                  "grantTypes": [
+                    "OAUTH2_CLIENT_CREDENTIALS"
+                  ],
                   "tokenEndpoint": "/meMp1/security/TokenEndPoint"
                 }
               }
