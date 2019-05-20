@@ -835,7 +835,13 @@ components:
         - tokenEndpoint
       properties:
         grantTypes:
-          $ref: '#/components/schemas/SecurityInfo.OAuth2Info.GrantTypes'
+          description: >-
+            List of supported OAuth 2.0 grant types.
+          type: array
+          minItems: 1
+          maxItems: 4
+          items:
+            $ref: '#/components/schemas/SecurityInfo.OAuth2Info.GrantTypes'
         tokenEndpoint:
           $ref: '#/components/schemas/SecurityInfo.OAuth2Info.TokenEndpoint'
       type: object
