@@ -151,10 +151,9 @@ paths:
           $ref: '#/components/callbacks/AppTerminationNotification'
         serviceAvailabilityNotification:
           $ref: '#/components/callbacks/ServiceAvailabilityNotification'
-  '/applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}':
+  '/applications/{appInstanceId}/subscriptions/{subscriptionId}':
     parameters:
       - $ref: '#/components/parameters/Path.AppInstanceId'
-      - $ref: '#/components/parameters/Path.SubscriptionType'
       - $ref: '#/components/parameters/Path.SubscriptionId'
     get:
       description: >-
@@ -1985,27 +1984,27 @@ components:
         transportId: '$response.body#/0/id'
     GetIndividualMeMp1Subscription:
       operationId: ApplicationsSubscription_GET
-      description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`
+      description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionId}`
       parameters:
         description: regex = \/mp1\/v1\/applications\/.*\/subscriptions\/.*\/(.*);subscriptionId = href.match(regex)[1];// where "href" is an attribute within the subscription attribute within the _links attribute
         subscriptionId: 'TBC'
     DelIndividualMeMp1Subscription:
       operationId: ApplicationsSubscription_DELETE
-      description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`
+      description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionId}`
       parameters:
-        description: regex = \/mp1\/v1\/applications\/.*\/subscriptions\/.*\/(.*);subscriptionId = href.match(regex)[1];// where "href" is an attribute within the subscription attribute within the _links attribute
+        description: regex = \/mp1\/v1\/applications\/.*\/subscriptions\/(.*);subscriptionId = href.match(regex)[1];// where "href" is an attribute within the subscription attribute within the _links attribute
         subscriptionId: 'TBC'
     GetIndividualMeMp1SubscriptionLinkList:
       operationId: ApplicationsSubscription_GET
-      description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`
+      description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionId}`
       parameters:
-        description: regex = \/mp1\/v1\/applications\/.*\/subscriptions\/.*\/(.*);subscriptionId = href.match(regex)[1];// where "href" is an attribute within the subscription attribute within the _links attribute
+        description: regex = \/mp1\/v1\/applications\/.*\/subscriptions\/(.*);subscriptionId = href.match(regex)[1];// where "href" is an attribute within the subscription attribute within the _links attribute
         subscriptionId: 'TBC'
     DelIndividualMeMp1SubscriptionLinkList:
       operationId: ApplicationsSubscription_DELETE
-      description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`
+      description: The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionId}`
       parameters:
-        description: regex = \/mp1\/v1\/applications\/.*\/subscriptions\/.*\/(.*);subscriptionId = href.match(regex)[1];// where "href" is an attribute within the subscription attribute within the _links attribute
+        description: regex = \/mp1\/v1\/applications\/.*\/subscriptions\/(.*);subscriptionId = href.match(regex)[1];// where "href" is an attribute within the subscription attribute within the _links attribute
         subscriptionId: 'TBC'
   examples:
     DnsRule:
