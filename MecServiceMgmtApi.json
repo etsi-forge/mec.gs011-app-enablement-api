@@ -10,7 +10,7 @@
   ],
   "info": {
     "title": "MEC Service Management API",
-    "version": "2.0.9",
+    "version": "2.0.10",
     "description": "The ETSI MEC ISG MEC011 MEC Service Management API described using OpenAPI",
     "license": {
       "name": "ETSI Forge copyright notice",
@@ -21,8 +21,8 @@
     }
   },
   "externalDocs": {
-    "description": "ETSI GS MEC011 Application Enablement API, V2.0.9",
-    "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0011v211Plat.App.Enabl/MEC-0011v211Plat.App.Enablv209.zip"
+    "description": "ETSI GS MEC011 Application Enablement API, V2.0.10",
+    "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0011v211Plat.App.Enabl/MEC-0011v211Plat.App.Enablv2010.zip"
   },
   "tags": [
     {
@@ -66,7 +66,7 @@
             "$ref": "#/components/parameters/Query.Is_local"
           },
           {
-            "$ref": "#/components/parameters/Query.LocalityTypes"
+            "$ref": "#/components/parameters/Query.LocalityType"
           }
         ],
         "responses": {
@@ -142,7 +142,7 @@
             "$ref": "#/components/parameters/Query.Is_local"
           },
           {
-            "$ref": "#/components/parameters/Query.LocalityTypes"
+            "$ref": "#/components/parameters/Query.LocalityType"
           }
         ],
         "responses": {
@@ -422,6 +422,14 @@
           }
         }
       },
+      "CategoryRefs": {
+        "description": "Categories of services about which to report events.",
+        "type": "array",
+        "minItems": 0,
+        "items": {
+          "type": "string"
+        }
+      },
       "EndPointInfo.Address.Host": {
         "description": "Host portion of the address",
         "type": "string",
@@ -605,8 +613,8 @@
         "format": "uri",
         "description": "A URI reference according to IETF RFC 3986 that identifies the problem type"
       },
-      "SecurityInfo.OAuth2Info.GrantTypes": {
-        "description": "List of supported OAuth 2.0 grant types",
+      "SecurityInfo.OAuth2Info.GrantType": {
+        "description": "OAuth 2.0 grant type",
         "type": "string",
         "enum": [
           "OAUTH2_AUTHORIZATION_CODE",
@@ -615,6 +623,15 @@
           "OAUTH2_CLIENT_CREDENTIALS"
         ],
         "example": "OAUTH2_CLIENT_CREDENTIALS"
+      },
+      "SecurityInfo.OAuth2Info.GrantTypes": {
+        "description": "List of supported OAuth 2.0 grant types.",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 4,
+        "items": {
+          "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.GrantType"
+        }
       },
       "SecurityInfo.OAuth2Info.TokenEndpoint": {
         "description": "The token endpoint",
@@ -630,13 +647,7 @@
         ],
         "properties": {
           "grantTypes": {
-            "description": "List of supported OAuth 2.0 grant types.",
-            "type": "array",
-            "minItems": 1,
-            "maxItems": 4,
-            "items": {
-              "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.GrantTypes"
-            }
+            "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.GrantTypes"
           },
           "tokenEndpoint": {
             "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.TokenEndpoint"
@@ -677,8 +688,7 @@
         "required": [
           "subscriptionType",
           "callbackReference",
-          "_links",
-          "filteringCriteria"
+          "_links"
         ],
         "properties": {
           "subscriptionType": {
@@ -691,7 +701,35 @@
             "$ref": "#/components/schemas/Self"
           },
           "filteringCriteria": {
-            "$ref": "#/components/schemas/ServiceInfo"
+            "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription.FilteringCriteria"
+          }
+        }
+      },
+      "SerAvailabilityNotificationSubscription.FilteringCriteria": {
+        "description": "Filtering criteria to match services for which events are requested to be reported. If absent, matches all services. All child attributes are combined with the logical  \"AND\" operation.",
+        "type": "object",
+        "not": {
+          "required": [
+            "serInstanceIds",
+            "serNames",
+            "serCategories"
+          ]
+        },
+        "properties": {
+          "serInstanceIds": {
+            "$ref": "#/components/schemas/SerInstanceIds"
+          },
+          "serNames": {
+            "$ref": "#/components/schemas/SerNames"
+          },
+          "serCategories": {
+            "$ref": "#/components/schemas/CategoryRefs"
+          },
+          "states": {
+            "$ref": "#/components/schemas/ServiceStates"
+          },
+          "isLocal": {
+            "$ref": "#/components/schemas/ServiceInfo.IsLocal"
           }
         }
       },
@@ -705,17 +743,17 @@
         "type": "object",
         "required": [
           "notificationType",
-          "services",
+          "serviceReferences",
           "_links"
         ],
         "properties": {
           "notificationType": {
             "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription.SubscriptionType"
           },
-          "services": {
+          "serviceReferences": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ServiceInfo"
+              "$ref": "#/components/schemas/ServiceAvailabilityNotification.ServiceReferences"
             }
           },
           "_links": {
@@ -723,8 +761,45 @@
           }
         }
       },
-      "SerializerTypes": {
-        "description": "The enumeration SerializerTypes represents types of serializers",
+      "ServiceAvailabilityNotification.ServiceReferences": {
+        "description": "List of links to services whose availability has changed.",
+        "type": "object",
+        "required": [
+          "serName",
+          "serInstanceId",
+          "state",
+          "changeType"
+        ],
+        "properties": {
+          "link": {
+            "$ref": "#/components/schemas/LinkType"
+          },
+          "serName": {
+            "$ref": "#/components/schemas/ServiceInfo.SerName"
+          },
+          "serInstanceId": {
+            "$ref": "#/components/schemas/ServiceInfo.SerInstanceId"
+          },
+          "state": {
+            "$ref": "#/components/schemas/ServiceState"
+          },
+          "changeType": {
+            "$ref": "#/components/schemas/ServiceAvailabilityNotification.ChangeType"
+          }
+        }
+      },
+      "ServiceAvailabilityNotification.ChangeType": {
+        "description": "Type of the change. Valid values:\n  ADDED: The service was newly added.\n  REMOVED: The service was removed.\n  STATE_CHANGED: Only the state of the service was changed. \n  ATTRIBUTES_CHANGED: At least one attribute of the service other than state was changed. The change may or may not include changing the state.",
+        "type": "string",
+        "enum": [
+          "ADDED",
+          "REMOVED",
+          "STATE_CHANGED",
+          "ATTRIBUTES_CHANGED"
+        ]
+      },
+      "SerializerType": {
+        "description": "The enumeration  represents types of serializers",
         "type": "string",
         "enum": [
           "JSON",
@@ -733,7 +808,7 @@
         ],
         "example": "JSON"
       },
-      "LocalityTypes": {
+      "LocalityType": {
         "description": "The scope of locality as expressed by \"consumedLocalOnly\" and \"isLocal\". If absent, defaults to MEC_HOST",
         "type": "string",
         "enum": [
@@ -746,25 +821,49 @@
         ],
         "example": "MEC_SYSTEM"
       },
-      "ServiceInfo.SerInstanceId": {
-        "description": "Identifier of the service instance assigned by the MEC platform.",
-        "type": "string",
-        "readOnly": true,
-        "example": "ServiceInstance123"
-      },
-      "ServiceInfo.SerName": {
-        "description": "The name of the service. This is how the service producing MEC application identifies the service instance it produces.",
-        "type": "string",
-        "example": "ExampleService"
-      },
-      "ServiceInfo.State": {
-        "description": "Contains the state",
+      "ServiceState": {
+        "description": "This enumeration defines the possible states of a service.",
         "type": "string",
         "enum": [
           "ACTIVE",
           "INACTIVE"
         ],
         "example": "ACTIVE"
+      },
+      "ServiceStates": {
+        "description": "States of the services about which to report events. If the event is  a state change, this filter represents the state after the change.",
+        "type": "array",
+        "minItems": 0,
+        "items": {
+          "$ref": "#/components/schemas/ServiceState"
+        }
+      },
+      "ServiceInfo.SerInstanceId": {
+        "description": "Identifier of the service instance assigned by the MEC platform.",
+        "type": "string",
+        "readOnly": true,
+        "example": "ServiceInstance123"
+      },
+      "SerInstanceIds": {
+        "description": "Identifiers of service instances about which to report events.",
+        "type": "array",
+        "minItems": 0,
+        "items": {
+          "$ref": "#/components/schemas/ServiceInfo.SerInstanceId"
+        }
+      },
+      "ServiceInfo.SerName": {
+        "description": "The name of the service. This is how the service producing MEC application identifies the service instance it produces.",
+        "type": "string",
+        "example": "ExampleService"
+      },
+      "SerNames": {
+        "description": "Names of services about which to report events.",
+        "type": "array",
+        "minItems": 0,
+        "items": {
+          "$ref": "#/components/schemas/ServiceInfo.SerName"
+        }
       },
       "ServiceInfo.TransportId": {
         "description": "Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the \"Transport information query\" procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.",
@@ -822,7 +921,7 @@
             "$ref": "#/components/schemas/ServiceInfo.Version"
           },
           "state": {
-            "$ref": "#/components/schemas/ServiceInfo.State"
+            "$ref": "#/components/schemas/ServiceState"
           },
           "transportId": {
             "$ref": "#/components/schemas/ServiceInfo.TransportId"
@@ -831,10 +930,10 @@
             "$ref": "#/components/schemas/TransportInfo"
           },
           "serializer": {
-            "$ref": "#/components/schemas/SerializerTypes"
+            "$ref": "#/components/schemas/SerializerType"
           },
           "scopeOfLocality": {
-            "$ref": "#/components/schemas/LocalityTypes"
+            "$ref": "#/components/schemas/LocalityType"
           },
           "consumedLocalOnly": {
             "$ref": "#/components/schemas/ServiceInfo.ConsumedLocalOnly"
@@ -868,16 +967,16 @@
             "$ref": "#/components/schemas/ServiceInfo.Version"
           },
           "state": {
-            "$ref": "#/components/schemas/ServiceInfo.State"
+            "$ref": "#/components/schemas/ServiceState"
           },
           "transportInfo": {
             "$ref": "#/components/schemas/TransportInfo"
           },
           "serializer": {
-            "$ref": "#/components/schemas/SerializerTypes"
+            "$ref": "#/components/schemas/SerializerType"
           },
           "scopeOfLocality": {
-            "$ref": "#/components/schemas/LocalityTypes"
+            "$ref": "#/components/schemas/LocalityType"
           },
           "consumedLocalOnly": {
             "$ref": "#/components/schemas/ServiceInfo.ConsumedLocalOnly"
@@ -951,7 +1050,7 @@
             "$ref": "#/components/schemas/TransportInfo.Description"
           },
           "type": {
-            "$ref": "#/components/schemas/TransportTypes"
+            "$ref": "#/components/schemas/TransportType"
           },
           "protocol": {
             "$ref": "#/components/schemas/TransportInfo.Protocol"
@@ -982,8 +1081,8 @@
           }
         }
       },
-      "TransportTypes": {
-        "description": "The enumeration TransportTypes represents types of transports",
+      "TransportType": {
+        "description": "The enumeration TransportType represents types of transports",
         "type": "string",
         "enum": [
           "REST_HTTP",
@@ -1058,7 +1157,7 @@
           }
         }
       },
-      "Query.LocalityTypes": {
+      "Query.LocalityType": {
         "name": "scope_of_locality",
         "description": "A MEC application instance may use scope_of_locality as an input  parameter to query the availability of a list of MEC service instances  with a certain scope of locality.",
         "in": "query",
