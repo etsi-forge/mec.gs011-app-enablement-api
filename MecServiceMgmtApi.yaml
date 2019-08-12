@@ -4,7 +4,7 @@ servers:
   - url: 'https://127.0.0.1:8081/mec_service_mgmt/v1'
 info:
   title: MEC Service Management API
-  version: 2.0.10
+  version: 2.0.11
   description: The ETSI MEC ISG MEC011 MEC Service Management API described using OpenAPI
   license:
     name: ETSI Forge copyright notice

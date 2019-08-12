@@ -4,7 +4,7 @@ servers:
   - url: 'https://127.0.0.1:8081/mec_app_support/v1'
 info:
   title: MEC Application Support API
-  version: 2.0.9
+  version: 2.0.11
   description: The ETSI MEC ISG MEC011 MEC Application Support API described using OpenAPI
   license:
     name: ETSI Forge copyright notice
@@ -231,6 +231,8 @@ paths:
       responses:
         '204':
           description: No Content
+        '400':
+          $ref: '#/components/responses/Error.400'
         '401':
           $ref: '#/components/responses/Error.401'
         '403':
@@ -241,6 +243,8 @@ paths:
           $ref: '#/components/responses/Error.409'
         '429':
           $ref: '#/components/responses/Error.429'
+      requestBody:
+        $ref: '#/components/requestBodies/ApplicationsConfirmTermination'
   '/timing/timing_caps':
     get:
       description: >-
@@ -279,6 +283,15 @@ components:
   schemas:
     Empty:
       description: Empty schema
+    AppTerminationConfirmation:
+      description: >-
+        This type represents the information that the MEC application instance provides to the MEC platform when informing it that the application has completed its application level related terminate/stop actions, e.g. retention of application state in the case of stop.
+      type: object
+      required:
+        - operationAction
+      properties:
+        operationAction:
+          $ref: '#/components/schemas/OperationActionType'
     AppTerminationNotification.Links:
       description: >-
         Object containing hyperlinks related to the resource.
@@ -309,11 +322,14 @@ components:
       type: object
       required:
         - notificationType
+        - operationAction
         - maxGracefulTimeout
         - _links
       properties:
         notificationType:
           $ref: '#/components/schemas/AppTerminationNotification.NotificationType'
+        operationAction:
+          $ref: '#/components/schemas/OperationActionType'
         maxGracefulTimeout:
           $ref: '#/components/schemas/AppTerminationNotification.MaxGracefulTimeout'
         _links:
@@ -532,6 +548,13 @@ components:
       properties:
         _links:
           $ref: '#/components/schemas/MecAppSuptApiSubscriptionLinkList.Links'
+    OperationActionType:
+      description: Operation that is being performed on the MEC application instance.
+      type: string
+      enum:
+        - STOPPING
+        - TERMINATING
+      example: 'TERMINATING'
     ProblemDetails:
       type: object
       properties:
@@ -829,10 +852,10 @@ components:
       enum:
         - DROP
         - FORWARD_DECAPSULATED
-        - FORWARD_AS_IS
+        - FORWARD_ENCAPSULATED
         - PASSTHROUGH
         - DUPLICATE_DECAPSULATED
-        - DUPLICATE_AS_IS
+        - DUPLICATE_ENCAPSULATED
       example: 'DROP'
     TrafficRule.FilterType:
       description: >-
@@ -1144,6 +1167,11 @@ components:
           schema:
             $ref: '#/components/schemas/Empty'
   requestBodies:
+    ApplicationsConfirmTermination:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppTerminationConfirmation'
     ApplicationsDnsRule:
       content:
         application/json:
