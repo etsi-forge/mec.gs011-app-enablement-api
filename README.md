@@ -4,9 +4,10 @@ This repository contains OpenAPIs descriptions for the interfaces specified in E
 
 ## Online resources
 
-* [Specification document](https://docbox.etsi.org/ISG/MEC/70-Draft/0011v211Plat.App.Enabl/MEC-0011v211Plat.App.Enablv208.zip)
-* [Navigate the API in the browser](https://forge.etsi.org/swagger/ui/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/develop/Mp1.yaml).
-* [Edit the API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/develop/Mp1.yaml).
+* [Specification document](https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf)
+* [Navigate the MEC Application Support API in the browser](https://forge.etsi.org/swagger/ui/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/develop/MecAppSupportApi.yaml).
+* [Navigate the MEC Service Management API in the browser](https://forge.etsi.org/swagger/ui/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/develop_2.1.1/Mp1.yaml).
+* [Edit the API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/develop_2.1.1/MecServiceMgmtApi.yaml).
 
 
 
