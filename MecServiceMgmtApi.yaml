@@ -4,7 +4,7 @@ servers:
   - url: 'https://127.0.0.1:8081/mec_service_mgmt/v1'
 info:
   title: MEC Service Management API
-  version: 2.0.11
+  version: 2.1.1
   description: The ETSI MEC ISG MEC011 MEC Service Management API described using OpenAPI
   license:
     name: ETSI Forge copyright notice
@@ -12,9 +12,9 @@ info:
   contact:
     email: cti_support@etsi.org
 externalDocs:
-  description: 'ETSI GS MEC011 Application Enablement API, V2.0.10'
+  description: 'ETSI GS MEC011 Application Enablement API, V2.1.1'
   url: >-
-    https://docbox.etsi.org/ISG/MEC/70-Draft/0011v211Plat.App.Enabl/MEC-0011v211Plat.App.Enablv2010.zip
+    https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf
 tags:
   - name: appSubscriptions
   - name: appServices
@@ -46,6 +46,8 @@ paths:
           $ref: '#/components/responses/Error.403'
         '404':
           $ref: '#/components/responses/Error.404'
+        '414':
+          $ref: '#/components/responses/Error.414'
   '/services/{serviceId}':
     parameters:
       - $ref: '#/components/parameters/Path.ServiceId'
@@ -91,6 +93,8 @@ paths:
           $ref: '#/components/responses/Error.403'
         '404':
           $ref: '#/components/responses/Error.404'
+        '414':
+          $ref: '#/components/responses/Error.414'
     post:
       description: >-
         This method is used to create a mecService resource. This method is
@@ -148,6 +152,19 @@ paths:
           $ref: '#/components/responses/Error.412'
       requestBody:
         $ref: '#/components/requestBodies/ServicesServiceId'
+    delete:
+      description: >-
+        This method deletes a mecService resource. This method is typically used in the service deregistration procedure. 
+      operationId: AppServicesServiceId_DELETE
+      tags:
+        - appServices
+      responses:
+        '204':
+          description: No Content
+        '403':
+          $ref: '#/components/responses/Error.403'
+        '404':
+          $ref: '#/components/responses/Error.404'
   '/applications/{appInstanceId}/subscriptions':
     parameters:
       - $ref: '#/components/parameters/Path.AppInstanceId'
@@ -253,7 +270,8 @@ components:
     CategoryRef.Href:
       description: Reference of the catalogue
       type: string
-      example: 'catItem1'
+      format: uri
+      example: '/example/catalogue1'
     CategoryRef.Id:
       description: Unique identifier of the category
       type: string
@@ -287,8 +305,8 @@ components:
       description: Categories of services about which to report events.
       type: array
       minItems: 0
-      items:
-        type: string
+      items: 
+        $ref: '#/components/schemas/CategoryRef'
     EndPointInfo.Address.Host:
       description: Host portion of the address
       type: string
@@ -1068,6 +1086,16 @@ components:
         Precondition Failed.
         It is used when a condition has failed during conditional requests, 
         e.g. when using ETags to avoid write conflicts.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Empty'
+    Error.414:
+      description: >-
+        It is used to indicate that the server is refusing to process the request because the request URI is longer than the server is willing or able to process.
       content:
         application/problem+json:
           schema:

@@ -10,7 +10,7 @@
   ],
   "info": {
     "title": "MEC Application Support API",
-    "version": "2.0.11",
+    "version": "2.1.1",
     "description": "The ETSI MEC ISG MEC011 MEC Application Support API described using OpenAPI",
     "license": {
       "name": "ETSI Forge copyright notice",
@@ -21,8 +21,8 @@
     }
   },
   "externalDocs": {
-    "description": "ETSI GS MEC011 Application Enablement API, V2.0.9",
-    "url": "https://docbox.etsi.org/ISG/MEC/70-Draft/0011v211Plat.App.Enabl/MEC-0011v211Plat.App.Enablv209.zip"
+    "description": "ETSI GS MEC011 Application Enablement API, V2.1.1",
+    "url": "https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf"
   },
   "tags": [
     {
@@ -36,6 +36,9 @@
     },
     {
       "name": "appConfirmTermination"
+    },
+    {
+      "name": "appConfirmReady"
     },
     {
       "name": "timing"
@@ -339,9 +342,6 @@
           "204": {
             "description": "No Content"
           },
-          "400": {
-            "$ref": "#/components/responses/Error.400"
-          },
           "401": {
             "$ref": "#/components/responses/Error.401"
           },
@@ -360,6 +360,43 @@
         },
         "requestBody": {
           "$ref": "#/components/requestBodies/ApplicationsConfirmTermination"
+        }
+      }
+    },
+    "/applications/{appInstanceId}/confirm_ready": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Path.AppInstanceId"
+        }
+      ],
+      "post": {
+        "description": "This method may be used by the MEC application instance to notify the MEC platform that it is up and running. ",
+        "operationId": "ApplicationsConfirmReady_POST",
+        "tags": [
+          "appConfirmReady"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error.401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error.403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error.404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error.409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error.429"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ApplicationsConfirmReady"
         }
       }
     },
@@ -414,6 +451,18 @@
     "schemas": {
       "Empty": {
         "description": "Empty schema"
+      },
+      "AppReadyConfirmation": {
+        "description": "This type represents the information that the MEC application instance indicates to the MEC platform that it is up and running.",
+        "type": "object",
+        "required": [
+          "indication"
+        ],
+        "properties": {
+          "indication": {
+            "$ref": "#/components/schemas/ReadyIndicationType"
+          }
+        }
       },
       "AppTerminationConfirmation": {
         "description": "This type represents the information that the MEC application instance provides to the MEC platform when informing it that the application has completed its application level related terminate/stop actions, e.g. retention of application state in the case of stop.",
@@ -569,7 +618,7 @@
         "example": "02-00-00-00-00-00"
       },
       "DestinationInterface": {
-        "description": "This type represents the destination interface.",
+        "description": "This type represents the destination interface. If the action is FORWARD_DECAPSULATED, FORWARD_ENCAPSULATED or PASSTHROUGH one value shall be provided. If the action is DUPLICATE_DECAPSULATED or DUPLICATE_ENCAPSULATED, two values shall be provided. If the action is DROP, no value shall be provided.",
         "type": "object",
         "required": [
           "interfaceType"
@@ -617,7 +666,7 @@
         "example": "IP_V6"
       },
       "DnsRule.State": {
-        "description": "DNS rule state",
+        "description": "DNS rule state. This attribute may be updated using HTTP PUT method",
         "type": "string",
         "enum": [
           "ACTIVE",
@@ -785,6 +834,14 @@
         "type": "string",
         "format": "uri",
         "description": "A URI reference according to IETF RFC 3986 that identifies the problem type"
+      },
+      "ReadyIndicationType": {
+        "description": "Indication about the MEC application instance.",
+        "type": "string",
+        "enum": [
+          "READY"
+        ],
+        "example": "READY"
       },
       "Self": {
         "description": "Self-referring URI.",
@@ -1099,7 +1156,7 @@
         }
       },
       "TrafficRule.Action": {
-        "description": "The action of the ME host data plane when a packet matches the trafficFilter",
+        "description": "The action of the MEC host data plane when a packet matches the trafficFilter\n   ",
         "type": "string",
         "enum": [
           "DROP",
@@ -1132,7 +1189,7 @@
         "example": 1
       },
       "TrafficRule.State": {
-        "description": "Contains the traffic rule state",
+        "description": "Contains the traffic rule state. This attribute may be updated using HTTP PUT method",
         "type": "string",
         "enum": [
           "ACTIVE",
@@ -1516,6 +1573,15 @@
       }
     },
     "requestBodies": {
+      "ApplicationsConfirmReady": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AppReadyConfirmation"
+            }
+          }
+        }
+      },
       "ApplicationsConfirmTermination": {
         "content": {
           "application/json": {
