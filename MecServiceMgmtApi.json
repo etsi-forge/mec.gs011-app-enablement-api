@@ -13,8 +13,8 @@
     "version": "2.1.1",
     "description": "The ETSI MEC ISG MEC011 MEC Service Management API described using OpenAPI",
     "license": {
-      "name": "ETSI Forge copyright notice",
-      "url": "https://forge.etsi.org/etsi-forge-copyright-notice.txt"
+      "name": "BSD-3-Clause",
+      "url": "https://forge.etsi.org/legal-matters"
     },
     "contact": {
       "email": "cti_support@etsi.org"
