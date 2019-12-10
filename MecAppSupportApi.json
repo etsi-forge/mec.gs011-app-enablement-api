@@ -2,16 +2,16 @@
   "openapi": "3.0.2",
   "servers": [
     {
-      "url": "http://127.0.0.1:8081/mp1/v1"
+      "url": "http://127.0.0.1:8081/mec_app_support/v1"
     },
     {
-      "url": "https://127.0.0.1:8081/mp1/v1"
+      "url": "https://127.0.0.1:8081/mec_app_support/v1"
     }
   ],
   "info": {
-    "title": "Mp1 API",
-    "version": "1.1.1",
-    "description": "The ETSI MEC ISG MEC011 Application Enablement API described using OpenAPI",
+    "title": "MEC Application Support API",
+    "version": "2.1.1",
+    "description": "The ETSI MEC ISG MEC011 MEC Application Support API described using OpenAPI",
     "license": {
       "name": "BSD-3-Clause",
       "url": "https://forge.etsi.org/legal-matters"
@@ -21,33 +21,119 @@
     }
   },
   "externalDocs": {
-    "description": "ETSI GS MEC011 Application Enablement API, V1.1.1",
-    "url": "http://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/01.01.01_60/gs_mec011v010101p.pdf"
+    "description": "ETSI GS MEC011 Application Enablement API, V2.1.1",
+    "url": "https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf"
   },
   "tags": [
     {
-      "name": "trafficRules"
+      "name": "appTrafficRules"
     },
     {
-      "name": "dnsRules"
+      "name": "appDnsRules"
     },
     {
-      "name": "subscriptions"
+      "name": "appSubscriptions"
     },
     {
-      "name": "services"
+      "name": "appConfirmTermination"
+    },
+    {
+      "name": "appConfirmReady"
     },
     {
       "name": "timing"
-    },
-    {
-      "name": "transports"
     },
     {
       "name": "callbacks"
     }
   ],
   "paths": {
+    "/applications/{appInstanceId}/traffic_rules": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Path.AppInstanceId"
+        }
+      ],
+      "get": {
+        "description": "This method retrieves information about all the traffic rules associated with a MEC application instance.",
+        "operationId": "ApplicationsTrafficRules_GET",
+        "tags": [
+          "appTrafficRules"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ApplicationsTrafficRules.200"
+          },
+          "400": {
+            "$ref": "#/components/responses/Error.400"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error.403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error.404"
+          }
+        }
+      }
+    },
+    "/applications/{appInstanceId}/traffic_rules/{trafficRuleId}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Path.AppInstanceId"
+        },
+        {
+          "$ref": "#/components/parameters/Path.TrafficRuleId"
+        }
+      ],
+      "get": {
+        "description": "This method retrieves information about all the traffic rules associated with a MEC application instance.",
+        "operationId": "ApplicationsTrafficRule_GET",
+        "tags": [
+          "appTrafficRules"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ApplicationsTrafficRule.200"
+          },
+          "400": {
+            "$ref": "#/components/responses/Error.400"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error.403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error.404"
+          }
+        }
+      },
+      "put": {
+        "description": "This method retrieves information about all the traffic rules associated with a MEC application instance.",
+        "operationId": "ApplicationsTrafficRule_PUT",
+        "tags": [
+          "appTrafficRules"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/ApplicationsTrafficRule.200"
+          },
+          "400": {
+            "$ref": "#/components/responses/Error.400"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error.403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error.404"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error.412"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ApplicationsTrafficRule"
+        }
+      }
+    },
     "/applications/{appInstanceId}/dns_rules": {
       "parameters": [
         {
@@ -55,10 +141,10 @@
         }
       ],
       "get": {
-        "description": "This method retrieves information about all the DNS rules associated with a mobile edge application instance.",
+        "description": "This method retrieves information about all the DNS rules associated with a MEC application instance.",
         "operationId": "ApplicationsDnsRules_GET",
         "tags": [
-          "trafficRules"
+          "appDnsRules"
         ],
         "responses": {
           "200": {
@@ -86,10 +172,10 @@
         }
       ],
       "get": {
-        "description": "This method retrieves information about a DNS rule associated with a mobile edge application instance.",
+        "description": "This method retrieves information about a DNS rule associated with a MEC application instance.",
         "operationId": "ApplicationsDnsRule_GET",
         "tags": [
-          "dnsRules"
+          "appDnsRules"
         ],
         "responses": {
           "200": {
@@ -110,7 +196,7 @@
         "description": "This method activates, de-activates or updates a traffic rule.",
         "operationId": "ApplicationsDnsRule_PUT",
         "tags": [
-          "dnsRules"
+          "appDnsRules"
         ],
         "responses": {
           "200": {
@@ -144,7 +230,7 @@
         "description": "The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.",
         "operationId": "ApplicationsSubscriptions_GET",
         "tags": [
-          "subscriptions"
+          "appSubscriptions"
         ],
         "responses": {
           "200": {
@@ -162,10 +248,10 @@
         }
       },
       "post": {
-        "description": "The POST method may be used to create a new subscription. One example use case is to create a new subscription to the mobile edge service availability notifications. Upon success, the response contains entity body describing the created subscription.",
+        "description": "The POST method may be used to create a new subscription. One example use case is to create a new subscription to the MEC service availability notifications. Upon success, the response contains entity body describing the created subscription.",
         "operationId": "ApplicationsSubscriptions_POST",
         "tags": [
-          "subscriptions"
+          "appSubscriptions"
         ],
         "responses": {
           "201": {
@@ -187,20 +273,14 @@
         "callbacks": {
           "appTerminationNotification": {
             "$ref": "#/components/callbacks/AppTerminationNotification"
-          },
-          "serviceAvailabilityNotification": {
-            "$ref": "#/components/callbacks/ServiceAvailabilityNotification"
           }
         }
       }
     },
-    "/applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}": {
+    "/applications/{appInstanceId}/subscriptions/{subscriptionId}": {
       "parameters": [
         {
           "$ref": "#/components/parameters/Path.AppInstanceId"
-        },
-        {
-          "$ref": "#/components/parameters/Path.SubscriptionType"
         },
         {
           "$ref": "#/components/parameters/Path.SubscriptionId"
@@ -210,7 +290,7 @@
         "description": "The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.",
         "operationId": "ApplicationsSubscription_GET",
         "tags": [
-          "subscriptions"
+          "appSubscriptions"
         ],
         "responses": {
           "200": {
@@ -228,10 +308,10 @@
         }
       },
       "delete": {
-        "description": "This method deletes a meMp1Subscription. This method is typically used in \"Unsubscribing from service availability event notifications\" procedure.",
+        "description": "This method deletes a mecAppSuptApiSubscription. This method is typically used in \"Unsubscribing from service availability event notifications\" procedure.",
         "operationId": "ApplicationsSubscription_DELETE",
         "tags": [
-          "subscriptions"
+          "appSubscriptions"
         ],
         "responses": {
           "204": {
@@ -246,189 +326,61 @@
         }
       }
     },
-    "/applications/{appInstanceId}/traffic_rules": {
+    "/applications/{appInstanceId}/confirm_termination": {
       "parameters": [
         {
           "$ref": "#/components/parameters/Path.AppInstanceId"
         }
       ],
-      "get": {
-        "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRules_GET",
-        "tags": [
-          "trafficRules"
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/ApplicationsTrafficRules.200"
-          },
-          "400": {
-            "$ref": "#/components/responses/Error.400"
-          },
-          "403": {
-            "$ref": "#/components/responses/Error.403"
-          },
-          "404": {
-            "$ref": "#/components/responses/Error.404"
-          }
-        }
-      }
-    },
-    "/applications/{appInstanceId}/traffic_rules/{trafficRuleId}": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/Path.AppInstanceId"
-        },
-        {
-          "$ref": "#/components/parameters/Path.TrafficRuleId"
-        }
-      ],
-      "get": {
-        "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRule_GET",
-        "tags": [
-          "trafficRules"
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/ApplicationsTrafficRule.200"
-          },
-          "400": {
-            "$ref": "#/components/responses/Error.400"
-          },
-          "403": {
-            "$ref": "#/components/responses/Error.403"
-          },
-          "404": {
-            "$ref": "#/components/responses/Error.404"
-          }
-        }
-      },
-      "put": {
-        "description": "This method retrieves information about all the traffic rules associated with a mobile edge application instance.",
-        "operationId": "ApplicationsTrafficRule_PUT",
-        "tags": [
-          "trafficRules"
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/ApplicationsTrafficRule.200"
-          },
-          "400": {
-            "$ref": "#/components/responses/Error.400"
-          },
-          "403": {
-            "$ref": "#/components/responses/Error.403"
-          },
-          "404": {
-            "$ref": "#/components/responses/Error.404"
-          },
-          "412": {
-            "$ref": "#/components/responses/Error.412"
-          }
-        },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/ApplicationsTrafficRule"
-        }
-      }
-    },
-    "/services": {
-      "get": {
-        "description": "This method retrieves information about a list of meService resources. This method is typically used in \"service availability query\" procedure",
-        "operationId": "Services_GET",
-        "tags": [
-          "services"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Query.Ser_instance_id"
-          },
-          {
-            "$ref": "#/components/parameters/Query.Ser_name"
-          },
-          {
-            "$ref": "#/components/parameters/Query.Ser_category_id"
-          }
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/Services.200"
-          },
-          "400": {
-            "$ref": "#/components/responses/Error.400"
-          },
-          "403": {
-            "$ref": "#/components/responses/Error.403"
-          },
-          "404": {
-            "$ref": "#/components/responses/Error.404"
-          }
-        }
-      },
       "post": {
-        "description": "This method is used to create a meService resource. This method is typically used in \"service availability update and new service registration\" procedure",
-        "operationId": "Services_POST",
+        "description": "This method is used to confirm the application level termination  of an application instance.",
+        "operationId": "ApplicationsConfirmTermination_POST",
         "tags": [
-          "services"
+          "appConfirmTermination"
         ],
         "responses": {
-          "201": {
-            "$ref": "#/components/responses/Services.201"
+          "204": {
+            "description": "No Content"
           },
-          "400": {
-            "$ref": "#/components/responses/Error.400"
+          "401": {
+            "$ref": "#/components/responses/Error.401"
           },
           "403": {
             "$ref": "#/components/responses/Error.403"
           },
           "404": {
             "$ref": "#/components/responses/Error.404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error.409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error.429"
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/Services.Post"
+          "$ref": "#/components/requestBodies/ApplicationsConfirmTermination"
         }
       }
     },
-    "/services/{serviceId}": {
+    "/applications/{appInstanceId}/confirm_ready": {
       "parameters": [
         {
-          "$ref": "#/components/parameters/Path.ServiceId"
+          "$ref": "#/components/parameters/Path.AppInstanceId"
         }
       ],
-      "get": {
-        "description": "This method retrieves information about a meService resource. This method is typically used in \"service availability query\" procedure",
-        "operationId": "ServicesServiceId_GET",
+      "post": {
+        "description": "This method may be used by the MEC application instance to notify the MEC platform that it is up and running. ",
+        "operationId": "ApplicationsConfirmReady_POST",
         "tags": [
-          "services"
+          "appConfirmReady"
         ],
         "responses": {
-          "200": {
-            "$ref": "#/components/responses/ServicesServiceId.200"
+          "204": {
+            "description": "No Content"
           },
-          "400": {
-            "$ref": "#/components/responses/Error.400"
-          },
-          "403": {
-            "$ref": "#/components/responses/Error.403"
-          },
-          "404": {
-            "$ref": "#/components/responses/Error.404"
-          }
-        }
-      },
-      "put": {
-        "description": "This method updates the information about a meService resource",
-        "operationId": "ServicesServiceId_PUT",
-        "tags": [
-          "services"
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/ServicesServiceId.200"
-          },
-          "400": {
-            "$ref": "#/components/responses/Error.400"
+          "401": {
+            "$ref": "#/components/responses/Error.401"
           },
           "403": {
             "$ref": "#/components/responses/Error.403"
@@ -436,35 +388,15 @@
           "404": {
             "$ref": "#/components/responses/Error.404"
           },
-          "412": {
-            "$ref": "#/components/responses/Error.412"
+          "409": {
+            "$ref": "#/components/responses/Error.409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error.429"
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/ServicesServiceId"
-        }
-      }
-    },
-    "/timing/current_time": {
-      "get": {
-        "description": "This method retrieves the information of the platform's current time which corresponds to the get platform time procedure",
-        "operationId": "TimingCurrentTime_GET",
-        "tags": [
-          "timing"
-        ],
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/TimingCurrentTime.200"
-          },
-          "400": {
-            "$ref": "#/components/responses/Error.400"
-          },
-          "403": {
-            "$ref": "#/components/responses/Error.403"
-          },
-          "404": {
-            "$ref": "#/components/responses/Error.404"
-          }
+          "$ref": "#/components/requestBodies/ApplicationsConfirmReady"
         }
       }
     },
@@ -491,16 +423,16 @@
         }
       }
     },
-    "/transports": {
+    "/timing/current_time": {
       "get": {
-        "description": "This method retrieves information about a list of available transports. This method is typically used by a service-producing application to discover transports provided by the mobile edge platform in the \"transport information query\" procedure",
-        "operationId": "Transports_GET",
+        "description": "This method retrieves the information of the platform's current time which corresponds to the get platform time procedure",
+        "operationId": "TimingCurrentTime_GET",
         "tags": [
-          "transports"
+          "timing"
         ],
         "responses": {
           "200": {
-            "$ref": "#/components/responses/Transports.200"
+            "$ref": "#/components/responses/TimingCurrentTime.200"
           },
           "400": {
             "$ref": "#/components/responses/Error.400"
@@ -520,6 +452,45 @@
       "Empty": {
         "description": "Empty schema"
       },
+      "AppReadyConfirmation": {
+        "description": "This type represents the information that the MEC application instance indicates to the MEC platform that it is up and running.",
+        "type": "object",
+        "required": [
+          "indication"
+        ],
+        "properties": {
+          "indication": {
+            "$ref": "#/components/schemas/ReadyIndicationType"
+          }
+        }
+      },
+      "AppTerminationConfirmation": {
+        "description": "This type represents the information that the MEC application instance provides to the MEC platform when informing it that the application has completed its application level related terminate/stop actions, e.g. retention of application state in the case of stop.",
+        "type": "object",
+        "required": [
+          "operationAction"
+        ],
+        "properties": {
+          "operationAction": {
+            "$ref": "#/components/schemas/OperationActionType"
+          }
+        }
+      },
+      "AppTerminationNotification.Links": {
+        "description": "Object containing hyperlinks related to the resource.",
+        "type": "object",
+        "required": [
+          "subscription"
+        ],
+        "properties": {
+          "subscription": {
+            "$ref": "#/components/schemas/LinkType"
+          },
+          "confirmTermination": {
+            "$ref": "#/components/schemas/LinkType.ConfirmTermination"
+          }
+        }
+      },
       "AppTerminationNotification.MaxGracefulTimeout": {
         "description": "Maximum timeout value in seconds for graceful termination or graceful stop of an application instance.",
         "type": "integer",
@@ -532,10 +503,11 @@
         "example": "AppTerminationNotification"
       },
       "AppTerminationNotification": {
-        "description": "This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.",
+        "description": "This type represents the information that the MEC platform notifies the subscribed application instance about  the corresponding application instance termination/stop.",
         "type": "object",
         "required": [
           "notificationType",
+          "operationAction",
           "maxGracefulTimeout",
           "_links"
         ],
@@ -543,11 +515,14 @@
           "notificationType": {
             "$ref": "#/components/schemas/AppTerminationNotification.NotificationType"
           },
+          "operationAction": {
+            "$ref": "#/components/schemas/OperationActionType"
+          },
           "maxGracefulTimeout": {
             "$ref": "#/components/schemas/AppTerminationNotification.MaxGracefulTimeout"
           },
           "_links": {
-            "$ref": "#/components/schemas/Subscription"
+            "$ref": "#/components/schemas/AppTerminationNotification.Links"
           }
         }
       },
@@ -557,12 +532,12 @@
         "example": "ID1"
       },
       "AppTerminationNotificationSubscription.CallbackReference": {
-        "description": "URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge application instance management information. This shall be included in both the request and the response.",
+        "description": "URI selected by the MEC application instance to receive notifications on the subscribed MEC application instance management information. This shall be included in both the request and the response.",
         "type": "string",
         "format": "uri"
       },
       "AppTerminationNotificationSubscription": {
-        "description": "This type represents the information that the mobile edge platform notifies the subscribed application instance about  the corresponding application instance termination/stop.",
+        "description": "This type represents the information that the MEC platform notifies the subscribed application instance about  the corresponding application instance termination/stop.",
         "type": "object",
         "required": [
           "subscriptionType",
@@ -590,52 +565,8 @@
         "type": "string",
         "example": "AppTerminationNotificationSubscription"
       },
-      "CategoryRef.Href": {
-        "description": "Reference of the catalogue",
-        "type": "string",
-        "example": "catItem1"
-      },
-      "CategoryRef.Id": {
-        "description": "Unique identifier of the category",
-        "type": "string",
-        "example": "id12345"
-      },
-      "CategoryRef.Name": {
-        "description": "Name of the category",
-        "type": "string",
-        "example": "RNI"
-      },
-      "CategoryRef.Version": {
-        "description": "Category version",
-        "type": "string",
-        "example": "version1"
-      },
-      "CategoryRef": {
-        "description": "This type represents the category reference",
-        "type": "object",
-        "required": [
-          "href",
-          "id",
-          "name",
-          "version"
-        ],
-        "properties": {
-          "href": {
-            "$ref": "#/components/schemas/CategoryRef.Href"
-          },
-          "id": {
-            "$ref": "#/components/schemas/CategoryRef.Id"
-          },
-          "name": {
-            "$ref": "#/components/schemas/CategoryRef.Name"
-          },
-          "version": {
-            "$ref": "#/components/schemas/CategoryRef.Version"
-          }
-        }
-      },
       "CurrentTime": {
-        "description": "This type represents the information provided by the mobile edge platform in response to the Get Platform Time Request message.",
+        "description": "This type represents the information provided by the MEC platform in response to the Get Platform Time Request message.",
         "type": "object",
         "required": [
           "nanoSeconds",
@@ -687,7 +618,7 @@
         "example": "02-00-00-00-00-00"
       },
       "DestinationInterface": {
-        "description": "This type represents the destination interface.",
+        "description": "This type represents the destination interface. If the action is FORWARD_DECAPSULATED, FORWARD_ENCAPSULATED or PASSTHROUGH one value shall be provided. If the action is DUPLICATE_DECAPSULATED or DUPLICATE_ENCAPSULATED, two values shall be provided. If the action is DROP, no value shall be provided.",
         "type": "object",
         "required": [
           "interfaceType"
@@ -735,7 +666,7 @@
         "example": "IP_V6"
       },
       "DnsRule.State": {
-        "description": "DNS rule state",
+        "description": "DNS rule state. This attribute may be updated using HTTP PUT method",
         "type": "string",
         "enum": [
           "ACTIVE",
@@ -780,85 +711,17 @@
           }
         }
       },
-      "EndPointInfo.Address.Host": {
-        "description": "Host portion of the address",
-        "type": "string",
-        "example": "192.0.2.0"
-      },
-      "EndPointInfo.Address_Port": {
-        "description": "Port portion of the address",
-        "type": "integer",
-        "format": "uint32",
-        "example": 8080
-      },
-      "EndPointInfo.Address": {
-        "description": "A IP address and port pair",
-        "type": "object",
-        "required": [
-          "host",
-          "port"
-        ],
-        "properties": {
-          "host": {
-            "$ref": "#/components/schemas/EndPointInfo.Address.Host"
-          },
-          "port": {
-            "$ref": "#/components/schemas/EndPointInfo.Address_Port"
-          }
-        }
-      },
-      "EndPointInfo.Addresses": {
-        "description": "Entry point information of the service as one or more pairs of IP address and port",
-        "type": "object",
-        "required": [
-          "addresses"
-        ],
-        "properties": {
-          "addresses": {
-            "type": "array",
-            "minItems": 0,
-            "items": {
-              "$ref": "#/components/schemas/EndPointInfo.Address"
-            }
-          }
-        }
-      },
-      "EndPointInfo.Alternative": {
-        "description": "Entry point information of the service in a format defined by an implementation, or in an external specification.",
-        "type": "object",
-        "required": [
-          "alternative"
-        ],
-        "properties": {
-          "alternative": {
-            "type": "object"
-          }
-        }
-      },
-      "EndPointInfo.Uri": {
-        "description": "Entry point information of the service",
-        "type": "string",
-        "format": "uri",
-        "example": "/meMp1/service/EntryPoint"
-      },
-      "EndPointInfo.Uris": {
-        "description": "Entry point information of the service as string, formatted according to URI syntax",
-        "type": "object",
-        "required": [
-          "uris"
-        ],
-        "properties": {
-          "uris": {
-            "type": "array",
-            "minItems": 0,
-            "items": {
-              "$ref": "#/components/schemas/EndPointInfo.Uri"
-            }
-          }
-        }
-      },
       "LinkType": {
         "description": "This type represents a type of link and may be referenced from data structures",
+        "type": "object",
+        "properties": {
+          "href": {
+            "$ref": "#/components/schemas/Href"
+          }
+        }
+      },
+      "LinkType.ConfirmTermination": {
+        "description": "Link to the task resource where to confirm termination in case the  application is ready to be terminated before expiry of the timeout.",
         "type": "object",
         "properties": {
           "href": {
@@ -870,9 +733,9 @@
         "description": "URI referring to a resource",
         "type": "string",
         "format": "uri",
-        "example": "/meMp1/example"
+        "example": "/mecAppSuptApi/example"
       },
-      "Mp1SubscriptionLinkList.Links": {
+      "MecAppSuptApiSubscriptionLinkList.Links": {
         "description": "Self-referring URI.",
         "type": "object",
         "required": [
@@ -882,16 +745,16 @@
           "self": {
             "$ref": "#/components/schemas/LinkType"
           },
-          "subscription": {
-            "description": "Subscription list",
+          "subscriptions": {
+            "description": "The MEC application instance's subscriptions",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Mp1SubscriptionLinkList.Subscription"
+              "$ref": "#/components/schemas/MecAppSuptApiSubscriptionLinkList.Subscription"
             }
           }
         }
       },
-      "Mp1SubscriptionLinkList.Subscription": {
+      "MecAppSuptApiSubscriptionLinkList.Subscription": {
         "description": "A link to a subscription.",
         "type": "object",
         "required": [
@@ -903,26 +766,31 @@
             "$ref": "#/components/schemas/Href"
           },
           "rel": {
-            "description": "The values are as defined in the \"subscriptionType\" attribute for each different Mp1 event subscription data type.",
-            "type": "string",
-            "enum": [
-              "AppTerminationNotificationSubscription",
-              "SerAvailabilityNotificationSubscription"
-            ]
+            "description": "The values shall be set to AppTerminationNotificationSubscription.",
+            "type": "string"
           }
         }
       },
-      "Mp1SubscriptionLinkList": {
-        "description": "This type represents a list of links related to currently existing subscriptions for a mobile edge application instance. This information is returned when sending a request to receive current subscriptions.",
+      "MecAppSuptApiSubscriptionLinkList": {
+        "description": "This type represents a list of links related to currently existing subscriptions for a MEC application instance. This information is returned when sending a request to receive current subscriptions.",
         "type": "object",
         "required": [
           "_links"
         ],
         "properties": {
           "_links": {
-            "$ref": "#/components/schemas/Mp1SubscriptionLinkList.Links"
+            "$ref": "#/components/schemas/MecAppSuptApiSubscriptionLinkList.Links"
           }
         }
+      },
+      "OperationActionType": {
+        "description": "Operation that is being performed on the MEC application instance.",
+        "type": "string",
+        "enum": [
+          "STOPPING",
+          "TERMINATING"
+        ],
+        "example": "TERMINATING"
       },
       "ProblemDetails": {
         "type": "object",
@@ -967,53 +835,13 @@
         "format": "uri",
         "description": "A URI reference according to IETF RFC 3986 that identifies the problem type"
       },
-      "SecurityInfo.OAuth2Info.GrantTypes": {
-        "description": "List of supported OAuth 2.0 grant types",
+      "ReadyIndicationType": {
+        "description": "Indication about the MEC application instance.",
         "type": "string",
         "enum": [
-          "OAUTH2_AUTHORIZATION_CODE",
-          "OAUTH2_IMPLICIT_GRANT",
-          "OAUTH2_RESOURCE_OWNER",
-          "OAUTH2_CLIENT_CREDENTIALS"
+          "READY"
         ],
-        "example": "OAUTH2_CLIENT_CREDENTIALS"
-      },
-      "SecurityInfo.OAuth2Info.TokenEndpoint": {
-        "description": "The token endpoint",
-        "type": "string",
-        "format": "uri",
-        "example": "/meMp1/security/TokenEndPoint"
-      },
-      "SecurityInfo.OAuth2Info": {
-        "description": "Parameters related to use of OAuth 2.0",
-        "required": [
-          "grantTypes",
-          "tokenEndpoint"
-        ],
-        "properties": {
-          "grantTypes": {
-            "description": "List of supported OAuth 2.0 grant types.",
-            "type": "array",
-            "minItems": 1,
-            "maxItems": 4,
-            "items": {
-              "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.GrantTypes"
-            }
-          },
-          "tokenEndpoint": {
-            "$ref": "#/components/schemas/SecurityInfo.OAuth2Info.TokenEndpoint"
-          }
-        },
-        "type": "object"
-      },
-      "SecurityInfo": {
-        "description": "This type represents security information related to a transport",
-        "type": "object",
-        "properties": {
-          "oAuth2Info": {
-            "$ref": "#/components/schemas/SecurityInfo.OAuth2Info"
-          }
-        }
+        "example": "READY"
       },
       "Self": {
         "description": "Self-referring URI.",
@@ -1027,198 +855,6 @@
           }
         },
         "readOnly": true
-      },
-      "SerAvailabilityNotificationSubscription.CallbackReference": {
-        "description": "URI selected by the mobile edge application instance to receive notifications on the subscribed mobile edge service availability information. This shall be included in both the request and the response.",
-        "type": "string",
-        "format": "uri"
-      },
-      "SerAvailabilityNotificationSubscription": {
-        "description": "This type represents a subscription to the notifications from the mobile edge platform regarding the availability of a mobile edge service or a list of mobile edge services.",
-        "type": "object",
-        "required": [
-          "subscriptionType",
-          "callbackReference",
-          "_links",
-          "filteringCriteria"
-        ],
-        "properties": {
-          "subscriptionType": {
-            "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription.SubscriptionType"
-          },
-          "callbackReference": {
-            "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription.CallbackReference"
-          },
-          "_links": {
-            "$ref": "#/components/schemas/Self"
-          },
-          "filteringCriteria": {
-            "$ref": "#/components/schemas/ServiceInfo"
-          }
-        }
-      },
-      "SerAvailabilityNotificationSubscription.SubscriptionType": {
-        "description": "Shall be set to SerAvailabilityNotificationSubscription.",
-        "type": "string",
-        "example": "SerAvailabilityNotificationSubscription"
-      },
-      "ServiceAvailabilityNotification": {
-        "description": "This type represents the service availability information.",
-        "type": "object",
-        "required": [
-          "notificationType",
-          "services",
-          "_links"
-        ],
-        "properties": {
-          "notificationType": {
-            "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription.SubscriptionType"
-          },
-          "services": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ServiceInfo"
-            }
-          },
-          "_links": {
-            "$ref": "#/components/schemas/Subscription"
-          }
-        }
-      },
-      "SerializerTypes": {
-        "description": "The enumeration SerializerTypes represents types of serializers",
-        "type": "string",
-        "enum": [
-          "JSON",
-          "XML",
-          "PROTOBUF3"
-        ],
-        "example": "JSON"
-      },
-      "ServiceInfo.SerInstanceId": {
-        "description": "Identifier of the service instance assigned by the MEPM / mobile edge platform.",
-        "type": "string",
-        "readOnly": true,
-        "example": "ServiceInstance123"
-      },
-      "ServiceInfo.SerName": {
-        "description": "The name of the service. This is how the service producing mobile edge application identifies the service instance it produces.",
-        "type": "string",
-        "example": "ExampleService"
-      },
-      "ServiceInfo.State": {
-        "description": "Contains the state",
-        "type": "string",
-        "enum": [
-          "ACTIVE",
-          "INACTIVE"
-        ],
-        "example": "ACTIVE"
-      },
-      "ServiceInfo.TransportId": {
-        "description": "Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the \"Transport information query\" procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.",
-        "type": "string",
-        "writeOnly": true,
-        "example": "Rest1"
-      },
-      "ServiceInfo.Version": {
-        "description": "Service version",
-        "type": "string",
-        "example": "ServiceVersion1"
-      },
-      "ServiceInfo.Post": {
-        "description": "This type represents the general information of a mobile edge service.",
-        "type": "object",
-        "required": [
-          "serName",
-          "version",
-          "state",
-          "serializer"
-        ],
-        "oneOf": [
-          {
-            "required": [
-              "transportId"
-            ]
-          },
-          {
-            "required": [
-              "transportInfo"
-            ]
-          }
-        ],
-        "properties": {
-          "serInstanceId": {
-            "$ref": "#/components/schemas/ServiceInfo.SerInstanceId"
-          },
-          "serName": {
-            "$ref": "#/components/schemas/ServiceInfo.SerName"
-          },
-          "serCategory": {
-            "$ref": "#/components/schemas/CategoryRef"
-          },
-          "version": {
-            "$ref": "#/components/schemas/ServiceInfo.Version"
-          },
-          "state": {
-            "$ref": "#/components/schemas/ServiceInfo.State"
-          },
-          "transportId": {
-            "$ref": "#/components/schemas/ServiceInfo.TransportId"
-          },
-          "transportInfo": {
-            "$ref": "#/components/schemas/TransportInfo"
-          },
-          "serializer": {
-            "$ref": "#/components/schemas/SerializerTypes"
-          }
-        }
-      },
-      "ServiceInfo": {
-        "description": "This type represents the general information of a mobile edge service.",
-        "type": "object",
-        "required": [
-          "serName",
-          "version",
-          "state",
-          "transportInfo",
-          "serializer"
-        ],
-        "properties": {
-          "serInstanceId": {
-            "$ref": "#/components/schemas/ServiceInfo.SerInstanceId"
-          },
-          "serName": {
-            "$ref": "#/components/schemas/ServiceInfo.SerName"
-          },
-          "serCategory": {
-            "$ref": "#/components/schemas/CategoryRef"
-          },
-          "version": {
-            "$ref": "#/components/schemas/ServiceInfo.Version"
-          },
-          "state": {
-            "$ref": "#/components/schemas/ServiceInfo.State"
-          },
-          "transportInfo": {
-            "$ref": "#/components/schemas/TransportInfo"
-          },
-          "serializer": {
-            "$ref": "#/components/schemas/SerializerTypes"
-          }
-        }
-      },
-      "Subscription": {
-        "description": "A link to the related subscription",
-        "type": "object",
-        "required": [
-          "subscription"
-        ],
-        "properties": {
-          "subscription": {
-            "$ref": "#/components/schemas/LinkType"
-          }
-        }
       },
       "TimingCaps.NtpServers.AuthenticationKeyNum": {
         "description": "Authentication key number",
@@ -1364,7 +1000,7 @@
         }
       },
       "TimingCaps": {
-        "description": "This type represents the information provided by the mobile edge platform in response to the Timing capabilities Query message.",
+        "description": "This type represents the information provided by the MEC platform in response to the Timing capabilities Query message.",
         "type": "object",
         "properties": {
           "timeStamp": {
@@ -1520,15 +1156,15 @@
         }
       },
       "TrafficRule.Action": {
-        "description": "The action of the ME host data plane when a packet matches the trafficFilter",
+        "description": "The action of the MEC host data plane when a packet matches the trafficFilter\n   ",
         "type": "string",
         "enum": [
           "DROP",
           "FORWARD_DECAPSULATED",
-          "FORWARD_AS_IS",
+          "FORWARD_ENCAPSULATED",
           "PASSTHROUGH",
           "DUPLICATE_DECAPSULATED",
-          "DUPLICATE_AS_IS"
+          "DUPLICATE_ENCAPSULATED"
         ],
         "example": "DROP"
       },
@@ -1553,7 +1189,7 @@
         "example": 1
       },
       "TrafficRule.State": {
-        "description": "Contains the traffic rule state",
+        "description": "Contains the traffic rule state. This attribute may be updated using HTTP PUT method",
         "type": "string",
         "enum": [
           "ACTIVE",
@@ -1599,103 +1235,6 @@
           }
         }
       },
-      "TransportInfo.Description": {
-        "description": "Human-readable description of this transport",
-        "type": "string",
-        "example": "REST API"
-      },
-      "TransportInfo.Id": {
-        "description": "The identifier of this transport",
-        "type": "string",
-        "example": "TransId12345"
-      },
-      "TransportInfo.ImplSpecificInfo": {
-        "description": "Additional implementation specific details of the transport",
-        "type": "object"
-      },
-      "TransportInfo.Name": {
-        "description": "The name of this transport",
-        "type": "string",
-        "example": "REST"
-      },
-      "TransportInfo.Protocol": {
-        "description": "The name of the protocol used. Shall be set to HTTP for a REST API.",
-        "type": "string",
-        "example": "HTTP"
-      },
-      "TransportInfo.Version": {
-        "description": "The version of the protocol used",
-        "type": "string",
-        "example": "2.0"
-      },
-      "TransportInfo": {
-        "description": "This type represents the general information of a mobile edge service.",
-        "type": "object",
-        "required": [
-          "id",
-          "name",
-          "type",
-          "protocol",
-          "version",
-          "endpoint",
-          "security"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/TransportInfo.Id"
-          },
-          "name": {
-            "$ref": "#/components/schemas/TransportInfo.Name"
-          },
-          "description": {
-            "$ref": "#/components/schemas/TransportInfo.Description"
-          },
-          "type": {
-            "$ref": "#/components/schemas/TransportTypes"
-          },
-          "protocol": {
-            "$ref": "#/components/schemas/TransportInfo.Protocol"
-          },
-          "version": {
-            "$ref": "#/components/schemas/TransportInfo.Version"
-          },
-          "endpoint": {
-            "description": "This type represents information about a transport endpoint",
-            "type": "object",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EndPointInfo.Uris"
-              },
-              {
-                "$ref": "#/components/schemas/EndPointInfo.Addresses"
-              },
-              {
-                "$ref": "#/components/schemas/EndPointInfo.Alternative"
-              }
-            ]
-          },
-          "security": {
-            "$ref": "#/components/schemas/SecurityInfo"
-          },
-          "implSpecificInfo": {
-            "$ref": "#/components/schemas/TransportInfo.ImplSpecificInfo"
-          }
-        }
-      },
-      "TransportTypes": {
-        "description": "The enumeration TransportTypes represents types of transports",
-        "type": "string",
-        "enum": [
-          "REST_HTTP",
-          "MB_TOPIC_BASED",
-          "MB_ROUTING",
-          "MB_PUBSUB",
-          "RPC",
-          "RPC_STREAMING",
-          "WEBSOCKET"
-        ],
-        "example": "REST_HTTP"
-      },
       "TunnelInfo.TunnelDstAddress": {
         "description": "Destination address of the tunnel",
         "type": "string",
@@ -1737,7 +1276,7 @@
     "parameters": {
       "Path.AppInstanceId": {
         "name": "appInstanceId",
-        "description": "Represents a mobile edge application instance. Note that the appInstanceId is allocated by the mobile edge platform manager.",
+        "description": "Represents a MEC application instance. Note that the appInstanceId is allocated by the MEC platform manager.",
         "in": "path",
         "required": true,
         "schema": {
@@ -1755,29 +1294,7 @@
       },
       "Path.SubscriptionId": {
         "name": "subscriptionId",
-        "description": "Represents a subscription to the notifications from the mobile edge platform.",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "Path.SubscriptionType": {
-        "name": "subscriptionType",
-        "description": "Represents a subscription type to the notifications from the mobile edge platform.",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "type": "string",
-          "enum": [
-            "AppTerminationNotificationSubscription",
-            "SerAvailabilityNotificationSubscription"
-          ]
-        }
-      },
-      "Path.ServiceId": {
-        "name": "serviceId",
-        "description": "Represents a mobile edge service instance.",
+        "description": "Represents a subscription to the notifications from the MEC platform.",
         "in": "path",
         "required": true,
         "schema": {
@@ -1791,39 +1308,6 @@
         "required": true,
         "schema": {
           "type": "string"
-        }
-      },
-      "Query.Ser_category_id": {
-        "name": "ser_category_id",
-        "description": "A mobile edge application instance may use ser_category_id as an input parameter to query the availability of a list of mobile edge service instances in a serCategory. Either \"ser_instance_id\" or \"ser_name\" or \"ser_category_id\" or none of them shall be present.",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "Query.Ser_instance_id": {
-        "name": "ser_instance_id",
-        "description": "A mobile edge application instance may use multiple ser_instance_ids as an input parameter to query the availability of a list of mobile edge service instances. Either \"ser_instance_id\" or \"ser_name\" or \"ser_category_id\" or none of them shall be present.",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "Query.Ser_name": {
-        "name": "ser_name",
-        "description": "A mobile edge application instance may use multiple ser_names as an input parameter to query the availability of a list of mobile edge service instances. Either \"ser_instance_id\" or \"ser_name\" or \"ser_category_id\" or none of them shall be present.",
-        "in": "query",
-        "required": false,
-        "schema": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       }
     },
@@ -1875,21 +1359,21 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Mp1SubscriptionLinkList"
+              "$ref": "#/components/schemas/MecAppSuptApiSubscriptionLinkList"
             }
           }
         },
         "links": {
-          "getIndividualMeMp1SubscriptionLinkList": {
-            "$ref": "#/components/links/GetIndividualMeMp1SubscriptionLinkList"
+          "getIndividualmecAppSuptApiSubscriptionLinkList": {
+            "$ref": "#/components/links/GetIndividualmecAppSuptApiSubscriptionLinkList"
           },
-          "delIndividualMeMp1SubscriptionLinkList": {
-            "$ref": "#/components/links/DelIndividualMeMp1SubscriptionLinkList"
+          "delIndividualmecAppSuptApiSubscriptionLinkList": {
+            "$ref": "#/components/links/DelIndividualmecAppSuptApiSubscriptionLinkList"
           }
         }
       },
       "ApplicationsSubscriptions.201": {
-        "description": "Entity body in the request contains a subscription to the mobile edge service availability notifications that is to be created.",
+        "description": "Entity body in the request contains a subscription to the  MEC service availability notifications that is to be created.",
         "headers": {
           "location": {
             "description": "The resource URI of the created resource",
@@ -1902,23 +1386,16 @@
         "content": {
           "application/json": {
             "schema": {
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/AppTerminationNotificationSubscription"
-                },
-                {
-                  "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription"
-                }
-              ]
+              "$ref": "#/components/schemas/AppTerminationNotificationSubscription"
             }
           }
         },
         "links": {
-          "getIndividualMeMp1Subscription": {
-            "$ref": "#/components/links/GetIndividualMeMp1Subscription"
+          "getIndividualmecAppSuptApiSubscription": {
+            "$ref": "#/components/links/GetIndividualmecAppSuptApiSubscription"
           },
-          "delIndividualMeMp1Subscription": {
-            "$ref": "#/components/links/DelIndividualMeMp1Subscription"
+          "delIndividualmecAppSuptApiSubscription": {
+            "$ref": "#/components/links/DelIndividualmecAppSuptApiSubscription"
           }
         }
       },
@@ -1927,14 +1404,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/AppTerminationNotificationSubscription"
-                },
-                {
-                  "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription"
-                }
-              ]
+              "$ref": "#/components/schemas/AppTerminationNotificationSubscription"
             }
           }
         }
@@ -1981,80 +1451,6 @@
           }
         }
       },
-      "Services.200": {
-        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "array",
-              "minItems": 0,
-              "items": {
-                "$ref": "#/components/schemas/ServiceInfo"
-              }
-            },
-            "examples": {
-              "ServiceInfoList": {
-                "$ref": "#/components/examples/ServiceInfoList"
-              }
-            }
-          }
-        },
-        "links": {
-          "getIndividualMeService": {
-            "$ref": "#/components/links/GetIndividualMeService"
-          },
-          "putIndividualMeService": {
-            "$ref": "#/components/links/PutIndividualMeService"
-          }
-        }
-      },
-      "Services.201": {
-        "description": "Upon success, the HTTP response shall include a Location HTTP header that contains the resource URI of the created resource.",
-        "headers": {
-          "location": {
-            "description": "The resource URI of the created resource",
-            "schema": {
-              "type": "string",
-              "format": "uri"
-            }
-          }
-        },
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ServiceInfo"
-            },
-            "examples": {
-              "ServiceInfo": {
-                "$ref": "#/components/examples/ServiceInfo"
-              }
-            }
-          }
-        },
-        "links": {
-          "getIndividualMeService": {
-            "$ref": "#/components/links/GetIndividualMeService"
-          },
-          "putIndividualMeService": {
-            "$ref": "#/components/links/PutIndividualMeService"
-          }
-        }
-      },
-      "ServicesServiceId.200": {
-        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ServiceInfo"
-            },
-            "examples": {
-              "ServiceInfo": {
-                "$ref": "#/components/examples/ServiceInfo"
-              }
-            }
-          }
-        }
-      },
       "TimingCurrentTime.200": {
         "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
         "content": {
@@ -2075,27 +1471,23 @@
           }
         }
       },
-      "Transports.200": {
-        "description": "It is used to indicate nonspecific success. The response body contains a representation of the resource.",
+      "Error.400": {
+        "description": "Bad Request. It is used to indicate that incorrect parameters were passed to the request.",
         "content": {
-          "application/json": {
+          "application/problem+json": {
             "schema": {
-              "type": "array",
-              "minItems": 0,
-              "items": {
-                "$ref": "#/components/schemas/TransportInfo"
-              }
+              "$ref": "#/components/schemas/ProblemDetails"
             }
-          }
-        },
-        "links": {
-          "getTransportInfo": {
-            "$ref": "#/components/links/GetTransportInfo"
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/Empty"
+            }
           }
         }
       },
-      "Error.400": {
-        "description": "Bad Request",
+      "Error.401": {
+        "description": "Unauthorized. It is used when the client did not submit the appropriate credentials.",
         "content": {
           "application/problem+json": {
             "schema": {
@@ -2110,7 +1502,7 @@
         }
       },
       "Error.403": {
-        "description": "Forbidden",
+        "description": "Forbidden. The operation is not allowed given the current status of the resource. ",
         "content": {
           "application/problem+json": {
             "schema": {
@@ -2120,7 +1512,22 @@
         }
       },
       "Error.404": {
-        "description": "Not Found",
+        "description": "Not Found. It is used when a client provided a URI that cannot be mapped  to a valid resource URI.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/Empty"
+            }
+          }
+        }
+      },
+      "Error.409": {
+        "description": "Conflict. The operation cannot be executed currently, due to a conflict with  the state of the resource. Typically, this is because the application  instance resource is in NOT_INSTANTIATED state.",
         "content": {
           "application/problem+json": {
             "schema": {
@@ -2135,7 +1542,22 @@
         }
       },
       "Error.412": {
-        "description": "Precondition Failed",
+        "description": "Precondition Failed. It is used when a condition has failed during conditional requests,  e.g. when using ETags to avoid write conflicts.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "$ref": "#/components/schemas/Empty"
+            }
+          }
+        }
+      },
+      "Error.429": {
+        "description": "Too Many Requests. It is used when a rate limiter has triggered.",
         "content": {
           "application/problem+json": {
             "schema": {
@@ -2151,6 +1573,24 @@
       }
     },
     "requestBodies": {
+      "ApplicationsConfirmReady": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AppReadyConfirmation"
+            }
+          }
+        }
+      },
+      "ApplicationsConfirmTermination": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AppTerminationConfirmation"
+            }
+          }
+        }
+      },
       "ApplicationsDnsRule": {
         "content": {
           "application/json": {
@@ -2166,18 +1606,11 @@
         "content": {
           "application/json": {
             "schema": {
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/AppTerminationNotificationSubscription"
-                },
-                {
-                  "$ref": "#/components/schemas/SerAvailabilityNotificationSubscription"
-                }
-              ]
+              "$ref": "#/components/schemas/AppTerminationNotificationSubscription"
             }
           }
         },
-        "description": "Entity body in the request contains a subscription to the mobile edge application termination notifications that is to be created.",
+        "description": "Entity body in the request contains a subscription to the MEC application termination notifications that is to be created.",
         "required": true
       },
       "ApplicationsTrafficRule": {
@@ -2191,39 +1624,6 @@
         "description": "One or more updated attributes that are allowed to be changed",
         "required": true
       },
-      "Services": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ServiceInfo"
-            }
-          }
-        },
-        "description": "New ServiceInfo with updated \"state\" is included as entity body of the request",
-        "required": true
-      },
-      "Services.Post": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ServiceInfo.Post"
-            }
-          }
-        },
-        "description": "New ServiceInfo with updated \"state\" is included as entity body of the request",
-        "required": true
-      },
-      "ServicesServiceId": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ServiceInfo"
-            }
-          }
-        },
-        "description": "New ServiceInfo with updated \"state\" is included as entity body of the request",
-        "required": true
-      },
       "AppTerminationNotification": {
         "content": {
           "application/json": {
@@ -2231,16 +1631,8 @@
               "$ref": "#/components/schemas/AppTerminationNotification"
             }
           }
-        }
-      },
-      "ServiceAvailabilityNotification": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ServiceAvailabilityNotification"
-            }
-          }
-        }
+        },
+        "required": true
       }
     },
     "callbacks": {
@@ -2250,7 +1642,7 @@
             "description": "Represents the information that the MEP notifies the subscribed application instance about the corresponding  application instance termination/stop",
             "operationId": "AppTerminationNotification_POST",
             "tags": [
-              "callback"
+              "callbacks"
             ],
             "requestBody": {
               "$ref": "#/components/requestBodies/AppTerminationNotification"
@@ -2262,42 +1654,9 @@
             }
           }
         }
-      },
-      "ServiceAvailabilityNotification": {
-        "{$request.body#/callbackReference}": {
-          "post": {
-            "description": "'Represents the service availability information that  is used in the following cases - when the MEC platform announces the newly available\n services to the authorized relevant MEC applications (e.g. \n the applications that indicate the services as \"optional\" \n or \"required\") that are subscribed to the corresponding \n service availability notifications\n-  when the MEC platform notifies the authorized relevant  applications that are subscribed to the corresponding  service availability notifications about the service availability changes.'",
-            "operationId": "ServiceAvailabilityNotification_POST",
-            "tags": [
-              "callback"
-            ],
-            "requestBody": {
-              "$ref": "#/components/requestBodies/ServiceAvailabilityNotification"
-            },
-            "responses": {
-              "200": {
-                "description": "Expected responses from callback consumer, if it accepts the callback"
-              }
-            }
-          }
-        }
       }
     },
     "links": {
-      "GetIndividualMeService": {
-        "operationId": "ServicesServiceId_GET",
-        "description": "The `serviceId` value returned in the response can be used as the `serviceId` parameter in `GET /services/{serviceId}`",
-        "parameters": {
-          "serviceId": "$response.body#/serviceId"
-        }
-      },
-      "PutIndividualMeService": {
-        "operationId": "ServicesServiceId_PUT",
-        "description": "The `serviceId` value returned in the response can be used as the `serviceId` parameter in `PUT /services/{serviceId}`",
-        "parameters": {
-          "serviceId": "$response.body#/serviceId"
-        }
-      },
       "GetIndividualMeDNSRule": {
         "operationId": "ApplicationsDnsRule_GET",
         "description": "The `dnsRuleId` value returned in the response can be used as the `dnsRuleId` parameter in `GET /applications/{appInstanceId}/dns_rules/{dnsRuleId}`",
@@ -2326,42 +1685,35 @@
           "trafficRuleId": "$response.body#/trafficRuleId"
         }
       },
-      "GetTransportInfo": {
-        "operationId": "AppServices_POST",
-        "description": "The `id` value returned in the response can be used as the `transportId` parameter in `POST /applications/{appInstanceId}/services`. The first transport is provided as the link as wildcards are not supported",
-        "parameters": {
-          "transportId": "$response.body#/0/id"
-        }
-      },
-      "GetIndividualMeMp1Subscription": {
+      "GetIndividualmecAppSuptApiSubscription": {
         "operationId": "ApplicationsSubscription_GET",
-        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
+        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionId}`",
         "parameters": {
-          "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
+          "description": "regex = \\/mec_app_support\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
           "subscriptionId": "TBC"
         }
       },
-      "DelIndividualMeMp1Subscription": {
+      "DelIndividualmecAppSuptApiSubscription": {
         "operationId": "ApplicationsSubscription_DELETE",
-        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
+        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionId}`",
         "parameters": {
-          "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
+          "description": "regex = \\/mec_app_support\\/v1\\/applications\\/.*\\/subscriptions\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
           "subscriptionId": "TBC"
         }
       },
-      "GetIndividualMeMp1SubscriptionLinkList": {
+      "GetIndividualmecAppSuptApiSubscriptionLinkList": {
         "operationId": "ApplicationsSubscription_GET",
-        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
+        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `GET /applications/{appInstanceId}/subscriptions/{subscriptionId}`",
         "parameters": {
-          "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
+          "description": "regex = \\/mec_app_support\\/v1\\/applications\\/.*\\/subscriptions\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
           "subscriptionId": "TBC"
         }
       },
-      "DelIndividualMeMp1SubscriptionLinkList": {
+      "DelIndividualmecAppSuptApiSubscriptionLinkList": {
         "operationId": "ApplicationsSubscription_DELETE",
-        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionType}/{subscriptionId}`",
+        "description": "The `subscriptionId` value returned in the response can be used as the `subscriptionId` parameter in `DELETE /applications/{appInstanceId}/subscriptions/{subscriptionId}`",
         "parameters": {
-          "description": "regex = \\/mp1\\/v1\\/applications\\/.*\\/subscriptions\\/.*\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
+          "description": "regex = \\/mec_app_support\\/v1\\/applications\\/.*\\/subscriptions\\/(.*);subscriptionId = href.match(regex)[1];// where \"href\" is an attribute within the subscription attribute within the _links attribute",
           "subscriptionId": "TBC"
         }
       }
@@ -2386,83 +1738,14 @@
             "ipAddress": "146.241.7.3",
             "ttl": 300,
             "state": "ACTIVE"
-          }
-        ]
-      },
-      "ServiceInfo": {
-        "value": {
-          "serInstanceId": "ServiceInstance123",
-          "serName": "ExampleService",
-          "serCategory": {
-            "href": "catItem1",
-            "id": "id12345",
-            "name": "RNI",
-            "version": "version1"
           },
-          "version": "ServiceVersion1",
-          "state": "ACTIVE",
-          "transportInfo": {
-            "id": "TransId12345",
-            "name": "REST",
-            "description": "REST API",
-            "type": "REST_HTTP",
-            "protocol": "HTTP",
-            "version": "2.0",
-            "endpoint": {
-              "uris": [
-                "/meMp1/service/EntryPoint"
-              ]
-            },
-            "security": {
-              "oAuth2Info": {
-                "grantTypes": [
-                  "OAUTH2_CLIENT_CREDENTIALS"
-                ],
-                "tokenEndpoint": "/meMp1/security/TokenEndPoint"
-              }
-            }
-          },
-          "serializer": "JSON"
-        }
-      },
-      "ServiceInfoList": {
-        "value": [
           {
-            "serInstanceId": "ServiceInstance123",
-            "serName": "ExampleService",
-            "serCategory": {
-              "href": "catItem1",
-              "id": "id12345",
-              "name": "RNI",
-              "version": "version1"
-            },
-            "version": "ServiceVersion1",
-            "state": "ACTIVE",
-            "transportInfo": {
-              "id": "TransId12345",
-              "name": "REST",
-              "description": "REST API",
-              "type": "REST_HTTP",
-              "protocol": "HTTP",
-              "version": "2.0",
-              "endpoint": {
-                "addresses": [
-                  {
-                    "host": "192.0.2.0",
-                    "port": 8080
-                  }
-                ]
-              },
-              "security": {
-                "oAuth2Info": {
-                  "grantTypes": [
-                    "OAUTH2_CLIENT_CREDENTIALS"
-                  ],
-                  "tokenEndpoint": "/meMp1/security/TokenEndPoint"
-                }
-              }
-            },
-            "serializer": "JSON"
+            "dnsRuleId": "DnsRule2",
+            "domainName": "www.example.com",
+            "ipAddressType": "IP_V4",
+            "ipAddress": "146.241.7.4",
+            "ttl": 300,
+            "state": "INACTIVE"
           }
         ]
       },
