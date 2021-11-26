@@ -1,10 +1,24 @@
 openapi: 3.1.0
 info:
   title: MEC Application Support API
+  version: '2.1.1'
   description: The ETSI MEC ISG MEC011 MEC Application Support API described using OpenAPI
+  license:
+    name: BSD-3-Clause
+    url: 'https://forge.etsi.org/legal-matters'
   contact:
     email: cti_support@etsi.org
-  version: '2.1.1'
+externalDocs:
+  description: ETSI GS MEC011 Application Enablement API, V2.1.1
+  url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf
+tags:
+- name: appTrafficRules
+- name: appDnsRules
+- name: appSubscriptions
+- name: appConfirmTermination
+- name: appConfirmReady
+- name: timing
+- name: callbacks
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 servers:
 - url: http://127.0.0.1:8081/mec_app_support/v1
@@ -16,7 +30,6 @@ paths:
     get:
       tags:
       - appTrafficRules
-      summary: ApplicationsTrafficRules_GET
       description: This method retrieves information about all the traffic rules associated with a MEC application instance.
       operationId: ApplicationsTrafficRules_GET
       parameters:
@@ -115,7 +128,7 @@ paths:
     get:
       tags:
       - appTrafficRules
-      summary: ApplicationsTrafficRule_GET
+
       description: This method retrieves information about all the traffic rules associated with a MEC application instance.
       operationId: ApplicationsTrafficRule_GET
       parameters:
@@ -196,7 +209,7 @@ paths:
     put:
       tags:
       - appTrafficRules
-      summary: ApplicationsTrafficRule_PUT
+
       description: This method retrieves information about all the traffic rules associated with a MEC application instance.
       operationId: ApplicationsTrafficRule_PUT
       parameters:
@@ -298,7 +311,6 @@ paths:
     get:
       tags:
       - appDnsRules
-      summary: ApplicationsDnsRules_GET
       description: This method retrieves information about all the DNS rules associated with a MEC application instance.
       operationId: ApplicationsDnsRules_GET
       parameters:
@@ -387,7 +399,6 @@ paths:
     get:
       tags:
       - appDnsRules
-      summary: ApplicationsDnsRule_GET
       description: This method retrieves information about a DNS rule associated with a MEC application instance.
       operationId: ApplicationsDnsRule_GET
       parameters:
@@ -457,7 +468,6 @@ paths:
     put:
       tags:
       - appDnsRules
-      summary: ApplicationsDnsRule_PUT
       description: This method activates, de-activates or updates a traffic rule.
       operationId: ApplicationsDnsRule_PUT
       parameters:
@@ -548,7 +558,6 @@ paths:
     get:
       tags:
       - appSubscriptions
-      summary: ApplicationsSubscriptions_GET
       description: The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.
       operationId: ApplicationsSubscriptions_GET
       parameters:
@@ -602,7 +611,6 @@ paths:
     post:
       tags:
       - appSubscriptions
-      summary: ApplicationsSubscriptions_POST
       description: The POST method may be used to create a new subscription. One example use case is to create a new subscription to the MEC service availability notifications. Upon success, the response contains entity body describing the created subscription.
       operationId: ApplicationsSubscriptions_POST
       parameters:
@@ -668,12 +676,28 @@ paths:
                 description: Empty schema
                 contentMediaType: text/plain
       deprecated: false
+
+      callbacks:
+        AppTerminationNotification:
+          '{$request.body#/callbackUri}':
+            post:
+              description: Represents the information that the MEP notifies the
+               subscribed application instance about the corresponding 
+               application instance termination/stop'
+              operationId: AppTerminationNotification_POST
+              tags:
+              - callbacks
+              requestBody:
+                $ref: '#/components/requestBodies/AppTerminationNotification'      
+              responses:
+                '200':
+                  description: Expected responses from callback consumer, if it accepts the callback  
     parameters: []
   /applications/{appInstanceId}/subscriptions/{subscriptionId}:
     get:
       tags:
       - appSubscriptions
-      summary: ApplicationsSubscription_GET
+
       description: The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.
       operationId: ApplicationsSubscription_GET
       parameters:
@@ -734,7 +758,7 @@ paths:
     delete:
       tags:
       - appSubscriptions
-      summary: ApplicationsSubscription_DELETE
+
       description: This method deletes a mecAppSuptApiSubscription. This method is typically used in "Unsubscribing from service availability event notifications" procedure.
       operationId: ApplicationsSubscription_DELETE
       parameters:
@@ -782,7 +806,7 @@ paths:
     post:
       tags:
       - appConfirmTermination
-      summary: ApplicationsConfirmTermination_POST
+
       description: This method is used to confirm the application level termination  of an application instance.
       operationId: ApplicationsConfirmTermination_POST
       parameters:
@@ -866,7 +890,7 @@ paths:
     post:
       tags:
       - appConfirmReady
-      summary: ApplicationsConfirmReady_POST
+
       description: 'This method may be used by the MEC application instance to notify the MEC platform that it is up and running. '
       operationId: ApplicationsConfirmReady_POST
       parameters:
@@ -950,7 +974,7 @@ paths:
     get:
       tags:
       - timing
-      summary: TimingCaps_GET
+
       description: This method retrieves the information of the platform's timing capabilities which corresponds to the timing capabilities query
       operationId: TimingCaps_GET
       parameters: []
@@ -999,7 +1023,7 @@ paths:
     get:
       tags:
       - timing
-      summary: TimingCurrentTime_GET
+
       description: This method retrieves the information of the platform's current time which corresponds to the get platform time procedure
       operationId: TimingCurrentTime_GET
       parameters: []
@@ -1328,13 +1352,6 @@ components:
         instance:
           type: string
           description: A URI reference that identifies the specific occurrence of the problem
-    ReadyIndicationType:
-      title: ReadyIndicationType
-      const: READY
-      type: string
-      description: Indication about the MEC application instance.
-      examples:
-      - READY
     Self:
       title: Self
       required:
@@ -1649,16 +1666,14 @@ components:
       description: Platform Time Source status. 1 = TRACEABLE - time source is locked to the UTC time source. 2 = NONTRACEABLE - time source is not locked to the UTC time source
       examples:
       - TRACEABLE
+
+  requestBodies:
+    AppTerminationNotification:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppTerminationNotification'
+      required: true
+      
 security:
 - {}
-tags:
-- name: appTrafficRules
-- name: appDnsRules
-- name: appSubscriptions
-- name: appConfirmTermination
-- name: appConfirmReady
-- name: timing
-- name: callbacks
-externalDocs:
-  description: ETSI GS MEC011 Application Enablement API, V2.1.1
-  url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf

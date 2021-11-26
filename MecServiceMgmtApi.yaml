@@ -2,21 +2,34 @@ openapi: 3.1.0
 info:
   title: MEC Service Management API
   description: The ETSI MEC ISG MEC011 MEC Service Management API described using OpenAPI
+  license:
+    name: BSD-3-Clause
+    url: 'https://forge.etsi.org/legal-matters'
   contact:
     email: cti_support@etsi.org
   version: '2.1.1'
+externalDocs:
+  description: ETSI GS MEC011 Application Enablement API, V2.1.1
+  url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 servers:
 - url: http://127.0.0.1:8081/mec_service_mgmt/v1
   variables: {}
 - url: https://127.0.0.1:8081/mec_service_mgmt/v1
   variables: {}
+tags:
+- name: appSubscriptions
+- name: appServices
+- name: services
+- name: transports
+- name: callbacks
+
 paths:
   /applications/{appInstanceId}/subscriptions:
     get:
       tags:
       - appSubscriptions
-      summary: ApplicationsSubscriptions_GET
+
       description: The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor.
       operationId: ApplicationsSubscriptions_GET
       parameters:
@@ -70,7 +83,7 @@ paths:
     post:
       tags:
       - appSubscriptions
-      summary: ApplicationsSubscriptions_POST
+
       description: The POST method may be used to create a new subscription. One example use case is to create a new subscription to the MEC service availability notifications. Upon success, the response contains entity body describing the created subscription.
       operationId: ApplicationsSubscriptions_POST
       parameters:
@@ -88,6 +101,7 @@ paths:
             schema:
               $ref: '#/components/schemas/SerAvailabilityNotificationSubscription'
         required: true
+      
       responses:
         '201':
           description: Entity body in the request contains a subscription to the MEC service availability notifications that is to be created.
@@ -136,12 +150,36 @@ paths:
                 description: Empty schema
                 contentMediaType: text/plain
       deprecated: false
+
+      callbacks:
+        ServiceAvailailityNotification:
+          '{$request.body#/callbackReference}':
+             post:
+              description: >-
+               'Represents the service availability information that 
+               is used in the following cases
+                when the MEC platform announces the newly available
+               services to the authorized relevant MEC applications (e.g. 
+               the applications that indicate the services as "optional" 
+               or "required") that are subscribed to the corresponding 
+               service availability notifications
+               when the MEC platform notifies the authorized relevant 
+               applications that are subscribed to the corresponding 
+               service availability notifications about the service availability changes.'
+              operationId: ServiceAvailabilityNotification_POST
+              tags:
+              - callbacks
+              requestBody:
+               $ref: '#/components/requestBodies/ServiceAvailabilityNotification'
+              responses:
+               '200':
+                 description: Expected responses from callback consumer, if it accepts the callback
     parameters: []
   /applications/{appInstanceId}/subscriptions/{subscriptionId}:
     get:
       tags:
       - appSubscriptions
-      summary: ApplicationsSubscription_GET
+
       description: The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor.
       operationId: ApplicationsSubscription_GET
       parameters:
@@ -202,7 +240,7 @@ paths:
     delete:
       tags:
       - appSubscriptions
-      summary: ApplicationsSubscription_DELETE
+
       description: This method deletes a mecSrvMgmtSubscription. This method is typically used in "Unsubscribing from service availability event notifications" procedure.
       operationId: ApplicationsSubscription_DELETE
       parameters:
@@ -250,7 +288,6 @@ paths:
     get:
       tags:
       - appServices
-      summary: AppServices_GET
       description: This method retrieves information about a list of mecService resources. This method is typically used in "service availability query" procedure
       operationId: AppServices_GET
       parameters:
@@ -423,7 +460,6 @@ paths:
     post:
       tags:
       - appServices
-      summary: AppServices_POST
       description: This method is used to create a mecService resource. This method is typically used in "service availability update and new service registration" procedure
       operationId: AppServices_POST
       parameters:
@@ -526,7 +562,6 @@ paths:
     get:
       tags:
       - appServices
-      summary: AppServicesServiceId_GET
       description: This method retrieves information about a mecService resource. This method is typically used in "service availability query" procedure
       operationId: AppServicesServiceId_GET
       parameters:
@@ -615,7 +650,6 @@ paths:
     put:
       tags:
       - appServices
-      summary: AppServicesServiceId_PUT
       description: This method updates the information about a mecService resource
       operationId: AppServicesServiceId_PUT
       parameters:
@@ -723,7 +757,6 @@ paths:
     delete:
       tags:
       - appServices
-      summary: AppServicesServiceId_DELETE
       description: 'This method deletes a mecService resource. This method is typically used in the service deregistration procedure. '
       operationId: AppServicesServiceId_DELETE
       parameters:
@@ -771,7 +804,7 @@ paths:
     get:
       tags:
       - services
-      summary: Services_GET
+
       description: This method retrieves information about a list of mecService resources. This method is typically used in "service availability query" procedure
       operationId: Services_GET
       parameters:
@@ -939,7 +972,7 @@ paths:
     get:
       tags:
       - services
-      summary: ServicesServiceId_GET
+
       description: This method retrieves information about a mecService resource. This method is typically used in "service availability query" procedure
       operationId: ServicesServiceId_GET
       parameters:
@@ -1023,7 +1056,7 @@ paths:
     get:
       tags:
       - transports
-      summary: Transports_GET
+
       description: This method retrieves information about a list of available transports. This method is typically used by a service-producing application to discover transports provided by the MEC platform in the "transport information query" procedure
       operationId: Transports_GET
       parameters: []
@@ -1294,11 +1327,8 @@ components:
         _links:
           $ref: '#/components/schemas/Self'
         filteringCriteria:
-          type: 'null'
-          not:
-            type: object
-          description: Filtering criteria to match services for which events are requested to be reported. If absent, matches all services. All child attributes are combined with the logical  "AND" operation.
-      description: This type represents a subscription to the notifications from the  MEC platform regarding the availability of a MEC service or a list of MEC services.
+          $ref: '#/components/schemas/SerAvailabilityNotificationSubscription.FilteringCriteria'
+    
     SerAvailabilityNotificationSubscription.FilteringCriteria:
       title: SerAvailabilityNotificationSubscription.FilteringCriteria
       type: object
@@ -1423,56 +1453,6 @@ components:
       description: This enumeration defines the possible states of a service.
       examples:
       - ACTIVE
-    ServiceInfo.Post:
-      title: ServiceInfo.Post
-      required:
-      - serName
-      - version
-      - state
-      - serializer
-      type: object
-      properties:
-        serInstanceId:
-          type: string
-          description: Identifier of the service instance assigned by the MEC platform.
-          examples:
-          - ServiceInstance123
-        serName:
-          type: string
-          description: The name of the service. This is how the service producing MEC application identifies the service instance it produces.
-          examples:
-          - ExampleService
-        serCategory:
-          $ref: '#/components/schemas/CategoryRef'
-        version:
-          type: string
-          description: Service version
-          examples:
-          - ServiceVersion1
-        state:
-          $ref: '#/components/schemas/ServiceState'
-        transportId:
-          type: string
-          description: Identifier of the platform-provided transport to be used by the service. Valid identifiers may be obtained using the "Transport information query" procedure. May be present in POST requests to signal the use of a platform-provided transport for the service, and shall be absent otherwise.
-          examples:
-          - Rest1
-        transportInfo:
-          $ref: '#/components/schemas/TransportInfo'
-        serializer:
-          $ref: '#/components/schemas/SerializerType'
-        scopeOfLocality:
-          $ref: '#/components/schemas/LocalityType'
-        consumedLocalOnly:
-          type: boolean
-          description: Indicate whether the service can only be consumed by the MEC applications located in the same locality (as defined by scopeOfLocality) as this  service instance.
-          examples:
-          - false
-        isLocal:
-          type: boolean
-          description: Indicate whether the service is located in the same locality (as defined by scopeOfLocality) as the consuming MEC application.
-          examples:
-          - true
-      description: This type represents the general information of a MEC service.
     ServiceInfo:
       title: ServiceInfo
       required:
@@ -1593,14 +1573,13 @@ components:
       description: The enumeration TransportType represents types of transports
       examples:
       - REST_HTTP
+  requestBodies:
+    ServiceAvailabilityNotification:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServiceAvailabilityNotification'
+      required: true
 security:
 - {}
-tags:
-- name: appSubscriptions
-- name: appServices
-- name: services
-- name: transports
-- name: callbacks
-externalDocs:
-  description: ETSI GS MEC011 Application Enablement API, V2.1.1
-  url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf
+
