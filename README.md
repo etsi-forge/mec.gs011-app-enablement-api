@@ -5,10 +5,10 @@ This repository contains OpenAPIs descriptions for the interfaces specified in E
 ## Online resources
 
 * [Specification document](https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf)
-* [Navigate the MEC Application Support API in the browser](https://forge.etsi.org/swagger/ui/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/master/MecAppSupportApi.yaml).
-* [Navigate the MEC Service Management API in the browser](https://forge.etsi.org/swagger/ui/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/master/MecServiceMgmtApi.yaml).
-* [Edit the MEC Application Support API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/master/MecAppSupportApi.yaml).
-* [Edit the MEC Service Management API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/master/MecServiceMgmtApi.yaml).
+* [Navigate the MEC Application Support API in the browser](https://forge.etsi.org/swagger/ui/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/stf606-final/MecAppSupportApi.yaml).
+* [Navigate the MEC Service Management API in the browser](https://forge.etsi.org/swagger/ui/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/stf606-final/MecServiceMgmtApi.yaml).
+* [Edit the MEC Application Support API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/stf606-final/MecAppSupportApi.yaml).
+* [Edit the MEC Service Management API online](https://forge.etsi.org/swagger/editor/?url=https://forge.etsi.org/gitlab/mec/gs011-app-enablement-api/raw/stf606-final/MecServiceMgmtApi.yaml).
 
 ## License
 
